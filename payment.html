@@ -13,6 +13,7 @@
       scrollbar-color: rgba(0, 0, 0, 0.2) transparent;
     }
   </style>
+  <link rel="stylesheet" href="assets/dark.css" />
 </head>
 
 <body dir="rtl" lang="fa"><link rel="preconnect" href="https://unpkg.com" />
@@ -22,8 +23,22 @@
       scrollbar-color: rgba(0, 0, 0, 0.2) transparent;
     }
   </style>
+<link rel="preconnect" href="https://unpkg.com" />
+<style>
+    * {
+      scrollbar-width: none;
+      scrollbar-color: rgba(0, 0, 0, 0.2) transparent;
+    }
+  </style>
+<link rel="preconnect" href="https://unpkg.com" />
+<style>
+    * {
+      scrollbar-width: none;
+      scrollbar-color: rgba(0, 0, 0, 0.2) transparent;
+    }
+  </style>
 
-<link rel="stylesheet" href="https://fonts.googleapis.cn/css2?family=Vazirmatn:wght@300;400;500;600;700;800;900&display=swap" />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700;800;900&display=swap" />
 <style type="text/tailwindcss">
 @theme {
   --color-primary: #272727;
@@ -42,6 +57,9 @@
 body { background: #F9F8F2; margin: 0; }
 </style>
 
+
+
+
 <!-- Header -->
 <header class="sticky top-0 z-40 bg-base/90 backdrop-blur-xl border-b border-[#272727]/5">
   <div class="max-w-md mx-auto px-4 py-3 flex items-center gap-3">
@@ -58,12 +76,12 @@ body { background: #F9F8F2; margin: 0; }
   <div class="bg-surface rounded-2xl border border-[#272727]/5 p-4 mb-4">
     <h2 class="text-[#272727] font-bold text-sm mb-3">خلاصه سفارش</h2>
     <div class="space-y-2 text-xs">
-      <div class="flex justify-between"><span class="text-[#272727]/40">خدمت</span><span class="text-[#272727]">پکیج ۳: داماد</span></div>
-      <div class="flex justify-between"><span class="text-[#272727]/40">تاریخ</span><span class="text-[#272727]">شنبه، ۳۰ تیر ۱۴۰۴</span></div>
-      <div class="flex justify-between"><span class="text-[#272727]/40">ساعت</span><span class="text-[#272727]">۱۱:۰۰</span></div>
+      <div class="flex justify-between"><span class="text-[#272727]/40">خدمت</span><span id="payService" class="text-[#272727]">—</span></div>
+      <div class="flex justify-between"><span class="text-[#272727]/40">تاریخ</span><span id="payDate" class="text-[#272727]">—</span></div>
+      <div class="flex justify-between"><span class="text-[#272727]/40">ساعت</span><span id="payTime" class="text-[#272727]">—</span></div>
       <div class="border-t border-[#272727]/5 pt-2 mt-2 flex justify-between">
         <span class="text-[#272727] font-semibold">مبلغ کل</span>
-        <span class="text-primary font-bold text-lg">۹٬۵۰۰٬۰۰۰ تومان</span>
+        <span id="payTotal" class="text-primary font-bold text-lg">—</span>
       </div>
     </div>
   </div>
@@ -93,11 +111,11 @@ body { background: #F9F8F2; margin: 0; }
         </div>
         <div class="flex justify-between text-xs mb-2">
           <span class="text-gray-500">شماره سفارش</span>
-          <span class="text-gray-800 font-semibold" dir="ltr">BK-۱۴۰۴۰۴۳۰-۰۷۸</span>
+          <span id="payOrder" class="text-gray-800 font-semibold" dir="ltr">—</span>
         </div>
         <div class="flex justify-between text-xs">
           <span class="text-gray-500">مبلغ</span>
-          <span class="text-gray-900 font-bold text-base">۹٬۵۰۰٬۰۰۰ تومان</span>
+          <span id="payAmount" class="text-gray-900 font-bold text-base">—</span>
         </div>
       </div>
       
@@ -132,13 +150,9 @@ body { background: #F9F8F2; margin: 0; }
         </div>
       </div>
       
-      <a href="confirmation.html" class="block w-full bg-gradient-to-l from-[#FFD54F] to-[#FFC107] text-gray-900 font-bold text-center py-3.5 rounded-xl shadow-lg">
-        پرداخت ۹٬۵۰۰٬۰۰۰ تومان
-      </a>
+      <button id="payBtn" class="block w-full bg-gradient-to-l from-[#FFD54F] to-[#FFC107] text-gray-900 font-bold text-center py-3.5 rounded-xl shadow-lg">پرداخت</button>
       
-      <button class="block w-full text-red-500 text-xs font-medium text-center py-3 mt-2">
-        انصراف از پرداخت
-      </button>
+      <a id="cancelPay" href="booking.html" class="block w-full text-red-500 text-xs font-medium text-center py-3 mt-2">انصراف از پرداخت</a>
     </div>
   </div>
 
@@ -160,6 +174,11 @@ body { background: #F9F8F2; margin: 0; }
   </div>
 </div>
 
+
+
 </body>
+<script src="assets/data.js"></script>
+<script src="assets/page-payment.js"></script>
+<script src="assets/theme.js"></script>
 <script>if (window.lucide) lucide.createIcons();</script>
 </html>

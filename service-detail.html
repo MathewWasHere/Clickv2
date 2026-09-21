@@ -13,6 +13,7 @@
       scrollbar-color: rgba(0, 0, 0, 0.2) transparent;
     }
   </style>
+  <link rel="stylesheet" href="assets/dark.css" />
 </head>
 
 <body dir="rtl" lang="fa"><link rel="preconnect" href="https://unpkg.com" />
@@ -23,7 +24,7 @@
     }
   </style>
 
-<link rel="stylesheet" href="https://fonts.googleapis.cn/css2?family=Vazirmatn:wght@300;400;500;600;700;800;900&display=swap" />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700;800;900&display=swap" />
 <style type="text/tailwindcss">
 @theme {
   --color-primary: #272727;
@@ -42,7 +43,7 @@ body { background: #F9F8F2; margin: 0; }
 
 <!-- Hero Image -->
 <div class="relative">
-  <img src="https://images.unsplash.com/photo-1593702288056-7927b442d0fa?w=800&h=500&fit=crop&auto=format&q=80" alt="پکیج داماد" class="w-full h-64 object-cover" />
+  <img id="sd-img" src="https://images.unsplash.com/photo-1593702288056-7927b442d0fa?w=800&h=500&fit=crop&auto=format&q=80" alt="پکیج داماد" class="w-full h-64 object-cover" />
   <div class="absolute inset-0 bg-gradient-to-t from-[#272727] via-[#272727]/50 to-transparent"></div>
   <div class="absolute top-0 left-0 right-0 p-4 flex items-center justify-between">
     <a href="services.html" class="w-9 h-9 rounded-full bg-[#272727]/40 backdrop-blur flex items-center justify-center">
@@ -56,20 +57,20 @@ body { background: #F9F8F2; margin: 0; }
 
 <!-- Content -->
 <div class="max-w-md mx-auto px-4 -mt-8 relative z-10">
-  <div class="bg-primary text-[#F9F8F2] text-[10px] font-bold px-3 py-1 rounded-full inline-block mb-3">محبوب‌ترین</div>
-  <h1 class="text-[#272727] text-xl font-extrabold mb-2">پکیج ۳: داماد</h1>
-  <p class="text-[#272727]/50 text-sm leading-relaxed mb-5">پکیج کامل و حرفه‌ای مخصوص داماد شامل تمامی خدمات آرایشی و زیبایی برای بهترین روز زندگی شما.</p>
+  <div id="sd-badge" class="bg-primary text-[#F9F8F2] text-[10px] font-bold px-3 py-1 rounded-full inline-block mb-3">محبوب‌ترین</div>
+  <h1 id="sd-title" class="text-[#272727] text-xl font-extrabold mb-2">پکیج ۳: داماد</h1>
+  <p id="sd-desc" class="text-[#272727]/50 text-sm leading-relaxed mb-5">پکیج کامل و حرفه‌ای مخصوص داماد شامل تمامی خدمات آرایشی و زیبایی برای بهترین روز زندگی شما.</p>
 
   <!-- Price & Duration -->
   <div class="flex gap-3 mb-6">
     <div class="flex-1 bg-surface rounded-2xl border border-[#272727]/5 p-3 text-center">
       <i data-lucide="banknote" class="w-5 h-5 text-primary mx-auto mb-1"></i>
-      <p class="text-primary font-bold text-sm">۹٬۵۰۰٬۰۰۰</p>
+      <p id="sd-price" class="text-primary font-bold text-sm">۹٬۵۰۰٬۰۰۰</p>
       <p class="text-[#272727]/40 text-[10px]">تومان</p>
     </div>
     <div class="flex-1 bg-surface rounded-2xl border border-[#272727]/5 p-3 text-center">
       <i data-lucide="clock" class="w-5 h-5 text-primary mx-auto mb-1"></i>
-      <p class="text-[#272727] font-bold text-sm">۶ ساعت</p>
+      <p id="sd-duration" class="text-[#272727] font-bold text-sm">۶ ساعت</p>
       <p class="text-[#272727]/40 text-[10px]">مدت زمان</p>
     </div>
     <div class="flex-1 bg-surface rounded-2xl border border-[#272727]/5 p-3 text-center">
@@ -81,7 +82,7 @@ body { background: #F9F8F2; margin: 0; }
 
   <!-- Included Services -->
   <h3 class="text-[#272727] font-bold text-sm mb-3">شامل خدمات:</h3>
-  <div class="space-y-2 mb-6">
+  <div id="sd-includes" class="space-y-2 mb-6">
     <div class="flex items-center gap-3 bg-surface rounded-xl p-3">
       <div class="w-8 h-8 rounded-lg bg-primary/10 flex items-center justify-center shrink-0">
         <i data-lucide="scissors" class="w-4 h-4 text-primary"></i>
@@ -134,9 +135,9 @@ body { background: #F9F8F2; margin: 0; }
   <div class="max-w-md mx-auto flex items-center justify-between">
     <div>
       <p class="text-[#272727]/40 text-[10px]">قیمت</p>
-      <p class="text-primary font-bold">۹٬۵۰۰٬۰۰۰ تومان</p>
+      <p id="sd-price2" class="text-primary font-bold">۹٬۵۰۰٬۰۰۰ تومان</p>
     </div>
-    <a href="booking.html?s=groom3" class="bg-gradient-to-l from-primary to-primary-dark text-[#F9F8F2] font-bold px-8 py-3.5 rounded-2xl shadow-lg shadow-[#272727]/25 flex items-center gap-2">
+    <a id="sd-book" href="booking.html?s=groom3" class="bg-gradient-to-l from-primary to-primary-dark text-[#F9F8F2] font-bold px-8 py-3.5 rounded-2xl shadow-lg shadow-[#272727]/25 flex items-center gap-2">
       <i data-lucide="calendar-plus" class="w-4 h-4"></i>
       رزرو نوبت
     </a>
@@ -144,5 +145,8 @@ body { background: #F9F8F2; margin: 0; }
 </div>
 
 </body>
+<script src="assets/data.js"></script>
+<script src="assets/page-service-detail.js"></script>
+<script src="assets/theme.js"></script>
 <script>if (window.lucide) lucide.createIcons();</script>
 </html>

@@ -13,6 +13,7 @@
       scrollbar-color: rgba(0, 0, 0, 0.2) transparent;
     }
   </style>
+  <link rel="stylesheet" href="assets/dark.css" />
 </head>
 
 <body dir="rtl" lang="fa"><link rel="preconnect" href="https://unpkg.com" />
@@ -23,7 +24,7 @@
     }
   </style>
 
-<link rel="stylesheet" href="https://fonts.googleapis.cn/css2?family=Vazirmatn:wght@300;400;500;600;700;800;900&display=swap" />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700;800;900&display=swap" />
 <style type="text/tailwindcss">
 @theme {
   --color-primary: #272727;
@@ -41,7 +42,7 @@
 <header class="sticky top-0 z-40 bg-base/90 backdrop-blur-xl border-b border-[#272727]/5">
   <div class="max-w-md mx-auto px-4 py-3 flex items-center justify-between">
     <div class="flex items-center gap-2">
-      <img src="cos://file/721170364499455/2026/09/20/9vw5cq4daxxko344nkbkt/1789934078935-jug7ywwuzk.html" alt="کلیک" class="h-8 w-auto object-contain" />
+      <img src="assets/logo.svg" alt="کلیک" class="h-8 w-auto object-contain" />
       <div>
         <h1 class="text-[#272727] font-bold text-sm">پنل مدیریت</h1>
         <p class="text-[#272727]/30 text-[10px]">پیرایش</p>
@@ -66,28 +67,28 @@
       <div class="flex items-center gap-2 mb-2">
         <div class="w-8 h-8 rounded-lg bg-blue-500/10 flex items-center justify-center"><i data-lucide="calendar-check" class="w-4 h-4 text-blue-400"></i></div>
       </div>
-      <p class="text-[#272727] text-xl font-extrabold">۱۲۸</p>
+      <p id="statTotal" class="text-[#272727] text-xl font-extrabold">—</p>
       <p class="text-[#272727]/40 text-[10px]">کل رزروها (این ماه)</p>
     </div>
     <div class="bg-surface rounded-2xl border border-[#272727]/5 p-4">
       <div class="flex items-center gap-2 mb-2">
         <div class="w-8 h-8 rounded-lg bg-green-500/10 flex items-center justify-center"><i data-lucide="banknote" class="w-4 h-4 text-green-400"></i></div>
       </div>
-      <p class="text-[#272727] text-xl font-extrabold">۸۷.۵M</p>
+      <p id="statRevenue" class="text-[#272727] text-xl font-extrabold">—</p>
       <p class="text-[#272727]/40 text-[10px]">درآمد کل (تومان)</p>
     </div>
     <div class="bg-surface rounded-2xl border border-[#272727]/5 p-4">
       <div class="flex items-center gap-2 mb-2">
         <div class="w-8 h-8 rounded-lg bg-purple-500/10 flex items-center justify-center"><i data-lucide="users" class="w-4 h-4 text-purple-400"></i></div>
       </div>
-      <p class="text-[#272727] text-xl font-extrabold">۴۳</p>
+      <p id="statNew" class="text-[#272727] text-xl font-extrabold">—</p>
       <p class="text-[#272727]/40 text-[10px]">مشتریان جدید</p>
     </div>
     <div class="bg-surface rounded-2xl border border-[#272727]/5 p-4">
       <div class="flex items-center gap-2 mb-2">
         <div class="w-8 h-8 rounded-lg bg-yellow-500/10 flex items-center justify-center"><i data-lucide="clock" class="w-4 h-4 text-yellow-400"></i></div>
       </div>
-      <p class="text-[#272727] text-xl font-extrabold">۷</p>
+      <p id="statToday" class="text-[#272727] text-xl font-extrabold">—</p>
       <p class="text-[#272727]/40 text-[10px]">نوبت‌های امروز</p>
     </div>
   </div>
@@ -101,62 +102,22 @@
     <div class="space-y-2 text-xs">
       <div class="flex justify-between">
         <span class="text-[#272727]/40">درآمد ناخالص ماهانه</span>
-        <span class="text-[#272727] font-semibold">۸۷٬۵۰۰٬۰۰۰ تومان</span>
+        <span id="commGross" class="text-[#272727] font-semibold">—</span>
       </div>
       <div class="flex justify-between">
         <span class="text-[#272727]/40">کمیسیون ۱۰٪</span>
-        <span class="text-primary font-bold">۸٬۷۵۰٬۰۰۰ تومان</span>
+        <span id="commFee" class="text-primary font-bold">—</span>
       </div>
       <div class="border-t border-primary/10 pt-2 flex justify-between">
         <span class="text-[#272727]/60 font-medium">درآمد خالص</span>
-        <span class="text-[#272727] font-bold text-base">۷۸٬۷۵۰٬۰۰۰ تومان</span>
+        <span id="commNet" class="text-[#272727] font-bold text-base">—</span>
       </div>
     </div>
   </div>
 
   <!-- Upcoming Appointments -->
   <h3 class="text-[#272727] font-bold text-sm mb-3">نوبت‌های پیش‌رو</h3>
-  <div class="space-y-2 mb-5">
-    <div class="bg-surface rounded-xl border border-[#272727]/5 p-3 flex items-center justify-between">
-      <div class="flex items-center gap-3">
-        <div class="w-9 h-9 rounded-full bg-primary/10 flex items-center justify-center text-primary font-bold text-xs">ا</div>
-        <div>
-          <p class="text-[#272727] text-xs font-semibold">امیرحسین محمدی</p>
-          <p class="text-[#272727]/30 text-[10px]">پکیج ۳: داماد — ۱۱:۰۰</p>
-        </div>
-      </div>
-      <div class="text-left">
-        <p class="text-primary text-[10px] font-bold">۹٬۵۰۰٬۰۰۰ ت</p>
-        <p class="text-[#272727]/20 text-[10px]">کمیسیون: ۹۵۰٬۰۰۰ ت</p>
-      </div>
-    </div>
-    <div class="bg-surface rounded-xl border border-[#272727]/5 p-3 flex items-center justify-between">
-      <div class="flex items-center gap-3">
-        <div class="w-9 h-9 rounded-full bg-blue-500/10 flex items-center justify-center text-blue-400 font-bold text-xs">م</div>
-        <div>
-          <p class="text-[#272727] text-xs font-semibold">محمد رضایی</p>
-          <p class="text-[#272727]/30 text-[10px]">اصلاح VIP — ۱۴:۳۰</p>
-        </div>
-      </div>
-      <div class="text-left">
-        <p class="text-primary text-[10px] font-bold">۳۵۰٬۰۰۰ ت</p>
-        <p class="text-[#272727]/20 text-[10px]">کمیسیون: ۳۵٬۰۰۰ ت</p>
-      </div>
-    </div>
-    <div class="bg-surface rounded-xl border border-[#272727]/5 p-3 flex items-center justify-between">
-      <div class="flex items-center gap-3">
-        <div class="w-9 h-9 rounded-full bg-green-500/10 flex items-center justify-center text-green-400 font-bold text-xs">ع</div>
-        <div>
-          <p class="text-[#272727] text-xs font-semibold">علی کریمی</p>
-          <p class="text-[#272727]/30 text-[10px]">پاکسازی و فیشیال — ۱۶:۰۰</p>
-        </div>
-      </div>
-      <div class="text-left">
-        <p class="text-primary text-[10px] font-bold">۴۵۰٬۰۰۰ ت</p>
-        <p class="text-[#272727]/20 text-[10px]">کمیسیون: ۴۵٬۰۰۰ ت</p>
-      </div>
-    </div>
-  </div>
+  <div id="dashUpcoming" class="space-y-2 mb-5"></div>
 
   <!-- Quick Actions -->
   <div class="grid grid-cols-2 gap-3 mb-8">
@@ -172,5 +133,8 @@
 </div>
 
 </body>
+<script src="assets/data.js"></script>
+<script src="assets/page-admin-dashboard.js"></script>
+<script src="assets/theme.js"></script>
 <script>if (window.lucide) lucide.createIcons();</script>
 </html>

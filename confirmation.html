@@ -13,6 +13,7 @@
       scrollbar-color: rgba(0, 0, 0, 0.2) transparent;
     }
   </style>
+  <link rel="stylesheet" href="assets/dark.css" />
 </head>
 
 <body dir="rtl" lang="fa"><link rel="preconnect" href="https://unpkg.com" />
@@ -23,7 +24,7 @@
     }
   </style>
 
-<link rel="stylesheet" href="https://fonts.googleapis.cn/css2?family=Vazirmatn:wght@300;400;500;600;700;800;900&display=swap" />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700;800;900&display=swap" />
 <style type="text/tailwindcss">
 @theme {
   --color-primary: #272727;
@@ -58,7 +59,7 @@ body { background: #F9F8F2; margin: 0; }
   <div class="bg-surface rounded-2xl border border-primary/20 p-5 text-center mb-4 animate-fade">
     <p class="text-[#272727]/40 text-xs mb-2">کد رزرو شما</p>
     <div class="bg-base rounded-xl py-3 px-4 mb-3">
-      <p class="text-primary text-2xl font-extrabold tracking-widest" dir="ltr">BK-۰۷۸</p>
+      <p id="confCode" class="text-primary text-2xl font-extrabold tracking-widest" dir="ltr">—</p>
     </div>
     <p class="text-[#272727]/30 text-[10px]">لطفاً این کد را هنگام مراجعه ارائه دهید</p>
   </div>
@@ -69,23 +70,23 @@ body { background: #F9F8F2; margin: 0; }
     <div class="space-y-2.5 text-xs">
       <div class="flex justify-between">
         <span class="text-[#272727]/40 flex items-center gap-1.5"><i data-lucide="scissors" class="w-3.5 h-3.5"></i> خدمت</span>
-        <span class="text-[#272727] font-medium">پکیج ۳: داماد</span>
+        <span id="confService" class="text-[#272727] font-medium">—</span>
       </div>
       <div class="flex justify-between">
         <span class="text-[#272727]/40 flex items-center gap-1.5"><i data-lucide="calendar" class="w-3.5 h-3.5"></i> تاریخ</span>
-        <span class="text-[#272727] font-medium">شنبه، ۳۰ تیر ۱۴۰۴</span>
+        <span id="confDate" class="text-[#272727] font-medium">—</span>
       </div>
       <div class="flex justify-between">
         <span class="text-[#272727]/40 flex items-center gap-1.5"><i data-lucide="clock" class="w-3.5 h-3.5"></i> ساعت</span>
-        <span class="text-[#272727] font-medium">۱۱:۰۰</span>
+        <span id="confTime" class="text-[#272727] font-medium">—</span>
       </div>
       <div class="flex justify-between">
         <span class="text-[#272727]/40 flex items-center gap-1.5"><i data-lucide="timer" class="w-3.5 h-3.5"></i> مدت</span>
-        <span class="text-[#272727] font-medium">۶ ساعت</span>
+        <span id="confDuration" class="text-[#272727] font-medium">—</span>
       </div>
       <div class="border-t border-[#272727]/5 pt-2 flex justify-between">
         <span class="text-[#272727]/60 font-medium flex items-center gap-1.5"><i data-lucide="banknote" class="w-3.5 h-3.5"></i> مبلغ پرداختی</span>
-        <span class="text-primary font-bold">۹٬۵۰۰٬۰۰۰ تومان</span>
+        <span id="confPrice" class="text-primary font-bold">—</span>
       </div>
     </div>
   </div>
@@ -116,5 +117,8 @@ body { background: #F9F8F2; margin: 0; }
 </div>
 
 </body>
+<script src="assets/data.js"></script>
+<script src="assets/page-confirmation.js"></script>
+<script src="assets/theme.js"></script>
 <script>if (window.lucide) lucide.createIcons();</script>
 </html>

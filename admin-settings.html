@@ -13,6 +13,7 @@
       scrollbar-color: rgba(0, 0, 0, 0.2) transparent;
     }
   </style>
+  <link rel="stylesheet" href="assets/dark.css" />
 </head>
 
 <body dir="rtl" lang="fa"><link rel="preconnect" href="https://unpkg.com" />
@@ -23,7 +24,7 @@
     }
   </style>
 
-<link rel="stylesheet" href="https://fonts.googleapis.cn/css2?family=Vazirmatn:wght@300;400;500;600;700;800;900&display=swap" />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700;800;900&display=swap" />
 <style type="text/tailwindcss">
 @theme {
   --color-primary: #272727;
@@ -190,9 +191,14 @@
     </div>
   </section>
 
-  <button class="w-full bg-gradient-to-l from-primary to-primary-dark text-[#F9F8F2] font-bold py-3.5 rounded-xl">ذخیره تنظیمات</button>
+  <button id="saveSettings" class="w-full bg-gradient-to-l from-primary to-primary-dark text-[#F9F8F2] font-bold py-3.5 rounded-xl">ذخیره تنظیمات</button>
 </div>
 
 </body>
+<script src="assets/data.js"></script>
+<script>
+document.getElementById('saveSettings').addEventListener('click', function(){ P.toast('تنظیمات ذخیره شد'); });
+</script>
+<script src="assets/theme.js"></script>
 <script>if (window.lucide) lucide.createIcons();</script>
 </html>

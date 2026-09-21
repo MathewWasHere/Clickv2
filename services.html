@@ -13,6 +13,7 @@
       scrollbar-color: rgba(0, 0, 0, 0.2) transparent;
     }
   </style>
+  <link rel="stylesheet" href="assets/dark.css" />
 </head>
 
 <body dir="rtl" lang="fa"><link rel="preconnect" href="https://unpkg.com" />
@@ -24,7 +25,7 @@
   </style>
 
 
-<link rel="stylesheet" href="https://fonts.googleapis.cn/css2?family=Vazirmatn:wght@300;400;500;600;700;800;900&display=swap" />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700;800;900&display=swap" />
 
 <style type="text/tailwindcss">
 @theme {
@@ -58,8 +59,8 @@ body { background: #F9F8F2; margin: 0; }
 
 <!-- Category Tabs -->
 <div class="max-w-md mx-auto px-4 mt-4 mb-4 flex gap-2 overflow-x-auto" style="scrollbar-width:none;">
-  <button class="shrink-0 bg-primary text-[#F9F8F2] text-xs font-semibold px-4 py-2 rounded-full" onclick="showCategory('main')">خدمات اصلی</button>
-  <button class="shrink-0 bg-surface-light text-[#272727]/60 text-xs font-medium px-4 py-2 rounded-full" onclick="showCategory('groom')">پکیج‌های داماد</button>
+  <button data-cat="main" class="shrink-0 bg-primary text-[#F9F8F2] text-xs font-semibold px-4 py-2 rounded-full">خدمات اصلی</button>
+  <button data-cat="groom" class="shrink-0 bg-surface-light text-[#272727]/60 text-xs font-medium px-4 py-2 rounded-full">پکیج‌های داماد</button>
 </div>
 
 <!-- Main Services Category -->
@@ -187,14 +188,10 @@ body { background: #F9F8F2; margin: 0; }
   </a>
 </section>
 
-<script>
-function showCategory(cat) {
-  const btns = document.querySelectorAll('[onclick^="showCategory"]');
-  btns.forEach(b => { b.className = b.className.replace('bg-primary text-[#F9F8F2]', 'bg-surface-light text-[#272727]/60'); });
-  event.target.className = event.target.className.replace('bg-surface-light text-[#272727]/60', 'bg-primary text-[#F9F8F2]');
-}
-</script>
 
 </body>
+<script src="assets/data.js"></script>
+<script src="assets/page-services.js"></script>
+<script src="assets/theme.js"></script>
 <script>if (window.lucide) lucide.createIcons();</script>
 </html>

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="preconnect" href="https://unpkg.com" />
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+  <script src="https://unpkg.com/@fortawesome/fontawesome-free@6.7.2/js/all.min.js"></script>
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <style>
+    * {
+      scrollbar-width: none;
+      scrollbar-color: rgba(0, 0, 0, 0.2) transparent;
+    }
+  </style>
+  <link rel="stylesheet" href="assets/dark.css" />
+</head>
+
+<body dir="rtl" lang="fa"><link rel="preconnect" href="https://unpkg.com" />
+<style>
+    * {
+      scrollbar-width: none;
+      scrollbar-color: rgba(0, 0, 0, 0.2) transparent;
+    }
+  </style>
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700;800;900&display=swap" />
+<style type="text/tailwindcss">
+@theme {
+  --color-primary: #272727;
+  --color-primary-dark: #1a1a1a;
+  --color-accent: #7A1F2D;
+  --color-surface: #FFFFFF;
+  --color-surface-light: #F0EFE9;
+  --color-surface-lighter: #E8E7E1;
+  --color-base: #F9F8F2;
+}
+</style>
+<style>* { font-family: 'Vazirmatn', sans-serif; } body { background: #F9F8F2; margin: 0; }</style>
+
+<header class="sticky top-0 z-40 bg-base/90 backdrop-blur-xl border-b border-[#272727]/5">
+  <div class="max-w-md mx-auto px-4 py-3 flex items-center justify-between">
+    <div class="flex items-center gap-3">
+      <a href="home.html" class="w-9 h-9 rounded-full bg-surface-light flex items-center justify-center"><i data-lucide="arrow-right" class="w-4 h-4 text-[#272727]/60"></i></a>
+      <h1 class="text-[#272727] font-bold text-lg">رزروهای من</h1>
+    </div>
+    <a href="booking.html" class="bg-primary/10 text-primary text-xs font-semibold px-4 py-2 rounded-xl">+ رزرو جدید</a>
+  </div>
+</header>
+
+<!-- Tabs -->
+<div class="max-w-md mx-auto px-4 mt-4 flex gap-2 mb-4">
+  <button data-tab="upcoming" class="flex-1 bg-primary text-[#F9F8F2] text-xs font-semibold py-2.5 rounded-xl">پیش‌رو</button>
+  <button data-tab="past" class="flex-1 bg-surface-light text-[#272727]/50 text-xs font-medium py-2.5 rounded-xl">گذشته</button>
+</div>
+
+<div id="bookingsList" class="max-w-md mx-auto px-4 space-y-3 mb-8"></div>
+</div>
+
+</body>
+<script src="assets/data.js"></script>
+<script src="assets/page-my-bookings.js"></script>
+<script src="assets/theme.js"></script>
+<script>if (window.lucide) lucide.createIcons();</script>
+</html>
