@@ -40,7 +40,19 @@
 
     /* dark-theme tweaks for the floating button itself */
     var st = document.createElement('style');
-    st.textContent = 'body[data-theme="dark"] button[aria-label="تغییر تم"]{background:#F9F8F2;color:#272727;border-color:#F9F8F2;}';
+    st.textContent =
+      'body[data-theme="dark"] button[aria-label="تغییر تم"]{background:#F9F8F2;color:#272727;border-color:#F9F8F2;}' +
+      /* brand logo: white PNG, auto-darkened in light mode so it never vanishes */
+      '.brand-logo{filter:invert(0.85);}' +
+      'body[data-theme="dark"] .brand-logo{filter:none;}' +
+      /* island surfaces (floating rounded bars) */
+      '.island{background:rgba(249,248,242,0.9);-webkit-backdrop-filter:blur(24px);backdrop-filter:blur(24px);border:1px solid rgba(39,39,39,0.08);border-radius:1.25rem;box-shadow:0 10px 30px rgba(0,0,0,0.08);}' +
+      'body[data-theme="dark"] .island{background:rgba(30,30,30,0.9);border-color:rgba(249,248,242,0.08);}' +
+      /* bottom tab bar */
+      '.bottom-nav a{color:rgba(39,39,39,0.45);}' +
+      'body[data-theme="dark"] .bottom-nav a{color:rgba(249,248,242,0.45);}' +
+      '.bottom-nav a.active{background:rgba(39,39,39,0.08);color:#272727;}' +
+      'body[data-theme="dark"] .bottom-nav a.active{background:rgba(249,248,242,0.12);color:#F9F8F2;}';
     document.head.appendChild(st);
   }
 

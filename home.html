@@ -69,11 +69,11 @@ body { background: #F9F8F2; margin: 0; }
 </div>
 
 <!-- Header -->
-<header class="sticky top-0 z-40 bg-base/90 backdrop-blur-xl border-b border-[#272727]/5">
-  <div class="max-w-md mx-auto px-4 py-3 flex items-center justify-between">
+<header class="sticky top-2 z-40 px-3">
+  <div class="island max-w-md mx-auto px-4 py-3 flex items-center justify-between">
     <div class="flex items-center gap-2">
-      <img src="assets/logo-white.png" alt="کلیک" class="h-9 w-9 rounded-xl bg-[#272727] p-1.5 object-contain" />
-      <h1 class="text-[#272727] font-bold text-lg">پیرایش</h1>
+      <img src="assets/logo-white.png" alt="کلیک" class="brand-logo h-8 w-auto object-contain" />
+      <h1 class="text-[#272727] font-bold text-lg">پیرایش کلیک</h1>
     </div>
     <div class="flex items-center gap-3">
       <a href="my-bookings.html" class="w-9 h-9 rounded-full bg-surface-light flex items-center justify-center">
@@ -293,18 +293,15 @@ body { background: #F9F8F2; margin: 0; }
   </div>
 </section>
 
-<!-- Sticky Bottom CTA -->
-<div class="fixed bottom-0 left-0 right-0 z-40 bg-base/90 backdrop-blur-xl border-t border-[#272727]/5 p-4">
-  <div class="max-w-md mx-auto">
-    <a href="booking.html" class="flex items-center justify-center gap-2 w-full bg-gradient-to-l from-primary to-primary-dark text-[#F9F8F2] font-bold py-4 rounded-2xl shadow-lg shadow-[#272727]/20">
-      <i data-lucide="calendar-plus" class="w-5 h-5"></i>
-      رزرو نوبت
-    </a>
-  </div>
-</div>
 
 <!-- Bottom Navigation -->
-<nav class="fixed bottom-0 left-0 right-0 z-50 bg-surface/95 backdrop-blur-xl border-t border-[#272727]/10" style="display:none;">
+<nav class="bottom-nav fixed bottom-4 left-0 right-0 z-50 px-4 pointer-events-none">
+  <div class="island max-w-md mx-auto flex items-center justify-around py-2 pointer-events-auto">
+    <a href="home.html" class="active flex flex-col items-center gap-1 px-4 py-1.5 rounded-xl"><i data-lucide="home" class="w-5 h-5"></i><span class="text-[10px] font-medium">خانه</span></a>
+    <a href="services.html" class="flex flex-col items-center gap-1 px-4 py-1.5 rounded-xl"><i data-lucide="scissors" class="w-5 h-5"></i><span class="text-[10px] font-medium">خدمات</span></a>
+    <a href="my-bookings.html" class="flex flex-col items-center gap-1 px-4 py-1.5 rounded-xl"><i data-lucide="calendar" class="w-5 h-5"></i><span class="text-[10px] font-medium">رزروها</span></a>
+    <a href="profile.html" class="flex flex-col items-center gap-1 px-4 py-1.5 rounded-xl"><i data-lucide="user" class="w-5 h-5"></i><span class="text-[10px] font-medium">پروفایل</span></a>
+  </div>
 </nav>
 
 </body>

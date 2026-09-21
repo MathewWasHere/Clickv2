@@ -43,8 +43,8 @@
 </style>
 <style>* { font-family: 'Vazirmatn', sans-serif; } body { background: #F9F8F2; margin: 0; }</style>
 
-<header class="sticky top-0 z-40 bg-base/90 backdrop-blur-xl border-b border-[#272727]/5">
-  <div class="max-w-md mx-auto px-4 py-3 flex items-center justify-between">
+<header class="sticky top-2 z-40 px-3">
+  <div class="island max-w-md mx-auto px-4 py-3 flex items-center justify-between">
     <div class="flex items-center gap-3">
       <a href="home.html" class="w-9 h-9 rounded-full bg-surface-light flex items-center justify-center"><i data-lucide="arrow-right" class="w-4 h-4 text-[#272727]/60"></i></a>
       <h1 class="text-[#272727] font-bold text-lg">رزروهای من</h1>
@@ -59,9 +59,17 @@
   <button data-tab="past" class="flex-1 bg-surface-light text-[#272727]/50 text-xs font-medium py-2.5 rounded-xl">گذشته</button>
 </div>
 
-<div id="bookingsList" class="max-w-md mx-auto px-4 space-y-3 mb-8"></div>
+<div id="bookingsList" class="max-w-md mx-auto px-4 space-y-3 mb-28"></div>
 </div>
 
+<nav class="bottom-nav fixed bottom-4 left-0 right-0 z-50 px-4 pointer-events-none">
+  <div class="island max-w-md mx-auto flex items-center justify-around py-2 pointer-events-auto">
+    <a href="home.html" class="flex flex-col items-center gap-1 px-4 py-1.5 rounded-xl"><i data-lucide="home" class="w-5 h-5"></i><span class="text-[10px] font-medium">خانه</span></a>
+    <a href="services.html" class="flex flex-col items-center gap-1 px-4 py-1.5 rounded-xl"><i data-lucide="scissors" class="w-5 h-5"></i><span class="text-[10px] font-medium">خدمات</span></a>
+    <a href="my-bookings.html" class="active flex flex-col items-center gap-1 px-4 py-1.5 rounded-xl"><i data-lucide="calendar" class="w-5 h-5"></i><span class="text-[10px] font-medium">رزروها</span></a>
+    <a href="profile.html" class="flex flex-col items-center gap-1 px-4 py-1.5 rounded-xl"><i data-lucide="user" class="w-5 h-5"></i><span class="text-[10px] font-medium">پروفایل</span></a>
+  </div>
+</nav>
 </body>
 <script src="assets/data.js"></script>
 <script src="assets/page-my-bookings.js"></script>

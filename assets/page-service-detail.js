@@ -41,6 +41,6 @@
   var book = document.getElementById('sd-book');
   if (book) book.href = 'booking.html?s=' + encodeURIComponent(s.id);
 
-  document.title = s.name + ' — پیرایش';
+  document.title = s.name + ' — پیرایش کلیک';
   if (window.lucide) lucide.createIcons();
 })();
