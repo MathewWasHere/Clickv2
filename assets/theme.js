@@ -40,7 +40,7 @@
     var cal = island && island.querySelector('a[href="my-bookings.html"]');
     if (cal && cal.parentElement) cal.parentElement.insertBefore(btn, cal);
     else if (island) { btn.style.marginInlineStart = 'auto'; island.appendChild(btn); }
-    else document.body.appendChild(btn);
+    else return; /* pages without a header island (hero overlays) get no stray toggle */
     setIcon(btn);
 
     var st = document.createElement('style');
