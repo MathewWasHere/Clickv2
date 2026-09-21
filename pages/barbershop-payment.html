@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="preconnect" href="https://unpkg.com" />
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+  <script src="https://unpkg.com/@fortawesome/fontawesome-free@6.7.2/js/all.min.js"></script>
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <style>
+    * {
+      scrollbar-width: none;
+      scrollbar-color: rgba(0, 0, 0, 0.2) transparent;
+    }
+  </style>
+</head>
+
+<body dir="rtl" lang="fa"><link rel="preconnect" href="https://unpkg.com" />
+<style>
+    * {
+      scrollbar-width: none;
+      scrollbar-color: rgba(0, 0, 0, 0.2) transparent;
+    }
+  </style>
+
+<link rel="stylesheet" href="https://fonts.googleapis.cn/css2?family=Vazirmatn:wght@300;400;500;600;700;800;900&display=swap" />
+<style type="text/tailwindcss">
+@theme {
+  --color-primary: #272727;
+  --color-primary-dark: #1a1a1a;
+  --color-accent: #7A1F2D;
+  --color-surface: #FFFFFF;
+  --color-surface-light: #F0EFE9;
+  --color-surface-lighter: #E8E7E1;
+  --color-base: #F9F8F2;
+  --color-zarinpal: #FFC107;
+  --color-zarinpal-dark: #E6AC00;
+}
+</style>
+<style>
+* { font-family: 'Vazirmatn', sans-serif; }
+body { background: #F9F8F2; margin: 0; }
+</style>
+
+<!-- Header -->
+<header class="sticky top-0 z-40 bg-base/90 backdrop-blur-xl border-b border-[#272727]/5">
+  <div class="max-w-md mx-auto px-4 py-3 flex items-center gap-3">
+    <a href="booking.html" class="w-9 h-9 rounded-full bg-surface-light flex items-center justify-center">
+      <i data-lucide="arrow-right" class="w-4 h-4 text-[#272727]/60"></i>
+    </a>
+    <h1 class="text-[#272727] font-bold text-lg">پرداخت</h1>
+  </div>
+</header>
+
+<div class="max-w-md mx-auto px-4 mt-6">
+
+  <!-- Order Summary -->
+  <div class="bg-surface rounded-2xl border border-[#272727]/5 p-4 mb-4">
+    <h2 class="text-[#272727] font-bold text-sm mb-3">خلاصه سفارش</h2>
+    <div class="space-y-2 text-xs">
+      <div class="flex justify-between"><span class="text-[#272727]/40">خدمت</span><span class="text-[#272727]">پکیج ۳: داماد</span></div>
+      <div class="flex justify-between"><span class="text-[#272727]/40">تاریخ</span><span class="text-[#272727]">شنبه، ۳۰ تیر ۱۴۰۴</span></div>
+      <div class="flex justify-between"><span class="text-[#272727]/40">ساعت</span><span class="text-[#272727]">۱۱:۰۰</span></div>
+      <div class="border-t border-[#272727]/5 pt-2 mt-2 flex justify-between">
+        <span class="text-[#272727] font-semibold">مبلغ کل</span>
+        <span class="text-primary font-bold text-lg">۹٬۵۰۰٬۰۰۰ تومان</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ZarinPal Mock Gateway -->
+  <div class="bg-white rounded-2xl overflow-hidden mb-4">
+    <!-- ZarinPal Header -->
+    <div class="bg-gradient-to-l from-[#FFD54F] to-[#FFC107] px-4 py-3 flex items-center justify-between">
+      <div class="flex items-center gap-2">
+        <div class="w-8 h-8 rounded-lg bg-[#272727]/20 flex items-center justify-center">
+          <span class="text-[#272727] font-bold text-sm">Z</span>
+        </div>
+        <div>
+          <p class="text-gray-900 font-bold text-sm">درگاه پرداخت زرین‌پال</p>
+          <p class="text-gray-700 text-[10px]">پرداخت امن اینترنتی</p>
+        </div>
+      </div>
+      <i data-lucide="shield-check" class="w-5 h-5 text-gray-700"></i>
+    </div>
+    
+    <!-- Payment Details -->
+    <div class="p-4">
+      <div class="bg-gray-50 rounded-xl p-3 mb-4">
+        <div class="flex justify-between text-xs mb-2">
+          <span class="text-gray-500">فروشگاه</span>
+          <span class="text-gray-800 font-semibold">پیرایش — آرایشگاه مردانه</span>
+        </div>
+        <div class="flex justify-between text-xs mb-2">
+          <span class="text-gray-500">شماره سفارش</span>
+          <span class="text-gray-800 font-semibold" dir="ltr">BK-۱۴۰۴۰۴۳۰-۰۷۸</span>
+        </div>
+        <div class="flex justify-between text-xs">
+          <span class="text-gray-500">مبلغ</span>
+          <span class="text-gray-900 font-bold text-base">۹٬۵۰۰٬۰۰۰ تومان</span>
+        </div>
+      </div>
+      
+      <!-- Card Input (Mock) -->
+      <div class="mb-3">
+        <label class="text-gray-600 text-xs mb-1.5 block">شماره کارت</label>
+        <div class="flex gap-2" dir="ltr">
+          <input type="text" value="6037" class="flex-1 bg-gray-100 border border-gray-200 rounded-lg text-center py-2.5 text-sm text-gray-800 font-mono" readonly />
+          <input type="text" value="99••" class="flex-1 bg-gray-100 border border-gray-200 rounded-lg text-center py-2.5 text-sm text-gray-800 font-mono" readonly />
+          <input type="text" value="••••" class="flex-1 bg-gray-100 border border-gray-200 rounded-lg text-center py-2.5 text-sm text-gray-800 font-mono" readonly />
+          <input type="text" value="1234" class="flex-1 bg-gray-100 border border-gray-200 rounded-lg text-center py-2.5 text-sm text-gray-800 font-mono" readonly />
+        </div>
+      </div>
+      
+      <div class="grid grid-cols-2 gap-3 mb-4">
+        <div>
+          <label class="text-gray-600 text-xs mb-1.5 block">رمز دوم</label>
+          <input type="password" value="••••••" class="w-full bg-gray-100 border border-gray-200 rounded-lg text-center py-2.5 text-sm" readonly />
+        </div>
+        <div>
+          <label class="text-gray-600 text-xs mb-1.5 block">CVV2</label>
+          <input type="text" value="•••" class="w-full bg-gray-100 border border-gray-200 rounded-lg text-center py-2.5 text-sm font-mono" readonly />
+        </div>
+      </div>
+      
+      <div class="mb-4">
+        <label class="text-gray-600 text-xs mb-1.5 block">تاریخ انقضا</label>
+        <div class="flex gap-2 items-center" dir="ltr">
+          <input type="text" value="۰۵" class="w-16 bg-gray-100 border border-gray-200 rounded-lg text-center py-2.5 text-sm" readonly />
+          <span class="text-gray-400">/</span>
+          <input type="text" value="۰۸" class="w-16 bg-gray-100 border border-gray-200 rounded-lg text-center py-2.5 text-sm" readonly />
+        </div>
+      </div>
+      
+      <a href="confirmation.html" class="block w-full bg-gradient-to-l from-[#FFD54F] to-[#FFC107] text-gray-900 font-bold text-center py-3.5 rounded-xl shadow-lg">
+        پرداخت ۹٬۵۰۰٬۰۰۰ تومان
+      </a>
+      
+      <button class="block w-full text-red-500 text-xs font-medium text-center py-3 mt-2">
+        انصراف از پرداخت
+      </button>
+    </div>
+  </div>
+
+  <!-- Payment Failure State (hidden, for design reference) -->
+  <div class="bg-surface rounded-2xl border border-red-500/20 p-6 text-center mb-4" style="display:none;" id="failState">
+    <div class="w-16 h-16 rounded-full bg-red-500/10 flex items-center justify-center mx-auto mb-4">
+      <i data-lucide="x-circle" class="w-8 h-8 text-red-500"></i>
+    </div>
+    <h3 class="text-[#272727] font-bold text-lg mb-2">پرداخت ناموفق</h3>
+    <p class="text-[#272727]/50 text-xs mb-4">متأسفانه پرداخت شما با خطا مواجه شد. لطفاً دوباره تلاش کنید.</p>
+    <button class="bg-primary text-[#F9F8F2] font-bold px-6 py-3 rounded-xl w-full mb-2">تلاش مجدد</button>
+    <button class="text-[#272727]/40 text-xs py-2">بازگشت به صفحه رزرو</button>
+  </div>
+
+  <!-- Security Notice -->
+  <div class="flex items-center justify-center gap-2 text-[#272727]/20 text-[10px] mb-8">
+    <i data-lucide="lock" class="w-3 h-3"></i>
+    <span>پرداخت امن با رمزنگاری SSL</span>
+  </div>
+</div>
+
+</body>
+<script>if (window.lucide) lucide.createIcons();</script>
+</html>

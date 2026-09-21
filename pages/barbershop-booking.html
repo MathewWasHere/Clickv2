@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="preconnect" href="https://unpkg.com" />
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+  <script src="https://unpkg.com/@fortawesome/fontawesome-free@6.7.2/js/all.min.js"></script>
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <style>
+    * {
+      scrollbar-width: none;
+      scrollbar-color: rgba(0, 0, 0, 0.2) transparent;
+    }
+  </style>
+</head>
+
+<body dir="rtl" lang="fa"><link rel="preconnect" href="https://unpkg.com" />
+<style>
+    * {
+      scrollbar-width: none;
+      scrollbar-color: rgba(0, 0, 0, 0.2) transparent;
+    }
+  </style>
+
+<link rel="stylesheet" href="https://fonts.googleapis.cn/css2?family=Vazirmatn:wght@300;400;500;600;700;800;900&display=swap" />
+<style type="text/tailwindcss">
+@theme {
+  --color-primary: #272727;
+  --color-primary-dark: #1a1a1a;
+  --color-accent: #7A1F2D;
+  --color-surface: #FFFFFF;
+  --color-surface-light: #F0EFE9;
+  --color-surface-lighter: #E8E7E1;
+  --color-base: #F9F8F2;
+}
+</style>
+<style>
+* { font-family: 'Vazirmatn', sans-serif; }
+body { background: #F9F8F2; margin: 0; }
+.step-active { background: #272727; color: #F9F8F2; }
+.step-done { background: #272727; color: #F9F8F2; }
+.step-pending { background: #F0EFE9; color: rgba(39,39,39,0.3); }
+.time-slot { transition: all 0.15s; }
+.time-slot:hover, .time-slot.selected { background: rgba(39,39,39,0.08); border-color: #272727; color: #272727; }
+.time-slot.disabled { opacity: 0.3; pointer-events: none; }
+.cal-day { transition: all 0.15s; cursor: pointer; }
+.cal-day:hover, .cal-day.selected { background: #272727; color: #F9F8F2; }
+.cal-day.disabled { opacity: 0.25; pointer-events: none; }
+.cal-day.today { border: 1px solid #272727; }
+</style>
+
+<!-- Header -->
+<header class="sticky top-0 z-40 bg-base/90 backdrop-blur-xl border-b border-[#272727]/5">
+  <div class="max-w-md mx-auto px-4 py-3 flex items-center gap-3">
+    <a href="services.html" class="w-9 h-9 rounded-full bg-surface-light flex items-center justify-center">
+      <i data-lucide="arrow-right" class="w-4 h-4 text-[#272727]/60"></i>
+    </a>
+    <h1 class="text-[#272727] font-bold text-lg">رزرو نوبت</h1>
+  </div>
+</header>
+
+<!-- Progress Steps -->
+<div class="max-w-md mx-auto px-6 py-4">
+  <div class="flex items-center justify-between relative">
+    <div class="absolute top-4 right-6 left-6 h-0.5 bg-surface-light"></div>
+    <div class="relative z-10 flex flex-col items-center gap-1">
+      <div class="w-8 h-8 rounded-full step-active flex items-center justify-center text-xs font-bold">۱</div>
+      <span class="text-primary text-[10px] font-medium">خدمت</span>
+    </div>
+    <div class="relative z-10 flex flex-col items-center gap-1">
+      <div class="w-8 h-8 rounded-full step-pending flex items-center justify-center text-xs font-bold" id="step2">۲</div>
+      <span class="text-[#272727]/30 text-[10px]" id="step2label">تاریخ</span>
+    </div>
+    <div class="relative z-10 flex flex-col items-center gap-1">
+      <div class="w-8 h-8 rounded-full step-pending flex items-center justify-center text-xs font-bold" id="step3">۳</div>
+      <span class="text-[#272727]/30 text-[10px]" id="step3label">ساعت</span>
+    </div>
+    <div class="relative z-10 flex flex-col items-center gap-1">
+      <div class="w-8 h-8 rounded-full step-pending flex items-center justify-center text-xs font-bold" id="step4">۴</div>
+      <span class="text-[#272727]/30 text-[10px]" id="step4label">تأیید</span>
+    </div>
+  </div>
+</div>
+
+<!-- Step 1: Service Selection (pre-filled) -->
+<div id="stepService" class="max-w-md mx-auto px-4">
+  <h2 class="text-[#272727] font-bold text-sm mb-3">خدمت انتخابی</h2>
+  
+  <!-- Pre-selected service -->
+  <div class="bg-surface rounded-2xl border-2 border-primary p-4 mb-3 relative">
+    <div class="absolute top-3 left-3">
+      <div class="w-5 h-5 rounded-full bg-primary flex items-center justify-center">
+        <i data-lucide="check" class="w-3 h-3 text-base"></i>
+      </div>
+    </div>
+    <h3 class="text-[#272727] font-semibold text-sm mb-1">پکیج ۳: داماد</h3>
+    <p class="text-[#272727]/40 text-[11px] mb-2">کوتاهی مو + طراحی + فشیال + زیرسازی + میکاپ + کانتور</p>
+    <div class="flex items-center gap-3">
+      <span class="text-primary text-xs font-bold">۹٬۵۰۰٬۰۰۰ تومان</span>
+      <span class="text-[#272727]/30 text-[10px]">۶ ساعت</span>
+    </div>
+  </div>
+
+  <p class="text-[#272727]/30 text-[10px] mb-4 text-center">یا خدمت دیگری انتخاب کنید:</p>
+  
+  <div class="space-y-2 mb-6">
+    <div class="bg-surface rounded-xl border border-[#272727]/5 p-3 flex items-center justify-between cursor-pointer hover:border-primary/30 transition-colors">
+      <div>
+        <h4 class="text-[#272727] text-xs font-semibold">اصلاح VIP</h4>
+        <span class="text-[#272727]/30 text-[10px]">۳۵۰٬۰۰۰ تومان — ۴۵ دقیقه</span>
+      </div>
+      <div class="w-5 h-5 rounded-full border border-[#272727]/20"></div>
+    </div>
+    <div class="bg-surface rounded-xl border border-[#272727]/5 p-3 flex items-center justify-between cursor-pointer hover:border-primary/30 transition-colors">
+      <div>
+        <h4 class="text-[#272727] text-xs font-semibold">پاکسازی و فیشیال</h4>
+        <span class="text-[#272727]/30 text-[10px]">۴۵۰٬۰۰۰ تومان — ۶۰ دقیقه</span>
+      </div>
+      <div class="w-5 h-5 rounded-full border border-[#272727]/20"></div>
+    </div>
+    <div class="bg-surface rounded-xl border border-[#272727]/5 p-3 flex items-center justify-between cursor-pointer hover:border-primary/30 transition-colors">
+      <div>
+        <h4 class="text-[#272727] text-xs font-semibold">میکاپ</h4>
+        <span class="text-[#272727]/30 text-[10px]">۵۰۰٬۰۰۰ تومان — ۶۰ دقیقه</span>
+      </div>
+      <div class="w-5 h-5 rounded-full border border-[#272727]/20"></div>
+    </div>
+  </div>
+</div>
+
+<!-- Step 2: Date Selection (Jalali Calendar) -->
+<div id="stepDate" class="max-w-md mx-auto px-4 mt-4">
+  <h2 class="text-[#272727] font-bold text-sm mb-3">انتخاب تاریخ</h2>
+  
+  <div class="bg-surface rounded-2xl border border-[#272727]/5 p-4">
+    <!-- Month Header -->
+    <div class="flex items-center justify-between mb-4">
+      <button class="w-8 h-8 rounded-full bg-surface-light flex items-center justify-center">
+        <i data-lucide="chevron-right" class="w-4 h-4 text-[#272727]/60"></i>
+      </button>
+      <h3 class="text-[#272727] font-bold text-sm">تیر ۱۴۰۴</h3>
+      <button class="w-8 h-8 rounded-full bg-surface-light flex items-center justify-center">
+        <i data-lucide="chevron-left" class="w-4 h-4 text-[#272727]/60"></i>
+      </button>
+    </div>
+    
+    <!-- Day names -->
+    <div class="grid grid-cols-7 gap-1 mb-2">
+      <div class="text-center text-[#272727]/30 text-[10px] py-1">ش</div>
+      <div class="text-center text-[#272727]/30 text-[10px] py-1">ی</div>
+      <div class="text-center text-[#272727]/30 text-[10px] py-1">د</div>
+      <div class="text-center text-[#272727]/30 text-[10px] py-1">س</div>
+      <div class="text-center text-[#272727]/30 text-[10px] py-1">چ</div>
+      <div class="text-center text-[#272727]/30 text-[10px] py-1">پ</div>
+      <div class="text-center text-[#272727]/30 text-[10px] py-1">ج</div>
+    </div>
+    
+    <!-- Calendar Grid -->
+    <div class="grid grid-cols-7 gap-1">
+      <!-- Week 1 - starts mid week -->
+      <div></div><div></div><div></div>
+      <div class="cal-day disabled rounded-xl text-center py-2.5 text-xs text-[#272727]/50">۱</div>
+      <div class="cal-day disabled rounded-xl text-center py-2.5 text-xs text-[#272727]/50">۲</div>
+      <div class="cal-day disabled rounded-xl text-center py-2.5 text-xs text-[#272727]/50">۳</div>
+      <div class="cal-day disabled rounded-xl text-center py-2.5 text-xs text-[#272727]/50">۴</div>
+      <!-- Week 2 -->
+      <div class="cal-day disabled rounded-xl text-center py-2.5 text-xs text-[#272727]/50">۵</div>
+      <div class="cal-day disabled rounded-xl text-center py-2.5 text-xs text-[#272727]/50">۶</div>
+      <div class="cal-day disabled rounded-xl text-center py-2.5 text-xs text-[#272727]/50">۷</div>
+      <div class="cal-day disabled rounded-xl text-center py-2.5 text-xs text-[#272727]/50">۸</div>
+      <div class="cal-day disabled rounded-xl text-center py-2.5 text-xs text-[#272727]/50">۹</div>
+      <div class="cal-day disabled rounded-xl text-center py-2.5 text-xs text-[#272727]/50">۱۰</div>
+      <div class="cal-day disabled rounded-xl text-center py-2.5 text-xs text-[#272727]/50">۱۱</div>
+      <!-- Week 3 -->
+      <div class="cal-day disabled rounded-xl text-center py-2.5 text-xs text-[#272727]/50">۱۲</div>
+      <div class="cal-day disabled rounded-xl text-center py-2.5 text-xs text-[#272727]/50">۱۳</div>
+      <div class="cal-day disabled rounded-xl text-center py-2.5 text-xs text-[#272727]/50">۱۴</div>
+      <div class="cal-day disabled rounded-xl text-center py-2.5 text-xs text-[#272727]/50">۱۵</div>
+      <div class="cal-day disabled rounded-xl text-center py-2.5 text-xs text-[#272727]/50">۱۶</div>
+      <div class="cal-day disabled rounded-xl text-center py-2.5 text-xs text-[#272727]/50">۱۷</div>
+      <div class="cal-day disabled rounded-xl text-center py-2.5 text-xs text-[#272727]/50">۱۸</div>
+      <!-- Week 4 -->
+      <div class="cal-day disabled rounded-xl text-center py-2.5 text-xs text-[#272727]/50">۱۹</div>
+      <div class="cal-day disabled rounded-xl text-center py-2.5 text-xs text-[#272727]/50">۲۰</div>
+      <div class="cal-day disabled rounded-xl text-center py-2.5 text-xs text-[#272727]/50">۲۱</div>
+      <div class="cal-day disabled rounded-xl text-center py-2.5 text-xs text-[#272727]/50">۲۲</div>
+      <div class="cal-day disabled rounded-xl text-center py-2.5 text-xs text-[#272727]/50">۲۳</div>
+      <div class="cal-day disabled rounded-xl text-center py-2.5 text-xs text-[#272727]/50">۲۴</div>
+      <div class="cal-day disabled rounded-xl text-center py-2.5 text-xs text-[#272727]/50">۲۵</div>
+      <!-- Week 5 -->
+      <div class="cal-day disabled rounded-xl text-center py-2.5 text-xs text-[#272727]/50">۲۶</div>
+      <div class="cal-day disabled rounded-xl text-center py-2.5 text-xs text-[#272727]/50">۲۷</div>
+      <div class="cal-day disabled rounded-xl text-center py-2.5 text-xs text-[#272727]/50">۲۸</div>
+      <div class="cal-day today rounded-xl text-center py-2.5 text-xs text-[#272727] font-semibold">۲۹</div>
+      <div class="cal-day selected rounded-xl text-center py-2.5 text-xs font-bold">۳۰</div>
+      <div class="cal-day rounded-xl text-center py-2.5 text-xs text-[#272727]/70">۳۱</div>
+      <div></div>
+    </div>
+  </div>
+  
+  <div class="bg-surface-light/50 rounded-xl p-3 mt-3 flex items-center gap-2">
+    <i data-lucide="calendar-check" class="w-4 h-4 text-primary shrink-0"></i>
+    <p class="text-[#272727]/60 text-xs">تاریخ انتخابی: <span class="text-[#272727] font-semibold">۳۰ تیر ۱۴۰۴</span> — شنبه</p>
+  </div>
+</div>
+
+<!-- Step 3: Time Selection -->
+<div id="stepTime" class="max-w-md mx-auto px-4 mt-6">
+  <h2 class="text-[#272727] font-bold text-sm mb-3">انتخاب ساعت</h2>
+  
+  <div class="grid grid-cols-3 gap-2 mb-4">
+    <div class="time-slot disabled bg-surface rounded-xl border border-[#272727]/5 text-center py-3 text-xs text-[#272727]/50">۰۹:۰۰</div>
+    <div class="time-slot disabled bg-surface rounded-xl border border-[#272727]/5 text-center py-3 text-xs text-[#272727]/50">۰۹:۳۰</div>
+    <div class="time-slot bg-surface rounded-xl border border-[#272727]/5 text-center py-3 text-xs text-[#272727]/70 cursor-pointer">۱۰:۰۰</div>
+    <div class="time-slot bg-surface rounded-xl border border-[#272727]/5 text-center py-3 text-xs text-[#272727]/70 cursor-pointer">۱۰:۳۰</div>
+    <div class="time-slot selected bg-surface rounded-xl border border-primary text-center py-3 text-xs text-primary font-semibold cursor-pointer">۱۱:۰۰</div>
+    <div class="time-slot bg-surface rounded-xl border border-[#272727]/5 text-center py-3 text-xs text-[#272727]/70 cursor-pointer">۱۱:۳۰</div>
+    <div class="time-slot disabled bg-surface rounded-xl border border-[#272727]/5 text-center py-3 text-xs text-[#272727]/50">۱۲:۰۰</div>
+    <div class="time-slot bg-surface rounded-xl border border-[#272727]/5 text-center py-3 text-xs text-[#272727]/70 cursor-pointer">۱۳:۰۰</div>
+    <div class="time-slot bg-surface rounded-xl border border-[#272727]/5 text-center py-3 text-xs text-[#272727]/70 cursor-pointer">۱۳:۳۰</div>
+    <div class="time-slot bg-surface rounded-xl border border-[#272727]/5 text-center py-3 text-xs text-[#272727]/70 cursor-pointer">۱۴:۰۰</div>
+    <div class="time-slot bg-surface rounded-xl border border-[#272727]/5 text-center py-3 text-xs text-[#272727]/70 cursor-pointer">۱۴:۳۰</div>
+    <div class="time-slot disabled bg-surface rounded-xl border border-[#272727]/5 text-center py-3 text-xs text-[#272727]/50">۱۵:۰۰</div>
+  </div>
+  
+  <div class="flex items-center gap-4 text-[10px] text-[#272727]/30 mb-4">
+    <span class="flex items-center gap-1"><span class="w-2 h-2 rounded-full bg-primary inline-block"></span> انتخاب‌شده</span>
+    <span class="flex items-center gap-1"><span class="w-2 h-2 rounded-full bg-surface-lighter inline-block"></span> آزاد</span>
+    <span class="flex items-center gap-1"><span class="w-2 h-2 rounded-full bg-surface-light/50 inline-block"></span> رزرو شده</span>
+  </div>
+</div>
+
+<!-- Booking Summary Bar -->
+<div class="max-w-md mx-auto px-4 mt-4 mb-28">
+  <div class="bg-surface rounded-2xl border border-primary/15 p-4">
+    <h3 class="text-[#272727] font-bold text-sm mb-3">خلاصه رزرو</h3>
+    <div class="space-y-2 text-xs">
+      <div class="flex items-center justify-between">
+        <span class="text-[#272727]/40">خدمت</span>
+        <span class="text-[#272727] font-medium">پکیج ۳: داماد</span>
+      </div>
+      <div class="flex items-center justify-between">
+        <span class="text-[#272727]/40">تاریخ</span>
+        <span class="text-[#272727] font-medium">شنبه، ۳۰ تیر ۱۴۰۴</span>
+      </div>
+      <div class="flex items-center justify-between">
+        <span class="text-[#272727]/40">ساعت</span>
+        <span class="text-[#272727] font-medium">۱۱:۰۰</span>
+      </div>
+      <div class="flex items-center justify-between">
+        <span class="text-[#272727]/40">مدت</span>
+        <span class="text-[#272727] font-medium">۶ ساعت</span>
+      </div>
+      <div class="border-t border-[#272727]/5 pt-2 flex items-center justify-between">
+        <span class="text-[#272727]/60 font-medium">مبلغ قابل پرداخت</span>
+        <span class="text-primary font-bold text-base">۹٬۵۰۰٬۰۰۰ تومان</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Sticky Continue Button -->
+<div class="fixed bottom-0 left-0 right-0 z-40 bg-base/90 backdrop-blur-xl border-t border-[#272727]/5 p-4">
+  <div class="max-w-md mx-auto">
+    <a href="payment.html" class="flex items-center justify-center gap-2 w-full bg-gradient-to-l from-primary to-primary-dark text-[#F9F8F2] font-bold py-4 rounded-2xl shadow-lg shadow-[#272727]/25">
+      تأیید و پرداخت
+      <i data-lucide="arrow-left" class="w-4 h-4"></i>
+    </a>
+  </div>
+</div>
+
+</body>
+<script>if (window.lucide) lucide.createIcons();</script>
+</html>

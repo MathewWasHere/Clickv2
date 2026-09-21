@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="preconnect" href="https://unpkg.com" />
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+  <script src="https://unpkg.com/@fortawesome/fontawesome-free@6.7.2/js/all.min.js"></script>
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <style>
+    * {
+      scrollbar-width: none;
+      scrollbar-color: rgba(0, 0, 0, 0.2) transparent;
+    }
+  </style>
+</head>
+
+<body dir="rtl" lang="fa"><link rel="preconnect" href="https://unpkg.com" />
+<style>
+    * {
+      scrollbar-width: none;
+      scrollbar-color: rgba(0, 0, 0, 0.2) transparent;
+    }
+  </style>
+
+
+<link rel="stylesheet" href="https://fonts.googleapis.cn/css2?family=Vazirmatn:wght@300;400;500;600;700;800;900&display=swap" />
+<link rel="manifest" href="data:application/manifest+json,%7B%22name%22%3A%22%D9%BE%DB%8C%D8%B1%D8%A7%DB%8C%D8%B4%22%2C%22short_name%22%3A%22%D9%BE%DB%8C%D8%B1%D8%A7%DB%8C%D8%B4%22%2C%22start_url%22%3A%22.%22%2C%22display%22%3A%22standalone%22%2C%22background_color%22%3A%22%23F9F8F2%22%2C%22theme_color%22%3A%22%23272727%22%2C%22icons%22%3A%5B%7B%22src%22%3A%22data%3Aimage/svg%2Bxml%2C%253Csvg%20xmlns%3D%27http%3A//www.w3.org/2000/svg%27%20viewBox%3D%270%200%20100%20100%27%253E%253Crect%20fill%3D%27%2523F9F8F2%27%20width%3D%27100%27%20height%3D%27100%27%20rx%3D%2720%27/%253E%253Ctext%20x%3D%2750%27%20y%3D%2765%27%20text-anchor%3D%27middle%27%20fill%3D%27%2523272727%27%20font-size%3D%2740%27%253E%25E2%259C%2582%253C/text%253E%253C/svg%253E%22%2C%22sizes%22%3A%22512x512%22%2C%22type%22%3A%22image/svg%2Bxml%22%7D%5D%7D" />
+<meta name="theme-color" content="#272727" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+<style type="text/tailwindcss">
+@theme {
+  --color-primary: #272727;
+  --color-primary-dark: #1a1a1a;
+  --color-accent: #7A1F2D;
+  --color-surface: #FFFFFF;
+  --color-surface-light: #F0EFE9;
+  --color-surface-lighter: #E8E7E1;
+  --color-base: #F9F8F2;
+  --font-family-vazir: 'Vazirmatn', sans-serif;
+}
+</style>
+
+<style>
+* { font-family: 'Vazirmatn', sans-serif; }
+body { background: #F9F8F2; margin: 0; }
+.gold-text { color: #7A1F2D; }
+.shimmer { position: relative; overflow: hidden; }
+.shimmer::after { content: ''; position: absolute; top: 0; left: -100%; width: 50%; height: 100%; background: linear-gradient(90deg, transparent, rgba(39,39,39,0.06), transparent); animation: shimmer 3s infinite; }
+@keyframes shimmer { 100% { left: 100%; } }
+
+
+</style>
+
+<!-- Install Banner -->
+<div id="installBanner" class="fixed top-0 left-0 right-0 z-50 bg-surface-light/95 backdrop-blur-md border-b border-primary/20 px-4 py-3 flex items-center justify-between" style="display:none;">
+  <div class="flex items-center gap-3">
+    <img src="cos://file/721170364499455/2026/09/20/9vw5cq4daxxko344nkbkt/1789934078935-jug7ywwuzk.html" alt="کلیک" class="w-10 h-10 rounded-xl object-contain" />
+    <div>
+      <p class="text-[#272727] text-sm font-semibold">پیرایش را نصب کنید</p>
+      <p class="text-[#272727]/50 text-xs">دسترسی سریع‌تر به رزرو نوبت</p>
+    </div>
+  </div>
+  <button onclick="this.parentElement.style.display='none'" class="bg-primary text-[#F9F8F2] font-semibold text-sm px-4 py-2 rounded-xl">نصب</button>
+</div>
+
+<!-- Header -->
+<header class="sticky top-0 z-40 bg-base/90 backdrop-blur-xl border-b border-[#272727]/5">
+  <div class="max-w-md mx-auto px-4 py-3 flex items-center justify-between">
+    <div class="flex items-center gap-2">
+      <img src="cos://file/721170364499455/2026/09/20/9vw5cq4daxxko344nkbkt/1789934078935-jug7ywwuzk.html" alt="کلیک" class="h-9 w-auto object-contain" />
+      <h1 class="text-[#272727] font-bold text-lg">پیرایش</h1>
+    </div>
+    <div class="flex items-center gap-3">
+      <a href="my-bookings.html" class="w-9 h-9 rounded-full bg-surface-light flex items-center justify-center">
+        <i data-lucide="calendar" class="w-4 h-4 text-[#272727]/60"></i>
+      </a>
+      <a href="profile.html" class="w-9 h-9 rounded-full bg-surface-light flex items-center justify-center">
+        <i data-lucide="user" class="w-4 h-4 text-[#272727]/60"></i>
+      </a>
+    </div>
+  </div>
+</header>
+
+<!-- Hero Section -->
+<section class="relative overflow-hidden">
+  <div class="absolute inset-0">
+    <img src="https://images.unsplash.com/photo-1585747860019-8e8ef3845e64?w=800&h=1000&fit=crop&auto=format&q=80" alt="فضای آرایشگاه مردانه" class="w-full h-full object-cover" />
+    <div class="absolute inset-0 bg-gradient-to-b from-[#272727]/60 via-[#272727]/70 to-[#272727]"></div>
+  </div>
+  <div class="relative max-w-md mx-auto px-5 pt-12 pb-16 text-center">
+    <div class="inline-flex items-center gap-2 bg-white/10 border border-white/20 rounded-full px-4 py-1.5 mb-5">
+      <i data-lucide="star" class="w-3.5 h-3.5 text-primary fill-primary"></i>
+      <span class="text-white/80 text-xs font-medium">امتیاز ۴.۹ از ۵ — بیش از ۲٬۰۰۰ مشتری</span>
+    </div>
+    <h2 class="text-3xl font-extrabold text-white leading-relaxed mb-3">استایل شما،<br/><span class="gold-text">هویت شماست</span></h2>
+    <p class="text-white/60 text-sm leading-relaxed mb-8 max-w-xs mx-auto">بهترین خدمات آرایشگری مردانه با متخصصین حرفه‌ای. همین حالا نوبت خود را رزرو کنید.</p>
+    <a href="booking.html" class="inline-flex items-center gap-2 bg-gradient-to-l from-primary to-primary-dark text-[#F9F8F2] font-bold text-base px-8 py-4 rounded-2xl shadow-lg shadow-[#272727]/25 pulse-gold">
+      <i data-lucide="calendar-plus" class="w-5 h-5"></i>
+      رزرو نوبت
+    </a>
+  </div>
+</section>
+
+<!-- Quick Info Bar -->
+<section class="max-w-md mx-auto px-4 -mt-4 relative z-10">
+  <div class="bg-surface rounded-2xl border border-[#272727]/5 p-4 flex items-center justify-around">
+    <div class="text-center">
+      <i data-lucide="clock" class="w-5 h-5 text-primary mx-auto mb-1"></i>
+      <p class="text-[#272727] text-xs font-semibold">۹ تا ۲۱</p>
+      <p class="text-[#272727]/40 text-[10px]">ساعت کاری</p>
+    </div>
+    <div class="w-px h-10 bg-[#272727]/10"></div>
+    <div class="text-center">
+      <i data-lucide="map-pin" class="w-5 h-5 text-primary mx-auto mb-1"></i>
+      <p class="text-[#272727] text-xs font-semibold">تهران</p>
+      <p class="text-[#272727]/40 text-[10px]">ولیعصر، پلاک ۱۲۳</p>
+    </div>
+    <div class="w-px h-10 bg-[#272727]/10"></div>
+    <div class="text-center">
+      <i data-lucide="phone" class="w-5 h-5 text-primary mx-auto mb-1"></i>
+      <p class="text-[#272727] text-xs font-semibold">تماس</p>
+      <p class="text-[#272727]/40 text-[10px]">۰۲۱-۸۸۷۷۶۶۵۵</p>
+    </div>
+  </div>
+</section>
+
+<!-- Featured Services -->
+<section class="max-w-md mx-auto px-4 mt-8">
+  <div class="flex items-center justify-between mb-4">
+    <h3 class="text-[#272727] font-bold text-base">خدمات محبوب</h3>
+    <a href="services.html" class="text-primary text-xs font-medium flex items-center gap-1">
+      مشاهده همه
+      <i data-lucide="chevron-left" class="w-4 h-4"></i>
+    </a>
+  </div>
+  <div class="flex gap-3 overflow-x-auto pb-2 -mx-4 px-4 snap-x snap-mandatory" style="scrollbar-width:none;">
+    <!-- Service Card 1 -->
+    <a href="service-detail.html?s=vip" class="snap-start shrink-0 w-40 bg-surface rounded-2xl border border-[#272727]/5 overflow-hidden group">
+      <div class="relative h-28 overflow-hidden">
+        <img src="https://images.unsplash.com/photo-1503951914875-452162b0f3f1?w=400&h=300&fit=crop&auto=format&q=80" alt="اصلاح VIP" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+        <div class="absolute inset-0 bg-gradient-to-t from-[#FFFFFF] to-transparent"></div>
+      </div>
+      <div class="p-3">
+        <h4 class="text-[#272727] text-sm font-semibold mb-1">اصلاح VIP</h4>
+        <p class="text-[#272727]/40 text-[10px] mb-2 leading-relaxed">اصلاح حرفه‌ای با بهترین ابزار</p>
+        <div class="flex items-center justify-between">
+          <span class="text-primary text-xs font-bold">۳۵۰٬۰۰۰ ت</span>
+          <span class="text-[#272727]/30 text-[10px]">۴۵ دقیقه</span>
+        </div>
+      </div>
+    </a>
+    <!-- Service Card 2 -->
+    <a href="service-detail.html?s=facial" class="snap-start shrink-0 w-40 bg-surface rounded-2xl border border-[#272727]/5 overflow-hidden group">
+      <div class="relative h-28 overflow-hidden">
+        <img src="https://images.unsplash.com/photo-1622287162716-f311baa1a2b8?w=400&h=300&fit=crop&auto=format&q=80" alt="پاکسازی و فیشیال" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+        <div class="absolute inset-0 bg-gradient-to-t from-[#FFFFFF] to-transparent"></div>
+      </div>
+      <div class="p-3">
+        <h4 class="text-[#272727] text-sm font-semibold mb-1">پاکسازی و فیشیال</h4>
+        <p class="text-[#272727]/40 text-[10px] mb-2 leading-relaxed">مراقبت تخصصی پوست صورت</p>
+        <div class="flex items-center justify-between">
+          <span class="text-primary text-xs font-bold">۴۵۰٬۰۰۰ ت</span>
+          <span class="text-[#272727]/30 text-[10px]">۶۰ دقیقه</span>
+        </div>
+      </div>
+    </a>
+    <!-- Service Card 3 -->
+    <a href="service-detail.html?s=groom1" class="snap-start shrink-0 w-40 bg-surface rounded-2xl border border-[#272727]/5 overflow-hidden group">
+      <div class="relative h-28 overflow-hidden">
+        <img src="https://images.unsplash.com/photo-1593702288056-7927b442d0fa?w=400&h=300&fit=crop&auto=format&q=80" alt="پکیج مراسم" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+        <div class="absolute inset-0 bg-gradient-to-t from-[#FFFFFF] to-transparent"></div>
+      </div>
+      <div class="p-3">
+        <h4 class="text-[#272727] text-sm font-semibold mb-1">پکیج مراسم</h4>
+        <p class="text-[#272727]/40 text-[10px] mb-2 leading-relaxed">پکیج کامل داماد</p>
+        <div class="flex items-center justify-between">
+          <span class="text-primary text-xs font-bold">۶٬۰۰۰٬۰۰۰ ت</span>
+          <span class="text-[#272727]/30 text-[10px]">۳ ساعت</span>
+        </div>
+      </div>
+    </a>
+    <!-- Service Card 4 -->
+    <a href="service-detail.html?s=keratin" class="snap-start shrink-0 w-40 bg-surface rounded-2xl border border-[#272727]/5 overflow-hidden group">
+      <div class="relative h-28 overflow-hidden">
+        <img src="https://images.unsplash.com/photo-1605497788044-5a32c7078486?w=400&h=300&fit=crop&auto=format&q=80" alt="کراتین" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+        <div class="absolute inset-0 bg-gradient-to-t from-[#FFFFFF] to-transparent"></div>
+      </div>
+      <div class="p-3">
+        <h4 class="text-[#272727] text-sm font-semibold mb-1">کراتین و پروتئینه</h4>
+        <p class="text-[#272727]/40 text-[10px] mb-2 leading-relaxed">ترمیم و تقویت عمیق مو</p>
+        <div class="flex items-center justify-between">
+          <span class="text-primary text-xs font-bold">۸۰۰٬۰۰۰ ت</span>
+          <span class="text-[#272727]/30 text-[10px]">۹۰ دقیقه</span>
+        </div>
+      </div>
+    </a>
+  </div>
+</section>
+
+<!-- Groom Packages Highlight -->
+<section class="max-w-md mx-auto px-4 mt-8">
+  <div class="flex items-center justify-between mb-4">
+    <h3 class="text-[#272727] font-bold text-base">پکیج‌های ویژه داماد</h3>
+    <a href="services.html#groom" class="text-primary text-xs font-medium flex items-center gap-1">
+      مشاهده همه
+      <i data-lucide="chevron-left" class="w-4 h-4"></i>
+    </a>
+  </div>
+  <a href="service-detail.html?s=groom3" class="block shimmer bg-gradient-to-l from-surface-light to-surface rounded-2xl border border-primary/15 overflow-hidden">
+    <div class="relative">
+      <img src="https://images.unsplash.com/photo-1519699047748-de8e457a634e?w=800&h=400&fit=crop&auto=format&q=80" alt="پکیج داماد ویژه" class="w-full h-44 object-cover" />
+      <div class="absolute inset-0 bg-gradient-to-t from-[#FFFFFF] via-[#FFFFFF]/60 to-transparent"></div>
+      <div class="absolute top-3 right-3 bg-primary/90 text-base text-[10px] font-bold px-3 py-1 rounded-full">محبوب‌ترین</div>
+    </div>
+    <div class="p-4">
+      <h4 class="text-[#272727] font-bold text-base mb-1">پکیج ۳: داماد</h4>
+      <p class="text-[#272727]/50 text-xs leading-relaxed mb-3">کوتاهی مو + طراحی مو و ریش کلاسیک + فشیال پوست + زیرسازی + میکاپ + کانتور</p>
+      <div class="flex items-center justify-between">
+        <div>
+          <span class="text-primary font-bold">۹٬۵۰۰٬۰۰۰ تومان</span>
+          <span class="text-[#272727]/30 text-xs mr-2">۶ ساعت</span>
+        </div>
+        <span class="bg-primary/10 text-primary text-xs font-semibold px-3 py-1.5 rounded-xl">رزرو</span>
+      </div>
+    </div>
+  </a>
+</section>
+
+<!-- Why Us -->
+<section class="max-w-md mx-auto px-4 mt-10 mb-6">
+  <h3 class="text-[#272727] font-bold text-base mb-4">چرا پیرایش؟</h3>
+  <div class="grid grid-cols-2 gap-3">
+    <div class="bg-surface rounded-2xl border border-[#272727]/5 p-4 text-center">
+      <div class="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center mx-auto mb-2">
+        <i data-lucide="award" class="w-5 h-5 text-primary"></i>
+      </div>
+      <p class="text-[#272727] text-xs font-semibold mb-0.5">متخصصین حرفه‌ای</p>
+      <p class="text-[#272727]/40 text-[10px]">بیش از ۱۰ سال تجربه</p>
+    </div>
+    <div class="bg-surface rounded-2xl border border-[#272727]/5 p-4 text-center">
+      <div class="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center mx-auto mb-2">
+        <i data-lucide="shield-check" class="w-5 h-5 text-primary"></i>
+      </div>
+      <p class="text-[#272727] text-xs font-semibold mb-0.5">بهداشت کامل</p>
+      <p class="text-[#272727]/40 text-[10px]">استانداردهای بین‌المللی</p>
+    </div>
+    <div class="bg-surface rounded-2xl border border-[#272727]/5 p-4 text-center">
+      <div class="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center mx-auto mb-2">
+        <i data-lucide="sparkles" class="w-5 h-5 text-primary"></i>
+      </div>
+      <p class="text-[#272727] text-xs font-semibold mb-0.5">محصولات اصل</p>
+      <p class="text-[#272727]/40 text-[10px]">برندهای معتبر جهانی</p>
+    </div>
+    <div class="bg-surface rounded-2xl border border-[#272727]/5 p-4 text-center">
+      <div class="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center mx-auto mb-2">
+        <i data-lucide="zap" class="w-5 h-5 text-primary"></i>
+      </div>
+      <p class="text-[#272727] text-xs font-semibold mb-0.5">رزرو آنلاین</p>
+      <p class="text-[#272727]/40 text-[10px]">بدون نیاز به تماس</p>
+    </div>
+  </div>
+</section>
+
+<!-- Testimonials -->
+<section class="max-w-md mx-auto px-4 mb-28">
+  <h3 class="text-[#272727] font-bold text-base mb-4">نظرات مشتریان</h3>
+  <div class="space-y-3">
+    <div class="bg-surface rounded-2xl border border-[#272727]/5 p-4">
+      <div class="flex items-center gap-3 mb-2">
+        <div class="w-9 h-9 rounded-full bg-primary/20 flex items-center justify-center text-primary font-bold text-sm">م</div>
+        <div>
+          <p class="text-[#272727] text-sm font-semibold">محمد رضایی</p>
+          <div class="flex gap-0.5"><i data-lucide="star" class="w-3 h-3 text-primary fill-primary"></i><i data-lucide="star" class="w-3 h-3 text-primary fill-primary"></i><i data-lucide="star" class="w-3 h-3 text-primary fill-primary"></i><i data-lucide="star" class="w-3 h-3 text-primary fill-primary"></i><i data-lucide="star" class="w-3 h-3 text-primary fill-primary"></i></div>
+        </div>
+      </div>
+      <p class="text-[#272727]/50 text-xs leading-relaxed">بهترین آرایشگاه مردانه‌ای که تا حالا رفتم. کارشون حرفه‌ای و تمیزه. حتماً پکیج داماد رو پیشنهاد می‌کنم.</p>
+    </div>
+    <div class="bg-surface rounded-2xl border border-[#272727]/5 p-4">
+      <div class="flex items-center gap-3 mb-2">
+        <div class="w-9 h-9 rounded-full bg-primary/20 flex items-center justify-center text-primary font-bold text-sm">ع</div>
+        <div>
+          <p class="text-[#272727] text-sm font-semibold">علی احمدی</p>
+          <div class="flex gap-0.5"><i data-lucide="star" class="w-3 h-3 text-primary fill-primary"></i><i data-lucide="star" class="w-3 h-3 text-primary fill-primary"></i><i data-lucide="star" class="w-3 h-3 text-primary fill-primary"></i><i data-lucide="star" class="w-3 h-3 text-primary fill-primary"></i><i data-lucide="star" class="w-3 h-3 text-primary fill-primary"></i></div>
+        </div>
+      </div>
+      <p class="text-[#272727]/50 text-xs leading-relaxed">رزرو آنلاین خیلی راحته و دیگه نیازی نیست زنگ بزنم. فیشیال پوستشون عالیه.</p>
+    </div>
+  </div>
+</section>
+
+<!-- Sticky Bottom CTA -->
+<div class="fixed bottom-0 left-0 right-0 z-40 bg-base/90 backdrop-blur-xl border-t border-[#272727]/5 p-4">
+  <div class="max-w-md mx-auto">
+    <a href="booking.html" class="flex items-center justify-center gap-2 w-full bg-gradient-to-l from-primary to-primary-dark text-[#F9F8F2] font-bold py-4 rounded-2xl shadow-lg shadow-[#272727]/20">
+      <i data-lucide="calendar-plus" class="w-5 h-5"></i>
+      رزرو نوبت
+    </a>
+  </div>
+</div>
+
+<!-- Bottom Navigation -->
+<nav class="fixed bottom-0 left-0 right-0 z-50 bg-surface/95 backdrop-blur-xl border-t border-[#272727]/10" style="display:none;">
+</nav>
+
+</body>
+<script>if (window.lucide) lucide.createIcons();</script>
+</html>

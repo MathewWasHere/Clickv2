@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="preconnect" href="https://unpkg.com" />
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+  <script src="https://unpkg.com/@fortawesome/fontawesome-free@6.7.2/js/all.min.js"></script>
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <style>
+    * {
+      scrollbar-width: none;
+      scrollbar-color: rgba(0, 0, 0, 0.2) transparent;
+    }
+  </style>
+</head>
+
+<body dir="rtl" lang="fa"><link rel="preconnect" href="https://unpkg.com" />
+<style>
+    * {
+      scrollbar-width: none;
+      scrollbar-color: rgba(0, 0, 0, 0.2) transparent;
+    }
+  </style>
+
+<link rel="stylesheet" href="https://fonts.googleapis.cn/css2?family=Vazirmatn:wght@300;400;500;600;700;800;900&display=swap" />
+<style type="text/tailwindcss">
+@theme {
+  --color-primary: #272727;
+  --color-primary-dark: #1a1a1a;
+  --color-accent: #7A1F2D;
+  --color-surface: #FFFFFF;
+  --color-surface-light: #F0EFE9;
+  --color-surface-lighter: #E8E7E1;
+  --color-base: #F9F8F2;
+}
+</style>
+<style>* { font-family: 'Vazirmatn', sans-serif; } body { background: #F9F8F2; margin: 0; }</style>
+
+<header class="sticky top-0 z-40 bg-base/90 backdrop-blur-xl border-b border-[#272727]/5">
+  <div class="max-w-md mx-auto px-4 py-3 flex items-center gap-3">
+    <a href="home.html" class="w-9 h-9 rounded-full bg-surface-light flex items-center justify-center"><i data-lucide="arrow-right" class="w-4 h-4 text-[#272727]/60"></i></a>
+    <h1 class="text-[#272727] font-bold text-lg">حساب کاربری</h1>
+  </div>
+</header>
+
+<div class="max-w-md mx-auto px-4 mt-8">
+  <!-- Avatar & Name -->
+  <div class="text-center mb-8">
+    <div class="w-20 h-20 rounded-full bg-gradient-to-br from-primary to-primary-dark flex items-center justify-center mx-auto mb-3">
+      <span class="text-base text-2xl font-bold">ا</span>
+    </div>
+    <h2 class="text-[#272727] font-bold text-lg">امیرحسین محمدی</h2>
+    <p class="text-[#272727]/40 text-xs mt-1">۰۹۱۲•••۴۵۶۷</p>
+  </div>
+
+  <!-- Profile Form -->
+  <div class="space-y-4 mb-8">
+    <div>
+      <label class="text-[#272727]/50 text-xs mb-1.5 block">نام و نام خانوادگی</label>
+      <input type="text" value="امیرحسین محمدی" class="w-full bg-surface border border-[#272727]/10 rounded-xl px-4 py-3 text-[#272727] text-sm focus:border-primary outline-none" />
+    </div>
+    <div>
+      <label class="text-[#272727]/50 text-xs mb-1.5 block">شماره موبایل</label>
+      <input type="tel" value="۰۹۱۲۳۴۵۴۵۶۷" class="w-full bg-surface border border-[#272727]/10 rounded-xl px-4 py-3 text-[#272727] text-sm focus:border-primary outline-none" dir="ltr" />
+    </div>
+    <button class="w-full bg-gradient-to-l from-primary to-primary-dark text-[#F9F8F2] font-bold py-3.5 rounded-xl">ذخیره تغییرات</button>
+  </div>
+
+  <!-- Menu Items -->
+  <div class="space-y-1 mb-8">
+    <a href="my-bookings.html" class="flex items-center justify-between bg-surface rounded-xl p-4">
+      <div class="flex items-center gap-3">
+        <div class="w-9 h-9 rounded-lg bg-primary/10 flex items-center justify-center"><i data-lucide="calendar" class="w-4 h-4 text-primary"></i></div>
+        <span class="text-[#272727] text-sm">رزروهای من</span>
+      </div>
+      <i data-lucide="chevron-left" class="w-4 h-4 text-[#272727]/20"></i>
+    </a>
+    <a href="#" class="flex items-center justify-between bg-surface rounded-xl p-4">
+      <div class="flex items-center gap-3">
+        <div class="w-9 h-9 rounded-lg bg-primary/10 flex items-center justify-center"><i data-lucide="bell" class="w-4 h-4 text-primary"></i></div>
+        <span class="text-[#272727] text-sm">اعلان‌ها</span>
+      </div>
+      <i data-lucide="chevron-left" class="w-4 h-4 text-[#272727]/20"></i>
+    </a>
+    <a href="#" class="flex items-center justify-between bg-surface rounded-xl p-4">
+      <div class="flex items-center gap-3">
+        <div class="w-9 h-9 rounded-lg bg-primary/10 flex items-center justify-center"><i data-lucide="help-circle" class="w-4 h-4 text-primary"></i></div>
+        <span class="text-[#272727] text-sm">پشتیبانی</span>
+      </div>
+      <i data-lucide="chevron-left" class="w-4 h-4 text-[#272727]/20"></i>
+    </a>
+    <a href="#" class="flex items-center justify-between bg-surface rounded-xl p-4">
+      <div class="flex items-center gap-3">
+        <div class="w-9 h-9 rounded-lg bg-primary/10 flex items-center justify-center"><i data-lucide="info" class="w-4 h-4 text-primary"></i></div>
+        <span class="text-[#272727] text-sm">درباره ما</span>
+      </div>
+      <i data-lucide="chevron-left" class="w-4 h-4 text-[#272727]/20"></i>
+    </a>
+  </div>
+
+  <!-- Admin Link -->
+  <a href="admin-dashboard.html" class="flex items-center justify-center gap-2 bg-surface-light border border-[#272727]/5 rounded-xl p-3 text-[#272727]/40 text-xs mb-4">
+    <i data-lucide="settings" class="w-4 h-4"></i>
+    ورود به پنل مدیریت
+  </a>
+
+  <button class="flex items-center justify-center gap-2 w-full text-red-400/60 text-sm py-3 mb-8">
+    <i data-lucide="log-out" class="w-4 h-4"></i>
+    خروج از حساب
+  </button>
+</div>
+
+</body>
+<script>if (window.lucide) lucide.createIcons();</script>
+</html>
