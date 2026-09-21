@@ -338,9 +338,24 @@ body { background: #F9F8F2; margin: 0; }
   </div>
 </nav>
 
+
 </body>
 <script src="assets/data.js"></script>
 <script src="assets/theme.js"></script>
 <script src="assets/pwa.js"></script>
+<script>
+/* keep marketing cards in sync with the admin-managed catalog */
+(function () {
+  document.querySelectorAll('a[href*="service-detail.html?s="]').forEach(function (a) {
+    var m = a.getAttribute('href').match(/s=([\w-]+)/);
+    var s = m && window.P && P.findService(m[1]);
+    if (!s) return;
+    var h = a.querySelector('h3, h4'); if (h) h.textContent = s.name;
+    var d = a.querySelector('p'); if (d && s.desc) d.textContent = s.desc;
+    var pr = a.querySelector('.text-primary'); if (pr) pr.textContent = P.money(s.price);
+    var du = a.querySelector('span.mr-2'); if (du) du.textContent = s.duration;
+  });
+})();
+</script>
 <script>if (window.lucide) lucide.createIcons();</script>
 </html>

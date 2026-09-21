@@ -35,12 +35,14 @@
       localStorage.setItem(KEY, next);
       setIcon(btn);
     });
-    /* mount inside top island navbar: next to calendar icon when present, else at the end */
+    /* mount: site pages → header island next to calendar icon; admin pages → pill nav row;
+       generic island pages → end of island; otherwise do not inject (no stray buttons) */
     var island = document.querySelector('header .island');
     var cal = island && island.querySelector('a[href="my-bookings.html"]');
+    var adminNav = document.getElementById('adminNav');
     if (cal && cal.parentElement) cal.parentElement.insertBefore(btn, cal);
-    else if (island) { btn.style.marginInlineStart = 'auto'; island.appendChild(btn); }
-    else document.body.appendChild(btn);
+    else if (adminNav) { btn.classList.add('shrink-0'); adminNav.appendChild(btn); }
+    else if (island && !/admin-/.test(location.pathname)) { btn.style.marginInlineStart = 'auto'; island.appendChild(btn); }
     setIcon(btn);
 
     var st = document.createElement('style');

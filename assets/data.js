@@ -62,7 +62,10 @@ P.services = [
 ];
 
 P.service = function (id) {
-  return P.services.find(function (s) { return s.id === id; }) || null;
+  var edits = P.serviceEdits();
+  var s = P.services.find(function (x) { return x.id === id; }) || null;
+  if (s && edits[id]) s = Object.assign({}, s, edits[id]);
+  return s;
 };
 
 /* Custom services added from admin panel */
@@ -71,7 +74,26 @@ P.customServices = function () {
   catch (e) { return []; }
 };
 
-P.allServices = function () { return P.services.concat(P.customServices()); };
+/* Admin edits over the seed catalog (persisted in localStorage) */
+P.serviceEdits = function () {
+  try { return JSON.parse(localStorage.getItem('pirayesh-service-edits') || '{}'); }
+  catch (e) { return {}; }
+};
+P.saveServiceEdit = function (id, patch) {
+  var m = P.serviceEdits();
+  m[id] = Object.assign({}, m[id] || {}, patch);
+  localStorage.setItem('pirayesh-service-edits', JSON.stringify(m));
+};
+P.resetService = function (id) {
+  var m = P.serviceEdits();
+  delete m[id];
+  localStorage.setItem('pirayesh-service-edits', JSON.stringify(m));
+};
+P.allServices = function () {
+  var edits = P.serviceEdits();
+  var base = P.services.map(function (s) { return edits[s.id] ? Object.assign({}, s, edits[s.id]) : s; });
+  return base.concat(P.customServices());
+};
 
 P.findService = function (id) {
   return P.allServices().find(function (s) { return s.id === id; }) || null;

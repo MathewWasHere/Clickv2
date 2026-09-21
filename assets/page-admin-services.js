@@ -1,31 +1,41 @@
-/* admin services: list catalog + custom services, add via modal, delete custom */
+/* admin services: list catalog + custom services, add/edit via modals, edit seed prices/details, delete custom */
 (function () {
-  function faDigitsToEn(str) {
+  function enDigits(str) {
     return String(str).replace(/[۰-۹]/g, function (c) { return '۰۱۲۳۴۵۶۷۸۹'.indexOf(c); });
+  }
+  function parseNum(el) {
+    return parseInt(enDigits(el.value).replace(/[^\d]/g, ''), 10) || 0;
   }
 
   function card(s) {
     var el = document.createElement('div');
     el.className = 'bg-surface rounded-xl border p-3';
     el.classList.add(s.badge === 'محبوب‌ترین' ? 'border-primary/15' : 'border-[#272727]/5');
+    var edited = !s.custom && P.serviceEdits()[s.id];
     el.innerHTML =
       '<div class="flex items-center justify-between mb-2">' +
-      '<div class="flex items-center gap-2">' +
+      '<div class="flex items-center gap-2 flex-wrap">' +
       '<h3 class="text-[#272727] text-sm font-semibold"></h3>' +
       (s.badge ? '<span class="bg-primary/20 text-primary text-[8px] font-bold px-1.5 py-0.5 rounded">' + s.badge + '</span>' : '') +
       (s.custom ? '<span class="bg-blue-500/10 text-blue-400 text-[8px] font-bold px-1.5 py-0.5 rounded">سفارشی</span>' : '') +
+      (edited ? '<span class="bg-amber-500/10 text-amber-500 text-[8px] font-bold px-1.5 py-0.5 rounded">ویرایش‌شده</span>' : '') +
       '</div>' +
       '<div class="flex gap-1">' +
+      '<button data-edit class="w-7 h-7 rounded-lg bg-primary/10 flex items-center justify-center"><i data-lucide="pencil" class="w-3 h-3 text-primary"></i></button>' +
       '<button data-del class="w-7 h-7 rounded-lg bg-red-500/10 flex items-center justify-center"><i data-lucide="trash-2" class="w-3 h-3 text-red-400"></i></button>' +
       '</div></div>' +
+      (s.desc ? '<p class="text-[#272727]/40 text-[10px] leading-relaxed mb-2"></p>' : '') +
       '<div class="flex items-center gap-3 text-[10px] text-[#272727]/30">' +
       '<span>قیمت: <span class="text-primary font-semibold">' + P.moneyShort(s.price) + '</span></span>' +
       '<span>مدت: ' + s.duration + '</span>' +
-      '<span class="bg-green-500/10 text-green-400 px-1.5 py-0.5 rounded">فعال</span>' +
       '</div>';
     el.querySelector('h3').textContent = s.name;
+    if (s.desc) el.querySelector('p[data-desc], p').textContent = s.desc;
+
+    el.querySelector('[data-edit]').addEventListener('click', function () { openEdit(s); });
+
     el.querySelector('[data-del]').addEventListener('click', function () {
-      if (!s.custom) { P.toast('فقط خدمات سفارشی قابل حذف هستند'); return; }
+      if (!s.custom) { P.toast('خدمات پیش‌فرض قابل حذف نیستند'); return; }
       if (!confirm('«' + s.name + '» حذف شود؟')) return;
       var list = P.customServices().filter(function (c) { return c.id !== s.id; });
       localStorage.setItem('pirayesh-custom-services', JSON.stringify(list));
@@ -49,10 +59,74 @@
     if (window.lucide) lucide.createIcons();
   }
 
+  /* ---------- edit modal ---------- */
+  var modal = document.getElementById('editModal');
+  var F = {
+    id: document.getElementById('eId'),
+    name: document.getElementById('eName'),
+    desc: document.getElementById('eDesc'),
+    price: document.getElementById('ePrice'),
+    minutes: document.getElementById('eMinutes'),
+    includes: document.getElementById('eIncludes'),
+    img: document.getElementById('eImg'),
+    reset: document.getElementById('editReset'),
+    save: document.getElementById('editSave')
+  };
+
+  function openEdit(s) {
+    F.id.value = s.id;
+    F.name.value = s.name || '';
+    F.desc.value = s.desc || '';
+    F.price.value = P.fa(String(s.price));
+    F.minutes.value = P.fa(String(s.minutes || 30));
+    F.includes.value = (s.includes || []).join('\n');
+    F.img.value = s.img || '';
+    F.reset.style.display = s.custom ? 'none' : 'block';
+    modal.style.display = 'flex';
+    if (window.lucide) lucide.createIcons();
+  }
+
+  F.save.addEventListener('click', function () {
+    var id = F.id.value;
+    var name = F.name.value.trim();
+    var price = parseNum(F.price);
+    var minutes = parseNum(F.minutes) || 30;
+    if (!name || !price) { P.toast('نام و قیمت را وارد کنید'); return; }
+    var patch = {
+      name: name,
+      desc: F.desc.value.trim(),
+      price: price,
+      minutes: minutes,
+      duration: P.fa(minutes) + ' دقیقه',
+      img: F.img.value.trim(),
+      includes: F.includes.value.split('\n').map(function (l) { return l.trim(); }).filter(Boolean)
+    };
+    if (id.indexOf('custom-') === 0) {
+      var list = P.customServices();
+      for (var i = 0; i < list.length; i++) {
+        if (list[i].id === id) { patch.custom = true; patch.cat = list[i].cat; list[i] = Object.assign({}, list[i], patch); break; }
+      }
+      localStorage.setItem('pirayesh-custom-services', JSON.stringify(list));
+    } else {
+      P.saveServiceEdit(id, patch);
+    }
+    modal.style.display = 'none';
+    render();
+    P.toast('ذخیره شد');
+  });
+
+  F.reset.addEventListener('click', function () {
+    P.resetService(F.id.value);
+    modal.style.display = 'none';
+    render();
+    P.toast('به پیش‌فرض بازگشت');
+  });
+
+  /* ---------- add modal (unchanged behavior) ---------- */
   document.getElementById('svcSave').addEventListener('click', function () {
     var name = document.getElementById('svcName').value.trim();
-    var price = parseInt(faDigitsToEn(document.getElementById('svcPrice').value).replace(/[^\d]/g, ''), 10) || 0;
-    var minutes = parseInt(faDigitsToEn(document.getElementById('svcMinutes').value).replace(/[^\d]/g, ''), 10) || 30;
+    var price = parseNum(document.getElementById('svcPrice'));
+    var minutes = parseNum(document.getElementById('svcMinutes')) || 30;
     if (!name || !price) { P.toast('نام و قیمت را وارد کنید'); return; }
     var list = P.customServices();
     list.push({
