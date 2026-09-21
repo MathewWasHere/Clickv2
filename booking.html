@@ -68,6 +68,13 @@ body { background: #F9F8F2; margin: 0; }
 .cal-day:hover, .cal-day.selected { background: #272727; color: #F9F8F2; }
 .cal-day.disabled { opacity: 0.25; pointer-events: none; }
 .cal-day.today { border: 1px solid #272727; }
+.stage { animation: stageIn .25s ease; }
+@keyframes stageIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: none; } }
+@media (prefers-reduced-motion: reduce) {
+  .stage { animation: none; }
+  .time-slot, .cal-day { transition: none; }
+}
+.step-dot { transition: background .2s, color .2s; cursor: pointer; }
 </style>
 
 
@@ -178,25 +185,21 @@ img { box-shadow: none !important; }
   </div>
 </header>
 
-<!-- Progress Steps -->
+<!-- Progress Steps (tap a completed step to go back) -->
 <div class="max-w-md mx-auto px-6 py-4">
   <div class="flex items-center justify-between relative">
     <div class="absolute top-4 right-6 left-6 h-0.5 bg-surface-light"></div>
-    <div class="relative z-10 flex flex-col items-center gap-1">
-      <div class="w-8 h-8 rounded-full step-active flex items-center justify-center text-xs font-bold">۱</div>
-      <span class="text-primary text-[10px] font-medium">خدمت</span>
+    <div class="relative z-10 flex flex-col items-center gap-1" id="stepWrap1" role="button">
+      <div class="w-8 h-8 rounded-full step-active flex items-center justify-center text-xs font-bold" id="stepDot1">۱</div>
+      <span class="text-primary text-[10px] font-medium" id="stepLabel1">خدمت</span>
     </div>
-    <div class="relative z-10 flex flex-col items-center gap-1">
-      <div class="w-8 h-8 rounded-full step-pending flex items-center justify-center text-xs font-bold" id="step2">۲</div>
-      <span class="text-[#272727]/30 text-[10px]" id="step2label">تاریخ</span>
+    <div class="relative z-10 flex flex-col items-center gap-1" id="stepWrap2">
+      <div class="w-8 h-8 rounded-full step-pending flex items-center justify-center text-xs font-bold" id="stepDot2">۲</div>
+      <span class="text-[#272727]/30 text-[10px]" id="stepLabel2">تاریخ</span>
     </div>
-    <div class="relative z-10 flex flex-col items-center gap-1">
-      <div class="w-8 h-8 rounded-full step-pending flex items-center justify-center text-xs font-bold" id="step3">۳</div>
-      <span class="text-[#272727]/30 text-[10px]" id="step3label">ساعت</span>
-    </div>
-    <div class="relative z-10 flex flex-col items-center gap-1">
-      <div class="w-8 h-8 rounded-full step-pending flex items-center justify-center text-xs font-bold" id="step4">۴</div>
-      <span class="text-[#272727]/30 text-[10px]" id="step4label">تأیید</span>
+    <div class="relative z-10 flex flex-col items-center gap-1" id="stepWrap3">
+      <div class="w-8 h-8 rounded-full step-pending flex items-center justify-center text-xs font-bold" id="stepDot3">۳</div>
+      <span class="text-[#272727]/30 text-[10px]" id="stepLabel3">ساعت</span>
     </div>
   </div>
 </div>
@@ -246,22 +249,18 @@ img { box-shadow: none !important; }
 </div>
 
 <!-- Step 3: Time Selection -->
-<div id="stepTime" class="max-w-md mx-auto px-4 mt-6">
+<div id="stepTime" class="max-w-md mx-auto px-4 mt-4">
   <h2 class="text-[#272727] font-bold text-sm mb-3">انتخاب ساعت</h2>
-  
+
   <div id="timeGrid" class="grid grid-cols-3 gap-2 mb-4"></div>
-  </div>
-  
+
   <div class="flex items-center gap-4 text-[10px] text-[#272727]/30 mb-4">
     <span class="flex items-center gap-1"><span class="w-2 h-2 rounded-full bg-primary inline-block"></span> انتخاب‌شده</span>
     <span class="flex items-center gap-1"><span class="w-2 h-2 rounded-full bg-surface-lighter inline-block"></span> آزاد</span>
     <span class="flex items-center gap-1"><span class="w-2 h-2 rounded-full bg-surface-light/50 inline-block"></span> رزرو شده</span>
   </div>
-</div>
 
-<!-- Booking Summary Bar -->
-<div class="max-w-md mx-auto px-4 mt-4 mb-28">
-  <div class="bg-surface rounded-2xl border border-primary/15 p-4">
+  <div class="bg-surface rounded-2xl border border-primary/15 p-4 mb-28">
     <h3 class="text-[#272727] font-bold text-sm mb-3">خلاصه رزرو</h3>
     <div class="space-y-2 text-xs">
       <div class="flex items-center justify-between">
@@ -280,24 +279,26 @@ img { box-shadow: none !important; }
         <span class="text-[#272727]/40">مدت</span>
         <span id="sumDuration" class="text-[#272727] font-medium">—</span>
       </div>
-      <div class="border-t border-[#272727]/5 pt-2 flex items-center justify-between">
+      <div class="border-t border-primary/10 pt-2 flex items-center justify-between">
         <span class="text-[#272727]/60 font-medium">مبلغ قابل پرداخت</span>
-        <span id="sumPrice" class="text-primary font-bold text-base">—</span>
+        <span id="sumPrice" class="text-primary font-bold text-sm">—</span>
       </div>
     </div>
   </div>
 </div>
-
-<!-- Sticky Continue Button -->
+<!-- Sticky Action Bar -->
 <div class="fixed bottom-4 left-0 right-0 z-40 px-4">
-  <div class="max-w-md mx-auto">
-    <button id="ctaBtn" disabled class="flex items-center justify-center gap-2 w-full bg-gradient-to-l from-primary to-primary-dark text-[#F9F8F2] font-bold py-4 rounded-2xl shadow-lg shadow-[#272727]/25 disabled:cursor-not-allowed">
-      تأیید و پرداخت
+  <div class="island max-w-md mx-auto p-3 flex items-center gap-2">
+    <button id="backBtn" class="hidden shrink-0 w-11 h-11 rounded-xl bg-surface-light items-center justify-center" aria-label="مرحله قبل">
+      <i data-lucide="arrow-right" class="w-4 h-4 text-[#272727]/60"></i>
+    </button>
+    <button id="ctaBtn" class="flex-1 flex items-center justify-center gap-2 bg-gradient-to-l from-primary to-primary-dark text-[#F9F8F2] font-bold py-3.5 rounded-xl shadow-lg shadow-[#272727]/25">
+      <span id="barPrice" class="text-xs opacity-70 font-semibold"></span>
+      <span id="ctaLabel">ادامه</span>
       <i data-lucide="arrow-left" class="w-4 h-4"></i>
     </button>
   </div>
 </div>
-
 
 
 </body>

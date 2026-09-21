@@ -1,15 +1,22 @@
-/* booking page: service + Jalali date + time selection → draft → payment */
+/* booking page — 3-stage wizard: خدمت → تاریخ → ساعت  (ui-ux-pro-max:
+   progress indicators, predictable back, inline validation, submit feedback,
+   reduced-motion respect) */
 (function () {
   var state = { serviceId: null, dateKey: null, time: null };
+  var stage = 1;
+  var today = new Date(); today.setHours(0, 0, 0, 0);
+
+  /* ---------- preset & draft restore ---------- */
   var draft = P.store.draft();
   var params = new URLSearchParams(location.search);
   var preset = params.get('s');
   if (preset && P.findService(preset)) state.serviceId = preset;
   else if (draft && draft.serviceId && P.findService(draft.serviceId)) state.serviceId = draft.serviceId;
   else state.serviceId = 'groom3';
+  if (draft && draft.dateKey) state.dateKey = draft.dateKey;
+  if (draft && draft.time) state.time = P.toEnDigits(draft.time);
 
   /* ---------- calendar data ---------- */
-  var today = new Date(); today.setHours(0, 0, 0, 0);
   var days = [];
   for (var i = -40; i <= 100; i++) {
     var d = P.addDays(today, i);
@@ -20,21 +27,22 @@
     var k = day.j.jy + '|' + day.j.jm;
     if (!months.some(function (m) { return m.k === k; })) months.push({ k: k, label: day.j.jm + ' ' + P.fa(day.j.jy) });
   });
-  var miMin = months.findIndex(function (m) {
-    var t = P.jparts(today);
-    return m.k === (t.jy + '|' + t.jm);
-  });
-  if (miMin < 0) miMin = 0;
+  var tjp = P.jparts(today);
+  var miMin = Math.max(0, months.findIndex(function (m) { return m.k === (tjp.jy + '|' + tjp.jm); }));
   var mi = miMin;
 
-  /* ---------- services list ---------- */
+  function $(id) { return document.getElementById(id); }
+
+  /* ---------- stage 1: services ---------- */
   function renderServices() {
-    var wrap = document.getElementById('serviceList');
+    var wrap = $('serviceList');
     if (!wrap) return;
     wrap.innerHTML = '';
     P.allServices().forEach(function (s) {
       var sel = s.id === state.serviceId;
       var el = document.createElement('div');
+      el.setAttribute('role', 'button');
+      el.setAttribute('tabindex', '0');
       el.className = 'bg-surface rounded-xl border p-3 flex items-center justify-between cursor-pointer transition-colors ' +
         (sel ? 'border-primary border-2' : 'border-[#272727]/5 hover:border-primary/30');
       el.innerHTML =
@@ -48,12 +56,14 @@
         '</div>';
       el.querySelector('h4').textContent = s.name;
       el.querySelector('span').textContent = P.money(s.price) + ' — ' + s.duration;
-      el.addEventListener('click', function () { state.serviceId = s.id; renderServices(); update(); });
+      function pick() { state.serviceId = s.id; renderServices(); update(); }
+      el.addEventListener('click', pick);
+      el.addEventListener('keydown', function (e) { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); pick(); } });
       wrap.appendChild(el);
     });
   }
 
-  /* ---------- calendar ---------- */
+  /* ---------- stage 2: calendar ---------- */
   function hash(str) {
     var h = 0;
     for (var i = 0; i < str.length; i++) { h = (h * 31 + str.charCodeAt(i)) | 0; }
@@ -62,8 +72,7 @@
 
   function renderCalendar() {
     var month = months[mi];
-    var title = document.getElementById('calTitle');
-    var grid = document.getElementById('calGrid');
+    var title = $('calTitle'), grid = $('calGrid');
     if (!grid) return;
     if (title) title.textContent = month.label;
 
@@ -92,21 +101,21 @@
       grid.appendChild(cell);
     });
 
-    var prev = document.getElementById('calPrev'), next = document.getElementById('calNext');
+    var prev = $('calPrev'), next = $('calNext');
     if (prev) prev.disabled = mi <= miMin;
     if (next) next.disabled = mi >= months.length - 1;
     [prev, next].forEach(function (b) { if (b) b.style.opacity = b.disabled ? '.3' : '1'; });
 
-    var row = document.getElementById('selDateText');
+    var row = $('selDateText');
     if (row) {
       if (state.dateKey) row.textContent = P.shortDateFa(P.fromKey(state.dateKey)) + ' — ' + P.jparts(P.fromKey(state.dateKey)).weekday;
       else row.textContent = 'هنوز تاریخی انتخاب نشده';
     }
   }
 
-  /* ---------- time slots ---------- */
+  /* ---------- stage 3: time slots ---------- */
   function renderTimes() {
-    var grid = document.getElementById('timeGrid');
+    var grid = $('timeGrid');
     if (!grid) return;
     grid.innerHTML = '';
     if (!state.dateKey) {
@@ -141,45 +150,108 @@
     }
   }
 
-  /* ---------- summary & steps ---------- */
+  /* ---------- stage machine ---------- */
+  var STAGES = ['stepService', 'stepDate', 'stepTime'];
+  var HINTS = { 1: 'ابتدا یک خدمت انتخاب کنید', 2: 'ابتدا تاریخ را انتخاب کنید', 3: 'ابتدا ساعت را انتخاب کنید' };
+  var LABELS = { 1: 'ادامه', 2: 'ادامه', 3: 'تأیید و پرداخت' };
+
+  function canNext(st) {
+    if (st === 1) return !!state.serviceId;
+    if (st === 2) return !!state.dateKey;
+    return !!state.time;
+  }
+
+  function show(n, push) {
+    stage = n;
+    STAGES.forEach(function (id, idx) {
+      var el = $(id);
+      if (!el) return;
+      var on = (idx + 1) === n;
+      el.style.display = on ? '' : 'none';
+      el.classList.remove('stage');
+      if (on) { void el.offsetWidth; el.classList.add('stage'); }
+    });
+    for (var i = 1; i <= 3; i++) {
+      var dot = $('stepDot' + i), label = $('stepLabel' + i), wrap = $('stepWrap' + i);
+      if (!dot) continue;
+      var cls = 'w-8 h-8 rounded-full flex items-center justify-center text-xs font-bold step-dot ';
+      if (i < n) cls += 'step-done';
+      else if (i === n) cls += 'step-active';
+      else cls += 'step-pending';
+      dot.className = cls;
+      dot.innerHTML = i < n ? '<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>' : P.fa(i);
+      if (label) label.className = 'text-[10px] ' + (i === n ? 'text-primary font-medium' : i < n ? 'text-[#272727]/60' : 'text-[#272727]/30');
+      if (wrap) wrap.style.cursor = i < n ? 'pointer' : 'default';
+    }
+    var back = $('backBtn');
+    if (back) back.style.display = n > 1 ? 'flex' : 'none';
+    update();
+    if (n === 2) renderCalendar();
+    if (n === 3) { renderTimes(); update(); }
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+    if (push && history.pushState) history.pushState({ step: n }, '', '#step' + n);
+  }
+
   function update() {
     var s = P.findService(state.serviceId);
-    function set(id, v) { var el = document.getElementById(id); if (el) el.textContent = v; }
+    function set(id, v) { var el = $(id); if (el) el.textContent = v; }
     set('sumService', s ? s.name : '—');
     set('sumDate', state.dateKey ? P.fullDateFa(P.fromKey(state.dateKey)) : '—');
     set('sumTime', state.time ? P.fa(state.time) : '—');
     set('sumDuration', s ? s.duration : '—');
     set('sumPrice', s ? P.money(s.price) : '—');
+    set('barPrice', s ? P.moneyShort(s.price) : '');
 
-    function step(id, done) {
-      var el = document.getElementById(id);
-      if (!el) return;
-      el.className = 'w-8 h-8 rounded-full flex items-center justify-center text-xs font-bold ' + (done ? 'step-done' : 'step-pending');
-    }
-    step('step2', !!state.dateKey);
-    step('step3', !!state.time);
-    step('step4', !!(state.serviceId && state.dateKey && state.time));
-
-    var btn = document.getElementById('ctaBtn');
+    var btn = $('ctaBtn'), lbl = $('ctaLabel');
+    if (lbl) lbl.textContent = LABELS[stage];
     if (btn) {
-      var ready = !!(state.serviceId && state.dateKey && state.time);
-      btn.disabled = !ready;
-      btn.style.opacity = ready ? '1' : '.45';
+      btn.style.opacity = canNext(stage) ? '1' : '.55';
+      btn.setAttribute('aria-disabled', canNext(stage) ? 'false' : 'true');
     }
   }
 
-  document.getElementById('calPrev').addEventListener('click', function () { if (mi > miMin) { mi--; renderCalendar(); } });
-  document.getElementById('calNext').addEventListener('click', function () { if (mi < months.length - 1) { mi++; renderCalendar(); } });
-
-  var cta = document.getElementById('ctaBtn');
+  /* ---------- actions ---------- */
+  var cta = $('ctaBtn');
   if (cta) cta.addEventListener('click', function () {
+    if (!canNext(stage)) { P.toast(HINTS[stage]); return; }
+    if (stage < 3) { show(stage + 1, true); return; }
+    /* submit feedback: disable + label, then hand off to payment */
+    cta.disabled = true;
+    cta.style.opacity = '.7';
+    if ($('ctaLabel')) $('ctaLabel').textContent = 'در حال ثبت…';
     var s = P.findService(state.serviceId);
     P.store.saveDraft({
       serviceId: state.serviceId, name: s.name, price: s.price, duration: s.duration,
       dateKey: state.dateKey, time: P.fa(state.time)
     });
-    location.href = 'payment.html';
+    setTimeout(function () { location.href = 'payment.html'; }, 450);
   });
 
-  renderServices(); renderCalendar(); renderTimes(); update();
+  var back = $('backBtn');
+  if (back) back.addEventListener('click', function () { if (stage > 1) show(stage - 1, true); });
+
+  [1, 2, 3].forEach(function (n) {
+    var wrap = $('stepWrap' + n);
+    if (wrap) wrap.addEventListener('click', function () { if (n < stage) show(n, true); });
+  });
+
+  $('calPrev').addEventListener('click', function () { if (mi > miMin) { mi--; renderCalendar(); } });
+  $('calNext').addEventListener('click', function () { if (mi < months.length - 1) { mi++; renderCalendar(); } });
+
+  /* predictable back: browser back returns to the previous stage */
+  window.addEventListener('popstate', function (e) {
+    var n = (e.state && e.state.step) || 1;
+    if (n !== stage && n >= 1 && n <= 3) show(n, false);
+  });
+
+  /* ---------- init ---------- */
+  renderServices(); renderCalendar(); renderTimes();
+  var initial = 1;
+  var m = (location.hash || '').match(/step([123])/);
+  if (m) {
+    var want = +m[1];
+    if (want === 2 && state.serviceId) initial = 2;
+    else if (want === 3 && state.serviceId && state.dateKey) initial = 3;
+  }
+  show(initial, false);
 })();
