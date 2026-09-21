@@ -28,20 +28,27 @@
     }
     var btn = document.createElement('button');
     btn.setAttribute('aria-label', 'تغییر تم');
-    btn.style.cssText = 'position:fixed;bottom:20px;left:16px;z-index:60;width:40px;height:40px;border-radius:999px;border:1px solid rgba(39,39,39,.15);background:#fff;color:#272727;display:flex;align-items:center;justify-content:center;cursor:pointer;box-shadow:0 4px 16px rgba(0,0,0,.12);';
+    btn.className = 'theme-btn';
     btn.addEventListener('click', function () {
       var next = document.body.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
       apply(next);
       localStorage.setItem(KEY, next);
       setIcon(btn);
     });
-    document.body.appendChild(btn);
+    /* mount inside top island navbar: next to calendar icon when present, else at the end */
+    var island = document.querySelector('header .island');
+    var cal = island && island.querySelector('a[href="my-bookings.html"]');
+    if (cal && cal.parentElement) cal.parentElement.insertBefore(btn, cal);
+    else if (island) { btn.style.marginInlineStart = 'auto'; island.appendChild(btn); }
+    else document.body.appendChild(btn);
     setIcon(btn);
 
-    /* dark-theme tweaks for the floating button itself */
     var st = document.createElement('style');
     st.textContent =
-      'body[data-theme="dark"] button[aria-label="تغییر تم"]{background:#F9F8F2;color:#272727;border-color:#F9F8F2;}' +
+      '.theme-btn{width:2.25rem;height:2.25rem;border-radius:9999px;border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;background:rgba(39,39,39,0.06);color:rgba(39,39,39,0.6);flex-shrink:0;}' +
+      'body[data-theme="dark"] .theme-btn{background:rgba(249,248,242,0.1);color:rgba(249,248,242,0.7);}' +
+      '.nav-cta{border:4px solid #F9F8F2;box-shadow:0 10px 24px rgba(0,0,0,0.25);}' +
+      'body[data-theme="dark"] .nav-cta{border-color:#1e1e1e;}' +
       /* brand logo: white PNG, auto-darkened in light mode so it never vanishes */
       '.brand-logo{filter:invert(0.85);}' +
       'body[data-theme="dark"] .brand-logo{filter:none;}' +
