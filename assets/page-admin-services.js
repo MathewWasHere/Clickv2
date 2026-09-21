@@ -10,12 +10,12 @@
   function card(s) {
     var el = document.createElement('div');
     el.className = 'bg-surface rounded-xl border p-3';
-    el.classList.add(s.badge === 'محبوب‌ترین' ? 'border-primary/15' : 'border-[#272727]/5');
+    el.classList.add(s.badge === 'محبوب‌ترین' ? 'border-primary/15' : 'border-[#151618]/5');
     var edited = !s.custom && P.serviceEdits()[s.id];
     el.innerHTML =
       '<div class="flex items-center justify-between mb-2">' +
       '<div class="flex items-center gap-2 flex-wrap">' +
-      '<h3 class="text-[#272727] text-sm font-semibold"></h3>' +
+      '<h3 class="text-[#151618] text-sm font-semibold"></h3>' +
       (s.badge ? '<span class="bg-primary/20 text-primary text-[8px] font-bold px-1.5 py-0.5 rounded">' + s.badge + '</span>' : '') +
       (s.custom ? '<span class="bg-blue-500/10 text-blue-400 text-[8px] font-bold px-1.5 py-0.5 rounded">سفارشی</span>' : '') +
       (edited ? '<span class="bg-amber-500/10 text-amber-500 text-[8px] font-bold px-1.5 py-0.5 rounded">ویرایش‌شده</span>' : '') +
@@ -24,8 +24,8 @@
       '<button data-edit class="w-7 h-7 rounded-lg bg-primary/10 flex items-center justify-center"><i data-lucide="pencil" class="w-3 h-3 text-primary"></i></button>' +
       '<button data-del class="w-7 h-7 rounded-lg bg-red-500/10 flex items-center justify-center"><i data-lucide="trash-2" class="w-3 h-3 text-red-400"></i></button>' +
       '</div></div>' +
-      (s.desc ? '<p class="text-[#272727]/40 text-[10px] leading-relaxed mb-2"></p>' : '') +
-      '<div class="flex items-center gap-3 text-[10px] text-[#272727]/30">' +
+      (s.desc ? '<p class="text-[#151618]/40 text-[10px] leading-relaxed mb-2"></p>' : '') +
+      '<div class="flex items-center gap-3 text-[10px] text-[#151618]/30">' +
       '<span>قیمت: <span class="text-primary font-semibold">' + P.moneyShort(s.price) + '</span></span>' +
       '<span>مدت: ' + s.duration + '</span>' +
       '</div>';

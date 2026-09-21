@@ -221,7 +221,7 @@ P.store = {
 P.toast = function (msg) {
   var t = document.createElement('div');
   t.textContent = msg;
-  t.style.cssText = 'position:fixed;bottom:96px;left:50%;transform:translateX(-50%);background:#272727;color:#F9F8F2;font-size:12px;font-weight:600;padding:10px 20px;border-radius:14px;z-index:9999;box-shadow:0 8px 24px rgba(0,0,0,.25);font-family:inherit;';
+  t.style.cssText = 'position:fixed;bottom:96px;left:50%;transform:translateX(-50%);background:#151618;color:#FFFFFF;font-size:12px;font-weight:600;padding:10px 20px;border-radius:14px;z-index:9999;box-shadow:0 8px 24px rgba(0,0,0,.25);font-family:inherit;';
   document.body.appendChild(t);
   setTimeout(function () { t.style.opacity = '0'; t.style.transition = 'opacity .4s'; }, 1800);
   setTimeout(function () { t.remove(); }, 2300);

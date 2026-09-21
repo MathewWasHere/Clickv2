@@ -44,17 +44,17 @@
       el.setAttribute('role', 'button');
       el.setAttribute('tabindex', '0');
       el.className = 'bg-surface rounded-xl border p-2.5 cursor-pointer transition-colors flex flex-col justify-between gap-1.5 ' +
-        (sel ? 'border-primary border-2' : 'border-[#272727]/5 hover:border-primary/30');
+        (sel ? 'border-primary border-2' : 'border-[#151618]/5 hover:border-primary/30');
       el.innerHTML =
         '<div class="flex items-start justify-between gap-1">' +
-        '<h4 class="text-[#272727] text-[11px] font-semibold leading-snug"></h4>' +
+        '<h4 class="text-[#151618] text-[11px] font-semibold leading-snug"></h4>' +
         '<div class="w-4 h-4 rounded-full border shrink-0 flex items-center justify-center ' +
-        (sel ? 'bg-primary border-primary' : 'border-[#272727]/20') + '">' +
-        (sel ? '<svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#F9F8F2" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>' : '') +
+        (sel ? 'bg-primary border-primary' : 'border-[#151618]/20') + '">' +
+        (sel ? '<svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>' : '') +
         '</div></div>' +
         '<div class="flex items-center justify-between">' +
         '<span class="text-primary text-[10px] font-bold"></span>' +
-        '<span class="text-[#272727]/30 text-[9px]"></span>' +
+        '<span class="text-[#151618]/30 text-[9px]"></span>' +
         '</div>';
       el.querySelector('h4').textContent = s.name;
       el.querySelector('span.text-primary, span.font-bold').textContent = P.moneyShort(s.price);
@@ -89,10 +89,10 @@
       var cell = document.createElement('div');
       var disabled = P.isFriday(day.date) || day.date < today;
       var cls = 'cal-day rounded-lg text-center py-1.5 text-[11px] ';
-      if (disabled) cls += 'disabled text-[#272727]/50';
+      if (disabled) cls += 'disabled text-[#151618]/50';
       else if (day.key === state.dateKey) cls += 'selected font-bold';
-      else if (day.key === P.dateKey(today)) cls += 'today text-[#272727] font-semibold';
-      else cls += 'text-[#272727]/70';
+      else if (day.key === P.dateKey(today)) cls += 'today text-[#151618] font-semibold';
+      else cls += 'text-[#151618]/70';
       cell.className = cls;
       cell.textContent = P.fa(day.j.jd);
       if (!disabled) {
@@ -116,7 +116,7 @@
     if (!grid) return;
     grid.innerHTML = '';
     if (!state.dateKey) {
-      grid.innerHTML = '<p class="col-span-3 text-center text-[#272727]/30 text-[11px] py-4">ابتدا تاریخ را انتخاب کنید</p>';
+      grid.innerHTML = '<p class="col-span-3 text-center text-[#151618]/30 text-[11px] py-4">ابتدا تاریخ را انتخاب کنید</p>';
       return;
     }
     var isToday = state.dateKey === P.dateKey(today);
@@ -132,9 +132,9 @@
         var past = isToday && (h < now.getHours() || (h === now.getHours() && m <= now.getMinutes()));
         var slot = document.createElement('div');
         var cls = 'time-slot bg-surface rounded-lg border text-center py-2 text-[11px] ';
-        if (busy || past) cls += 'disabled border-[#272727]/5 text-[#272727]/50';
+        if (busy || past) cls += 'disabled border-[#151618]/5 text-[#151618]/50';
         else if (state.time === t) cls += 'selected border-primary text-primary font-semibold cursor-pointer';
-        else cls += 'border-[#272727]/5 text-[#272727]/70 cursor-pointer';
+        else cls += 'border-[#151618]/5 text-[#151618]/70 cursor-pointer';
         slot.className = cls;
         slot.textContent = P.fa(t);
         if (!busy && !past) {
@@ -177,7 +177,7 @@
       else cls += 'step-pending';
       dot.className = cls;
       dot.innerHTML = i < n ? '<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>' : P.fa(i);
-      if (label) label.className = 'text-[10px] ' + (i === n ? 'text-primary font-medium' : i < n ? 'text-[#272727]/60' : 'text-[#272727]/30');
+      if (label) label.className = 'text-[10px] ' + (i === n ? 'text-primary font-medium' : i < n ? 'text-[#151618]/60' : 'text-[#151618]/30');
       if (wrap) wrap.style.cursor = i < n ? 'pointer' : 'default';
     }
     var back = $('backBtn');

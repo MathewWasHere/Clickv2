@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="manifest" href="manifest.webmanifest" />
-  <meta name="theme-color" content="#272727" />
+  <meta name="theme-color" content="#151618" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
   <link rel="apple-touch-icon" href="assets/icon-192.png" />
@@ -32,26 +32,26 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700;800;900&display=swap" />
 <style type="text/tailwindcss">
 @theme {
-  --color-primary: #272727;
-  --color-primary-dark: #1a1a1a;
-  --color-accent: #7A1F2D;
+  --color-primary: #151618;
+  --color-primary-dark: #0E0F10;
+  --color-accent: #62676B;
   --color-surface: #FFFFFF;
-  --color-surface-light: #F0EFE9;
-  --color-surface-lighter: #E8E7E1;
-  --color-base: #F9F8F2;
+  --color-surface-light: #DDE1E4;
+  --color-surface-lighter: #C9CFD3;
+  --color-base: #CED3D6;
 }
 </style>
-<style>* { font-family: 'Vazirmatn', sans-serif; } body { background: #F9F8F2; margin: 0; }</style>
+<style>* { font-family: 'Vazirmatn', sans-serif; } body { background: #CED3D6; margin: 0; }</style>
 
 <header class="sticky top-2 z-40 px-3">
   <div class="island max-w-md mx-auto px-4 py-3 flex items-center justify-between">
     <div class="flex items-center gap-3">
-      <a href="admin-dashboard.html" class="w-9 h-9 rounded-full bg-surface-light flex items-center justify-center"><i data-lucide="arrow-right" class="w-4 h-4 text-[#272727]/60"></i></a>
-      <h1 class="text-[#272727] font-bold text-lg">مدیریت رزروها</h1>
+      <a href="admin-dashboard.html" class="w-9 h-9 rounded-full bg-surface-light flex items-center justify-center"><i data-lucide="arrow-right" class="w-4 h-4 text-[#151618]/60"></i></a>
+      <h1 class="text-[#151618] font-bold text-lg">مدیریت رزروها</h1>
     </div>
     <div class="flex items-center gap-2">
-      <button class="w-9 h-9 rounded-full bg-surface-light flex items-center justify-center"><i data-lucide="filter" class="w-4 h-4 text-[#272727]/40"></i></button>
-      <button class="w-9 h-9 rounded-full bg-surface-light flex items-center justify-center"><i data-lucide="search" class="w-4 h-4 text-[#272727]/40"></i></button>
+      <button class="w-9 h-9 rounded-full bg-surface-light flex items-center justify-center"><i data-lucide="filter" class="w-4 h-4 text-[#151618]/40"></i></button>
+      <button class="w-9 h-9 rounded-full bg-surface-light flex items-center justify-center"><i data-lucide="search" class="w-4 h-4 text-[#151618]/40"></i></button>
     </div>
   </div>
 </header>
@@ -59,7 +59,7 @@
 
 <!-- Status Filter -->
 <div class="max-w-md mx-auto px-4 flex gap-2 mb-4 overflow-x-auto" style="scrollbar-width:none;">
-  <button data-filter="all" class="shrink-0 bg-[#272727]/5 text-[#272727] text-[10px] font-medium px-3 py-1.5 rounded-lg border border-[#272727]/10">همه</button>
+  <button data-filter="all" class="shrink-0 bg-[#151618]/5 text-[#151618] text-[10px] font-medium px-3 py-1.5 rounded-lg border border-[#151618]/10">همه</button>
   <button data-filter="confirmed" class="shrink-0 text-green-400 bg-green-500/5 text-[10px] font-medium px-3 py-1.5 rounded-lg">تأیید شده</button>
   <button data-filter="pending" class="shrink-0 text-yellow-400 bg-yellow-500/5 text-[10px] font-medium px-3 py-1.5 rounded-lg">در انتظار</button>
   <button data-filter="cancelled" class="shrink-0 text-red-400 bg-red-500/5 text-[10px] font-medium px-3 py-1.5 rounded-lg">لغو شده</button>

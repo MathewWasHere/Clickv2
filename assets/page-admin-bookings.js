@@ -5,7 +5,7 @@
     confirmed: { label: 'تأیید شده', cls: 'bg-green-500/10 text-green-400' },
     pending:   { label: 'در انتظار', cls: 'bg-yellow-500/10 text-yellow-400' },
     cancelled: { label: 'لغو شده', cls: 'bg-red-500/10 text-red-400' },
-    done:      { label: 'انجام شده', cls: 'bg-[#272727]/5 text-[#272727]/40' }
+    done:      { label: 'انجام شده', cls: 'bg-[#151618]/5 text-[#151618]/40' }
   };
   var COLORS = ['bg-primary/10 text-primary', 'bg-blue-500/10 text-blue-400', 'bg-green-500/10 text-green-400', 'bg-purple-500/10 text-purple-400'];
 
@@ -23,25 +23,25 @@
   function card(b, i) {
     var st = STATUS[b.status] || STATUS.confirmed;
     var el = document.createElement('div');
-    el.className = 'bg-surface rounded-xl border border-[#272727]/5 p-4';
+    el.className = 'bg-surface rounded-xl border border-[#151618]/5 p-4';
     el.innerHTML =
       '<div class="flex items-center justify-between mb-2">' +
       '<div class="flex items-center gap-2">' +
       '<div class="w-8 h-8 rounded-full flex items-center justify-center font-bold text-xs ' + COLORS[i % COLORS.length] + '">' + (b.customer || 'م').trim().charAt(0) + '</div>' +
-      '<div><p data-customer class="text-[#272727] text-xs font-semibold"></p><p class="text-[#272727]/20 text-[10px]">' + (b.phone || '') + '</p></div>' +
+      '<div><p data-customer class="text-[#151618] text-xs font-semibold"></p><p class="text-[#151618]/20 text-[10px]">' + (b.phone || '') + '</p></div>' +
       '</div>' +
       '<span class="text-[10px] font-semibold px-2 py-1 rounded-lg ' + st.cls + '">' + st.label + '</span>' +
       '</div>' +
       '<div class="bg-base rounded-lg p-2.5 mb-2.5">' +
-      '<div class="flex justify-between text-[10px] mb-1"><span class="text-[#272727]/30">خدمت</span><span data-service class="text-[#272727]"></span></div>' +
-      '<div class="flex justify-between text-[10px] mb-1"><span class="text-[#272727]/30">تاریخ</span><span class="text-[#272727]">' + P.shortDateFa(P.fromKey(b.dateKey)) + ' — ' + b.time + '</span></div>' +
-      '<div class="flex justify-between text-[10px] mb-1"><span class="text-[#272727]/30">مبلغ</span><span class="text-primary font-semibold">' + P.moneyShort(b.price) + '</span></div>' +
-      '<div class="flex justify-between text-[10px]"><span class="text-[#272727]/30">کمیسیون ۱۰٪</span><span class="text-[#272727]/50">' + P.moneyShort(Math.round(b.price * 0.10)) + '</span></div>' +
+      '<div class="flex justify-between text-[10px] mb-1"><span class="text-[#151618]/30">خدمت</span><span data-service class="text-[#151618]"></span></div>' +
+      '<div class="flex justify-between text-[10px] mb-1"><span class="text-[#151618]/30">تاریخ</span><span class="text-[#151618]">' + P.shortDateFa(P.fromKey(b.dateKey)) + ' — ' + b.time + '</span></div>' +
+      '<div class="flex justify-between text-[10px] mb-1"><span class="text-[#151618]/30">مبلغ</span><span class="text-primary font-semibold">' + P.moneyShort(b.price) + '</span></div>' +
+      '<div class="flex justify-between text-[10px]"><span class="text-[#151618]/30">کمیسیون ۱۰٪</span><span class="text-[#151618]/50">' + P.moneyShort(Math.round(b.price * 0.10)) + '</span></div>' +
       '</div>' +
       '<div class="flex items-center justify-between">' +
       '<div class="flex items-center gap-1 text-[10px] ' + (b.paid ? 'text-green-400' : 'text-yellow-400') + '">' +
       '<i data-lucide="credit-card" class="w-3 h-3"></i> ' + (b.paid ? 'پرداخت شده' : 'پرداخت نشده') + '</div>' +
-      '<select data-status class="bg-surface-light text-[#272727]/50 text-[10px] px-2 py-1.5 rounded-lg outline-none">' +
+      '<select data-status class="bg-surface-light text-[#151618]/50 text-[10px] px-2 py-1.5 rounded-lg outline-none">' +
       '<option value="">تغییر وضعیت</option>' +
       '<option value="confirmed">تأیید شده</option>' +
       '<option value="pending">در انتظار</option>' +
@@ -70,7 +70,7 @@
       return filter === 'all' || b.status === filter;
     });
     if (!items.length) {
-      list.innerHTML = '<div class="bg-surface rounded-xl border border-[#272727]/5 p-6 text-center text-[#272727]/30 text-xs">موردی یافت نشد</div>';
+      list.innerHTML = '<div class="bg-surface rounded-xl border border-[#151618]/5 p-6 text-center text-[#151618]/30 text-xs">موردی یافت نشد</div>';
     }
     items.forEach(function (b, i) { list.appendChild(card(b, i)); });
     if (window.lucide) lucide.createIcons();

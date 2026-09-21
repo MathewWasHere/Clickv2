@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="manifest" href="manifest.webmanifest" />
-  <meta name="theme-color" content="#272727" />
+  <meta name="theme-color" content="#151618" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
   <link rel="apple-touch-icon" href="assets/icon-192.png" />
@@ -32,21 +32,21 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700;800;900&display=swap" />
 <style type="text/tailwindcss">
 @theme {
-  --color-primary: #272727;
-  --color-primary-dark: #1a1a1a;
-  --color-accent: #7A1F2D;
+  --color-primary: #151618;
+  --color-primary-dark: #0E0F10;
+  --color-accent: #62676B;
   --color-surface: #FFFFFF;
-  --color-surface-light: #F0EFE9;
-  --color-surface-lighter: #E8E7E1;
-  --color-base: #F9F8F2;
+  --color-surface-light: #DDE1E4;
+  --color-surface-lighter: #C9CFD3;
+  --color-base: #CED3D6;
 }
 </style>
-<style>* { font-family: 'Vazirmatn', sans-serif; } body { background: #F9F8F2; margin: 0; }</style>
+<style>* { font-family: 'Vazirmatn', sans-serif; } body { background: #CED3D6; margin: 0; }</style>
 
 <header class="sticky top-2 z-40 px-3">
   <div class="island max-w-md mx-auto px-4 py-3 flex items-center gap-3">
-    <a href="home.html" class="w-9 h-9 rounded-full bg-surface-light flex items-center justify-center"><i data-lucide="arrow-right" class="w-4 h-4 text-[#272727]/60"></i></a>
-    <h1 class="text-[#272727] font-bold text-lg">حساب کاربری</h1>
+    <a href="home.html" class="w-9 h-9 rounded-full bg-surface-light flex items-center justify-center"><i data-lucide="arrow-right" class="w-4 h-4 text-[#151618]/60"></i></a>
+    <h1 class="text-[#151618] font-bold text-lg">حساب کاربری</h1>
   </div>
 </header>
 
@@ -56,21 +56,21 @@
     <div class="w-20 h-20 rounded-full bg-gradient-to-br from-primary to-primary-dark flex items-center justify-center mx-auto mb-3">
       <span id="profAvatar" class="text-base text-2xl font-bold">ا</span>
     </div>
-    <h2 id="profName" class="text-[#272727] font-bold text-lg">—</h2>
-    <p id="profPhone" class="text-[#272727]/40 text-xs mt-1">—</p>
+    <h2 id="profName" class="text-[#151618] font-bold text-lg">—</h2>
+    <p id="profPhone" class="text-[#151618]/40 text-xs mt-1">—</p>
   </div>
 
   <!-- Profile Form -->
   <div class="space-y-4 mb-8">
     <div>
-      <label class="text-[#272727]/50 text-xs mb-1.5 block">نام و نام خانوادگی</label>
-      <input id="inputName" type="text" value="" class="w-full bg-surface border border-[#272727]/10 rounded-xl px-4 py-3 text-[#272727] text-sm focus:border-primary outline-none" />
+      <label class="text-[#151618]/50 text-xs mb-1.5 block">نام و نام خانوادگی</label>
+      <input id="inputName" type="text" value="" class="w-full bg-surface border border-[#151618]/10 rounded-xl px-4 py-3 text-[#151618] text-sm focus:border-primary outline-none" />
     </div>
     <div>
-      <label class="text-[#272727]/50 text-xs mb-1.5 block">شماره موبایل</label>
-      <input id="inputPhone" type="tel" value="" class="w-full bg-surface border border-[#272727]/10 rounded-xl px-4 py-3 text-[#272727] text-sm focus:border-primary outline-none" dir="ltr" />
+      <label class="text-[#151618]/50 text-xs mb-1.5 block">شماره موبایل</label>
+      <input id="inputPhone" type="tel" value="" class="w-full bg-surface border border-[#151618]/10 rounded-xl px-4 py-3 text-[#151618] text-sm focus:border-primary outline-none" dir="ltr" />
     </div>
-    <button id="saveProfile" class="w-full bg-gradient-to-l from-primary to-primary-dark text-[#F9F8F2] font-bold py-3.5 rounded-xl">ذخیره تغییرات</button>
+    <button id="saveProfile" class="w-full bg-gradient-to-l from-primary to-primary-dark text-[#FFFFFF] font-bold py-3.5 rounded-xl">ذخیره تغییرات</button>
   </div>
 
   <!-- Menu Items -->
@@ -78,35 +78,35 @@
     <a href="my-bookings.html" class="flex items-center justify-between bg-surface rounded-xl p-4">
       <div class="flex items-center gap-3">
         <div class="w-9 h-9 rounded-lg bg-primary/10 flex items-center justify-center"><i data-lucide="calendar" class="w-4 h-4 text-primary"></i></div>
-        <span class="text-[#272727] text-sm">رزروهای من</span>
+        <span class="text-[#151618] text-sm">رزروهای من</span>
       </div>
-      <i data-lucide="chevron-left" class="w-4 h-4 text-[#272727]/20"></i>
+      <i data-lucide="chevron-left" class="w-4 h-4 text-[#151618]/20"></i>
     </a>
     <a href="#" class="flex items-center justify-between bg-surface rounded-xl p-4">
       <div class="flex items-center gap-3">
         <div class="w-9 h-9 rounded-lg bg-primary/10 flex items-center justify-center"><i data-lucide="bell" class="w-4 h-4 text-primary"></i></div>
-        <span class="text-[#272727] text-sm">اعلان‌ها</span>
+        <span class="text-[#151618] text-sm">اعلان‌ها</span>
       </div>
-      <i data-lucide="chevron-left" class="w-4 h-4 text-[#272727]/20"></i>
+      <i data-lucide="chevron-left" class="w-4 h-4 text-[#151618]/20"></i>
     </a>
     <a href="#" class="flex items-center justify-between bg-surface rounded-xl p-4">
       <div class="flex items-center gap-3">
         <div class="w-9 h-9 rounded-lg bg-primary/10 flex items-center justify-center"><i data-lucide="help-circle" class="w-4 h-4 text-primary"></i></div>
-        <span class="text-[#272727] text-sm">پشتیبانی</span>
+        <span class="text-[#151618] text-sm">پشتیبانی</span>
       </div>
-      <i data-lucide="chevron-left" class="w-4 h-4 text-[#272727]/20"></i>
+      <i data-lucide="chevron-left" class="w-4 h-4 text-[#151618]/20"></i>
     </a>
     <a href="#" class="flex items-center justify-between bg-surface rounded-xl p-4">
       <div class="flex items-center gap-3">
         <div class="w-9 h-9 rounded-lg bg-primary/10 flex items-center justify-center"><i data-lucide="info" class="w-4 h-4 text-primary"></i></div>
-        <span class="text-[#272727] text-sm">درباره ما</span>
+        <span class="text-[#151618] text-sm">درباره ما</span>
       </div>
-      <i data-lucide="chevron-left" class="w-4 h-4 text-[#272727]/20"></i>
+      <i data-lucide="chevron-left" class="w-4 h-4 text-[#151618]/20"></i>
     </a>
   </div>
 
   <!-- Admin Link -->
-  <a href="admin-dashboard.html" class="flex items-center justify-center gap-2 bg-surface-light border border-[#272727]/5 rounded-xl p-3 text-[#272727]/40 text-xs mb-4">
+  <a href="admin-dashboard.html" class="flex items-center justify-center gap-2 bg-surface-light border border-[#151618]/5 rounded-xl p-3 text-[#151618]/40 text-xs mb-4">
     <i data-lucide="settings" class="w-4 h-4"></i>
     ورود به پنل مدیریت
   </a>
@@ -121,7 +121,7 @@
   <div class="island max-w-md mx-auto flex items-center justify-around py-2 pointer-events-auto">
     <a href="home.html" class="flex flex-col items-center gap-1 px-4 py-1.5 rounded-xl"><i data-lucide="home" class="w-5 h-5"></i><span class="text-[10px] font-medium">خانه</span></a>
     <a href="services.html" class="flex flex-col items-center gap-1 px-4 py-1.5 rounded-xl"><i data-lucide="scissors" class="w-5 h-5"></i><span class="text-[10px] font-medium">خدمات</span></a>
-    <a href="booking.html" class="flex items-center gap-1.5 h-10 px-4 rounded-full bg-gradient-to-l from-primary to-primary-dark text-[#F9F8F2] shadow-md shadow-black/20" aria-label="رزرو نوبت">
+    <a href="booking.html" class="flex items-center gap-1.5 h-10 px-4 rounded-full bg-gradient-to-l from-primary to-primary-dark text-[#FFFFFF] shadow-md shadow-black/20" aria-label="رزرو نوبت">
       <i data-lucide="calendar-plus" class="w-5 h-5"></i>
       <span class="text-xs font-bold whitespace-nowrap">رزرو نوبت</span>
     </a>

@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="manifest" href="manifest.webmanifest" />
-  <meta name="theme-color" content="#272727" />
+  <meta name="theme-color" content="#151618" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
   <link rel="apple-touch-icon" href="assets/icon-192.png" />
@@ -34,19 +34,19 @@
 
 <style type="text/tailwindcss">
 @theme {
-  --color-primary: #272727;
-  --color-primary-dark: #1a1a1a;
-  --color-accent: #7A1F2D;
+  --color-primary: #151618;
+  --color-primary-dark: #0E0F10;
+  --color-accent: #62676B;
   --color-surface: #FFFFFF;
-  --color-surface-light: #F0EFE9;
-  --color-surface-lighter: #E8E7E1;
-  --color-base: #F9F8F2;
+  --color-surface-light: #DDE1E4;
+  --color-surface-lighter: #C9CFD3;
+  --color-base: #CED3D6;
   --font-family-vazir: 'Vazirmatn', sans-serif;
 }
 </style>
 <style>
 * { font-family: 'Vazirmatn', sans-serif; }
-body { background: #F9F8F2; margin: 0; }
+body { background: #CED3D6; margin: 0; }
 </style>
 
 <!-- Header -->
@@ -54,24 +54,24 @@ body { background: #F9F8F2; margin: 0; }
   <div class="island max-w-md mx-auto px-4 py-3 flex items-center justify-between">
     <div class="flex items-center gap-3">
       <a href="home.html" class="w-9 h-9 rounded-full bg-surface-light flex items-center justify-center">
-        <i data-lucide="arrow-right" class="w-4 h-4 text-[#272727]/60"></i>
+        <i data-lucide="arrow-right" class="w-4 h-4 text-[#151618]/60"></i>
       </a>
-      <h1 class="text-[#272727] font-bold text-lg">خدمات</h1>
+      <h1 class="text-[#151618] font-bold text-lg">خدمات</h1>
     </div>
   </div>
 </header>
 
 <!-- Category Tabs -->
 <div class="max-w-md mx-auto px-4 mt-4 mb-4 flex gap-2 overflow-x-auto" style="scrollbar-width:none;">
-  <button data-cat="main" class="shrink-0 bg-primary text-[#F9F8F2] text-xs font-semibold px-4 py-2 rounded-full">خدمات اصلی</button>
-  <button data-cat="groom" class="shrink-0 bg-surface-light text-[#272727]/60 text-xs font-medium px-4 py-2 rounded-full">پکیج‌های داماد</button>
+  <button data-cat="main" class="shrink-0 bg-primary text-[#FFFFFF] text-xs font-semibold px-4 py-2 rounded-full">خدمات اصلی</button>
+  <button data-cat="groom" class="shrink-0 bg-surface-light text-[#151618]/60 text-xs font-medium px-4 py-2 rounded-full">پکیج‌های داماد</button>
 </div>
 
 <!-- Main Services Category -->
 <section id="cat-main" class="max-w-md mx-auto px-4 space-y-3 mb-28">
   <div class="flex items-center gap-2 mb-2">
     <div class="w-1 h-5 bg-primary rounded-full"></div>
-    <h2 class="text-[#272727]/70 text-sm font-semibold">خدمات اصلی</h2>
+    <h2 class="text-[#151618]/70 text-sm font-semibold">خدمات اصلی</h2>
   </div>
 
   <div id="mainList" class="space-y-3"></div>
@@ -81,7 +81,7 @@ body { background: #F9F8F2; margin: 0; }
 <section id="cat-groom" class="max-w-md mx-auto px-4 space-y-3 mb-28">
   <div class="flex items-center gap-2 mb-2">
     <div class="w-1 h-5 bg-primary rounded-full"></div>
-    <h2 class="text-[#272727]/70 text-sm font-semibold">پکیج‌های داماد</h2>
+    <h2 class="text-[#151618]/70 text-sm font-semibold">پکیج‌های داماد</h2>
   </div>
 
   <div id="groomList" class="space-y-3"></div>
@@ -92,7 +92,7 @@ body { background: #F9F8F2; margin: 0; }
   <div class="island max-w-md mx-auto flex items-center justify-around py-2 pointer-events-auto">
     <a href="home.html" class="flex flex-col items-center gap-1 px-4 py-1.5 rounded-xl"><i data-lucide="home" class="w-5 h-5"></i><span class="text-[10px] font-medium">خانه</span></a>
     <a href="services.html" class="active flex flex-col items-center gap-1 px-4 py-1.5 rounded-xl"><i data-lucide="scissors" class="w-5 h-5"></i><span class="text-[10px] font-medium">خدمات</span></a>
-    <a href="booking.html" class="flex items-center gap-1.5 h-10 px-4 rounded-full bg-gradient-to-l from-primary to-primary-dark text-[#F9F8F2] shadow-md shadow-black/20" aria-label="رزرو نوبت">
+    <a href="booking.html" class="flex items-center gap-1.5 h-10 px-4 rounded-full bg-gradient-to-l from-primary to-primary-dark text-[#FFFFFF] shadow-md shadow-black/20" aria-label="رزرو نوبت">
       <i data-lucide="calendar-plus" class="w-5 h-5"></i>
       <span class="text-xs font-bold whitespace-nowrap">رزرو نوبت</span>
     </a>

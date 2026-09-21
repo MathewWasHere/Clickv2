@@ -45,19 +45,19 @@
 
     var st = document.createElement('style');
     st.textContent =
-      '.theme-btn{width:2.25rem;height:2.25rem;border-radius:9999px;border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;background:rgba(39,39,39,0.06);color:rgba(39,39,39,0.6);flex-shrink:0;}' +
-      'body[data-theme="dark"] .theme-btn{background:rgba(249,248,242,0.1);color:rgba(249,248,242,0.7);}' +
+      '.theme-btn{width:2.25rem;height:2.25rem;border-radius:9999px;border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;background:rgba(21,22,24,0.06);color:rgba(21,22,24,0.6);flex-shrink:0;}' +
+      'body[data-theme="dark"] .theme-btn{background:rgba(255,255,255,0.1);color:rgba(255,255,255,0.7);}' +
       /* brand logo: white PNG, auto-darkened in light mode so it never vanishes */
       '.brand-logo{filter:invert(0.85);}' +
       'body[data-theme="dark"] .brand-logo{filter:none;}' +
       /* island surfaces (floating rounded bars) */
-      '.island{background:rgba(249,248,242,0.9);-webkit-backdrop-filter:blur(24px);backdrop-filter:blur(24px);border:1px solid rgba(39,39,39,0.08);border-radius:1.25rem;box-shadow:0 10px 30px rgba(0,0,0,0.08);}' +
-      'body[data-theme="dark"] .island{background:rgba(30,30,30,0.9);border-color:rgba(249,248,242,0.08);}' +
+      '.island{background:rgba(206,211,214,0.92);-webkit-backdrop-filter:blur(24px);backdrop-filter:blur(24px);border:1px solid rgba(21,22,24,0.08);border-radius:1.25rem;box-shadow:0 10px 30px rgba(0,0,0,0.08);}' +
+      'body[data-theme="dark"] .island{background:rgba(21,22,24,0.9);border-color:rgba(255,255,255,0.08);}' +
       /* bottom tab bars (site + admin) */
-      '.bottom-nav a{color:rgba(39,39,39,0.45);}' +
-      'body[data-theme="dark"] .bottom-nav a{color:rgba(249,248,242,0.45);}' +
-      '.bottom-nav a.active{background:rgba(39,39,39,0.08);color:#272727;}' +
-      'body[data-theme="dark"] .bottom-nav a.active{background:rgba(249,248,242,0.12);color:#F9F8F2;}';
+      '.bottom-nav a{color:rgba(21,22,24,0.45);}' +
+      'body[data-theme="dark"] .bottom-nav a{color:rgba(255,255,255,0.45);}' +
+      '.bottom-nav a.active{background:rgba(21,22,24,0.08);color:#151618;}' +
+      'body[data-theme="dark"] .bottom-nav a.active{background:rgba(255,255,255,0.12);color:#FFFFFF;}';
     document.head.appendChild(st);
   }
 

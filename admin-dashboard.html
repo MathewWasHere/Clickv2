@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="manifest" href="manifest.webmanifest" />
-  <meta name="theme-color" content="#272727" />
+  <meta name="theme-color" content="#151618" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
   <link rel="apple-touch-icon" href="assets/icon-192.png" />
@@ -32,16 +32,16 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700;800;900&display=swap" />
 <style type="text/tailwindcss">
 @theme {
-  --color-primary: #272727;
-  --color-primary-dark: #1a1a1a;
-  --color-accent: #7A1F2D;
+  --color-primary: #151618;
+  --color-primary-dark: #0E0F10;
+  --color-accent: #62676B;
   --color-surface: #FFFFFF;
-  --color-surface-light: #F0EFE9;
-  --color-surface-lighter: #E8E7E1;
-  --color-base: #F9F8F2;
+  --color-surface-light: #DDE1E4;
+  --color-surface-lighter: #C9CFD3;
+  --color-base: #CED3D6;
 }
 </style>
-<style>* { font-family: 'Vazirmatn', sans-serif; } body { background: #F9F8F2; margin: 0; }</style>
+<style>* { font-family: 'Vazirmatn', sans-serif; } body { background: #CED3D6; margin: 0; }</style>
 
 <!-- Admin Header -->
 <header class="sticky top-2 z-40 px-3">
@@ -49,11 +49,11 @@
     <div class="flex items-center gap-2">
       <img src="assets/logo-white.png" alt="کلیک" class="brand-logo h-7 w-auto object-contain" />
       <div>
-        <h1 class="text-[#272727] font-bold text-sm">پنل مدیریت</h1>
-        <p class="text-[#272727]/30 text-[10px]">پیرایش</p>
+        <h1 class="text-[#151618] font-bold text-sm">پنل مدیریت</h1>
+        <p class="text-[#151618]/30 text-[10px]">پیرایش</p>
       </div>
     </div>
-    <a href="home.html" class="text-[#272727]/40 text-xs flex items-center gap-1"><i data-lucide="external-link" class="w-3 h-3"></i> سایت</a>
+    <a href="home.html" class="text-[#151618]/40 text-xs flex items-center gap-1"><i data-lucide="external-link" class="w-3 h-3"></i> سایت</a>
   </div>
 </header>
 
@@ -61,33 +61,33 @@
 <div class="max-w-md mx-auto px-4">
   <!-- Key Stats -->
   <div class="grid grid-cols-2 gap-3 mb-5">
-    <div class="bg-surface rounded-2xl border border-[#272727]/5 p-4">
+    <div class="bg-surface rounded-2xl border border-[#151618]/5 p-4">
       <div class="flex items-center gap-2 mb-2">
         <div class="w-8 h-8 rounded-lg bg-blue-500/10 flex items-center justify-center"><i data-lucide="calendar-check" class="w-4 h-4 text-blue-400"></i></div>
       </div>
-      <p id="statTotal" class="text-[#272727] text-xl font-extrabold">—</p>
-      <p class="text-[#272727]/40 text-[10px]">کل رزروها (این ماه)</p>
+      <p id="statTotal" class="text-[#151618] text-xl font-extrabold">—</p>
+      <p class="text-[#151618]/40 text-[10px]">کل رزروها (این ماه)</p>
     </div>
-    <div class="bg-surface rounded-2xl border border-[#272727]/5 p-4">
+    <div class="bg-surface rounded-2xl border border-[#151618]/5 p-4">
       <div class="flex items-center gap-2 mb-2">
         <div class="w-8 h-8 rounded-lg bg-green-500/10 flex items-center justify-center"><i data-lucide="banknote" class="w-4 h-4 text-green-400"></i></div>
       </div>
-      <p id="statRevenue" class="text-[#272727] text-xl font-extrabold">—</p>
-      <p class="text-[#272727]/40 text-[10px]">درآمد کل (تومان)</p>
+      <p id="statRevenue" class="text-[#151618] text-xl font-extrabold">—</p>
+      <p class="text-[#151618]/40 text-[10px]">درآمد کل (تومان)</p>
     </div>
-    <div class="bg-surface rounded-2xl border border-[#272727]/5 p-4">
+    <div class="bg-surface rounded-2xl border border-[#151618]/5 p-4">
       <div class="flex items-center gap-2 mb-2">
         <div class="w-8 h-8 rounded-lg bg-purple-500/10 flex items-center justify-center"><i data-lucide="users" class="w-4 h-4 text-purple-400"></i></div>
       </div>
-      <p id="statNew" class="text-[#272727] text-xl font-extrabold">—</p>
-      <p class="text-[#272727]/40 text-[10px]">مشتریان جدید</p>
+      <p id="statNew" class="text-[#151618] text-xl font-extrabold">—</p>
+      <p class="text-[#151618]/40 text-[10px]">مشتریان جدید</p>
     </div>
-    <div class="bg-surface rounded-2xl border border-[#272727]/5 p-4">
+    <div class="bg-surface rounded-2xl border border-[#151618]/5 p-4">
       <div class="flex items-center gap-2 mb-2">
         <div class="w-8 h-8 rounded-lg bg-yellow-500/10 flex items-center justify-center"><i data-lucide="clock" class="w-4 h-4 text-yellow-400"></i></div>
       </div>
-      <p id="statToday" class="text-[#272727] text-xl font-extrabold">—</p>
-      <p class="text-[#272727]/40 text-[10px]">نوبت‌های امروز</p>
+      <p id="statToday" class="text-[#151618] text-xl font-extrabold">—</p>
+      <p class="text-[#151618]/40 text-[10px]">نوبت‌های امروز</p>
     </div>
   </div>
 
@@ -95,37 +95,37 @@
   <div class="bg-gradient-to-l from-primary/10 to-primary/5 rounded-2xl border border-primary/20 p-4 mb-5">
     <div class="flex items-center gap-2 mb-3">
       <i data-lucide="percent" class="w-5 h-5 text-primary"></i>
-      <h3 class="text-[#272727] font-bold text-sm">کمیسیون (۱۰٪)</h3>
+      <h3 class="text-[#151618] font-bold text-sm">کمیسیون (۱۰٪)</h3>
     </div>
     <div class="space-y-2 text-xs">
       <div class="flex justify-between">
-        <span class="text-[#272727]/40">درآمد ناخالص ماهانه</span>
-        <span id="commGross" class="text-[#272727] font-semibold">—</span>
+        <span class="text-[#151618]/40">درآمد ناخالص ماهانه</span>
+        <span id="commGross" class="text-[#151618] font-semibold">—</span>
       </div>
       <div class="flex justify-between">
-        <span class="text-[#272727]/40">کمیسیون ۱۰٪</span>
+        <span class="text-[#151618]/40">کمیسیون ۱۰٪</span>
         <span id="commFee" class="text-primary font-bold">—</span>
       </div>
       <div class="border-t border-primary/10 pt-2 flex justify-between">
-        <span class="text-[#272727]/60 font-medium">درآمد خالص</span>
-        <span id="commNet" class="text-[#272727] font-bold text-base">—</span>
+        <span class="text-[#151618]/60 font-medium">درآمد خالص</span>
+        <span id="commNet" class="text-[#151618] font-bold text-base">—</span>
       </div>
     </div>
   </div>
 
   <!-- Upcoming Appointments -->
-  <h3 class="text-[#272727] font-bold text-sm mb-3">نوبت‌های پیش‌رو</h3>
+  <h3 class="text-[#151618] font-bold text-sm mb-3">نوبت‌های پیش‌رو</h3>
   <div id="dashUpcoming" class="space-y-2 mb-5"></div>
 
   <!-- Quick Actions -->
   <div class="grid grid-cols-2 gap-3 mb-28">
-    <a href="admin-services.html" class="bg-surface rounded-xl border border-[#272727]/5 p-4 text-center">
+    <a href="admin-services.html" class="bg-surface rounded-xl border border-[#151618]/5 p-4 text-center">
       <i data-lucide="plus-circle" class="w-6 h-6 text-primary mx-auto mb-2"></i>
-      <p class="text-[#272727] text-xs font-medium">افزودن خدمت</p>
+      <p class="text-[#151618] text-xs font-medium">افزودن خدمت</p>
     </a>
-    <a href="admin-bookings.html" class="bg-surface rounded-xl border border-[#272727]/5 p-4 text-center">
+    <a href="admin-bookings.html" class="bg-surface rounded-xl border border-[#151618]/5 p-4 text-center">
       <i data-lucide="list" class="w-6 h-6 text-primary mx-auto mb-2"></i>
-      <p class="text-[#272727] text-xs font-medium">مدیریت رزروها</p>
+      <p class="text-[#151618] text-xs font-medium">مدیریت رزروها</p>
     </a>
   </div>
 </div>

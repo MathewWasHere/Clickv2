@@ -31,7 +31,7 @@
       row.innerHTML =
         '<div class="w-8 h-8 rounded-lg bg-primary/10 flex items-center justify-center shrink-0">' +
         '<i data-lucide="' + ICONS[i % ICONS.length] + '" class="w-4 h-4 text-primary"></i></div>' +
-        '<span class="text-[#272727]/70 text-xs"></span>';
+        '<span class="text-[#151618]/70 text-xs"></span>';
       row.lastElementChild.textContent = item;
       inc.appendChild(row);
     });
