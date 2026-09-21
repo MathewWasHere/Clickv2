@@ -1,5 +1,5 @@
 /* پیرایش PWA service worker */
-var CACHE = 'pirayesh-v2';
+var CACHE = 'pirayesh-v3';
 var SHELL = [
   './', 'index.html', 'home.html', 'services.html', 'service-detail.html',
   'booking.html', 'payment.html', 'confirmation.html', 'my-bookings.html',
@@ -47,17 +47,16 @@ self.addEventListener('fetch', function (e) {
     return;
   }
 
-  // Everything else (assets, CDN, images): stale-while-revalidate
+  // Everything else (assets, CDN, images): network-first with cache fallback
   e.respondWith(
-    caches.match(req).then(function (hit) {
-      var refresh = fetch(req).then(function (res) {
-        if (res && (res.ok || res.type === 'opaque')) {
-          var copy = res.clone();
-          caches.open(CACHE).then(function (c) { c.put(req, copy); });
-        }
-        return res;
-      }).catch(function () { return hit; });
-      return hit || refresh;
+    fetch(req).then(function (res) {
+      if (res && (res.ok || res.type === 'opaque')) {
+        var copy = res.clone();
+        caches.open(CACHE).then(function (c) { c.put(req, copy); });
+      }
+      return res;
+    }).catch(function () {
+      return caches.match(req);
     })
   );
 });

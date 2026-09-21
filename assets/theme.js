@@ -47,8 +47,6 @@
     st.textContent =
       '.theme-btn{width:2.25rem;height:2.25rem;border-radius:9999px;border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;background:rgba(39,39,39,0.06);color:rgba(39,39,39,0.6);flex-shrink:0;}' +
       'body[data-theme="dark"] .theme-btn{background:rgba(249,248,242,0.1);color:rgba(249,248,242,0.7);}' +
-      '.nav-cta{border:4px solid #F9F8F2;box-shadow:0 10px 24px rgba(0,0,0,0.25);}' +
-      'body[data-theme="dark"] .nav-cta{border-color:#1e1e1e;}' +
       /* brand logo: white PNG, auto-darkened in light mode so it never vanishes */
       '.brand-logo{filter:invert(0.85);}' +
       'body[data-theme="dark"] .brand-logo{filter:none;}' +
