@@ -1,4 +1,4 @@
-/* پیرایش — theme manager: light/dark with floating toggle */
+/* پیرایش — theme manager: light/dark with toggle in the top island navbar */
 (function () {
   var KEY = 'pirayesh-theme';
 
@@ -35,14 +35,12 @@
       localStorage.setItem(KEY, next);
       setIcon(btn);
     });
-    /* mount: site pages → header island next to calendar icon; admin pages → pill nav row;
-       generic island pages → end of island; otherwise do not inject (no stray buttons) */
+    /* mount: header island on every page — next to the calendar icon when present, else at the end */
     var island = document.querySelector('header .island');
     var cal = island && island.querySelector('a[href="my-bookings.html"]');
-    var adminNav = document.getElementById('adminNav');
     if (cal && cal.parentElement) cal.parentElement.insertBefore(btn, cal);
-    else if (adminNav) { btn.classList.add('shrink-0'); adminNav.appendChild(btn); }
-    else if (island && !/admin-/.test(location.pathname)) { btn.style.marginInlineStart = 'auto'; island.appendChild(btn); }
+    else if (island) { btn.style.marginInlineStart = 'auto'; island.appendChild(btn); }
+    else document.body.appendChild(btn);
     setIcon(btn);
 
     var st = document.createElement('style');
@@ -55,7 +53,7 @@
       /* island surfaces (floating rounded bars) */
       '.island{background:rgba(249,248,242,0.9);-webkit-backdrop-filter:blur(24px);backdrop-filter:blur(24px);border:1px solid rgba(39,39,39,0.08);border-radius:1.25rem;box-shadow:0 10px 30px rgba(0,0,0,0.08);}' +
       'body[data-theme="dark"] .island{background:rgba(30,30,30,0.9);border-color:rgba(249,248,242,0.08);}' +
-      /* bottom tab bar */
+      /* bottom tab bars (site + admin) */
       '.bottom-nav a{color:rgba(39,39,39,0.45);}' +
       'body[data-theme="dark"] .bottom-nav a{color:rgba(249,248,242,0.45);}' +
       '.bottom-nav a.active{background:rgba(39,39,39,0.08);color:#272727;}' +
