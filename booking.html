@@ -186,79 +186,74 @@ img { box-shadow: none !important; }
 </header>
 
 <!-- Progress Steps (tap a completed step to go back) -->
-<div class="max-w-md mx-auto px-6 py-4">
+<div class="max-w-md mx-auto px-6 py-2.5">
   <div class="flex items-center justify-between relative">
-    <div class="absolute top-4 right-6 left-6 h-0.5 bg-surface-light"></div>
-    <div class="relative z-10 flex flex-col items-center gap-1" id="stepWrap1" role="button">
-      <div class="w-8 h-8 rounded-full step-active flex items-center justify-center text-xs font-bold" id="stepDot1">۱</div>
-      <span class="text-primary text-[10px] font-medium" id="stepLabel1">خدمت</span>
+    <div class="absolute top-3 right-5 left-5 h-0.5 bg-surface-light"></div>
+    <div class="relative z-10 flex flex-col items-center gap-0.5" id="stepWrap1" role="button">
+      <div class="w-6 h-6 rounded-full step-active flex items-center justify-center text-[10px] font-bold" id="stepDot1">۱</div>
+      <span class="text-primary text-[9px] font-medium" id="stepLabel1">خدمت</span>
     </div>
-    <div class="relative z-10 flex flex-col items-center gap-1" id="stepWrap2">
-      <div class="w-8 h-8 rounded-full step-pending flex items-center justify-center text-xs font-bold" id="stepDot2">۲</div>
-      <span class="text-[#272727]/30 text-[10px]" id="stepLabel2">تاریخ</span>
+    <div class="relative z-10 flex flex-col items-center gap-0.5" id="stepWrap2">
+      <div class="w-6 h-6 rounded-full step-pending flex items-center justify-center text-[10px] font-bold" id="stepDot2">۲</div>
+      <span class="text-[#272727]/30 text-[9px]" id="stepLabel2">تاریخ</span>
     </div>
-    <div class="relative z-10 flex flex-col items-center gap-1" id="stepWrap3">
-      <div class="w-8 h-8 rounded-full step-pending flex items-center justify-center text-xs font-bold" id="stepDot3">۳</div>
-      <span class="text-[#272727]/30 text-[10px]" id="stepLabel3">ساعت</span>
+    <div class="relative z-10 flex flex-col items-center gap-0.5" id="stepWrap3">
+      <div class="w-6 h-6 rounded-full step-pending flex items-center justify-center text-[10px] font-bold" id="stepDot3">۳</div>
+      <span class="text-[#272727]/30 text-[9px]" id="stepLabel3">ساعت</span>
     </div>
   </div>
 </div>
 
 <!-- Step 1: Service Selection (pre-filled) -->
-<div id="stepService" class="max-w-md mx-auto px-4 mb-28">
-  <h2 class="text-[#272727] font-bold text-sm mb-3">انتخاب خدمت</h2>
-  <div id="serviceList" class="space-y-2 mb-6"></div>
+<div id="stepService" class="max-w-md mx-auto px-4 mb-20">
+  <h2 class="text-[#272727] text-xs font-bold mb-2">انتخاب خدمت</h2>
+  <div id="serviceList" class="grid grid-cols-2 gap-2"></div>
 </div>
 
 <!-- Step 2: Date Selection (Jalali Calendar) -->
-<div id="stepDate" class="max-w-md mx-auto px-4 mt-4 mb-28">
-  <h2 class="text-[#272727] font-bold text-sm mb-3">انتخاب تاریخ</h2>
-  
-  <div class="bg-surface rounded-2xl border border-[#272727]/5 p-4">
-    <!-- Month Header -->
-    <div class="flex items-center justify-between mb-4">
-      <button id="calPrev" class="w-8 h-8 rounded-full bg-surface-light flex items-center justify-center">
-        <i data-lucide="chevron-right" class="w-4 h-4 text-[#272727]/60"></i>
+<div id="stepDate" class="max-w-md mx-auto px-4 mt-3 mb-20">
+  <h2 class="text-[#272727] text-xs font-bold mb-2">انتخاب تاریخ</h2>
+
+  <div class="bg-surface rounded-2xl border border-[#272727]/5 p-3">
+    <div class="flex items-center justify-between mb-2.5">
+      <button id="calPrev" class="w-7 h-7 rounded-full bg-surface-light flex items-center justify-center">
+        <i data-lucide="chevron-right" class="w-3.5 h-3.5 text-[#272727]/60"></i>
       </button>
-      <h3 id="calTitle" class="text-[#272727] font-bold text-sm">…</h3>
-      <button id="calNext" class="w-8 h-8 rounded-full bg-surface-light flex items-center justify-center">
-        <i data-lucide="chevron-left" class="w-4 h-4 text-[#272727]/60"></i>
+      <h3 id="calTitle" class="text-[#272727] font-bold text-xs">…</h3>
+      <button id="calNext" class="w-7 h-7 rounded-full bg-surface-light flex items-center justify-center">
+        <i data-lucide="chevron-left" class="w-3.5 h-3.5 text-[#272727]/60"></i>
       </button>
     </div>
-    
-    <!-- Day names -->
-    <div class="grid grid-cols-7 gap-1 mb-2">
-      <div class="text-center text-[#272727]/30 text-[10px] py-1">ش</div>
-      <div class="text-center text-[#272727]/30 text-[10px] py-1">ی</div>
-      <div class="text-center text-[#272727]/30 text-[10px] py-1">د</div>
-      <div class="text-center text-[#272727]/30 text-[10px] py-1">س</div>
-      <div class="text-center text-[#272727]/30 text-[10px] py-1">چ</div>
-      <div class="text-center text-[#272727]/30 text-[10px] py-1">پ</div>
-      <div class="text-center text-[#272727]/30 text-[10px] py-1">ج</div>
+
+    <div class="grid grid-cols-7 gap-1 mb-1">
+      <div class="text-center text-[#272727]/30 text-[9px] py-0.5">ش</div>
+      <div class="text-center text-[#272727]/30 text-[9px] py-0.5">ی</div>
+      <div class="text-center text-[#272727]/30 text-[9px] py-0.5">د</div>
+      <div class="text-center text-[#272727]/30 text-[9px] py-0.5">س</div>
+      <div class="text-center text-[#272727]/30 text-[9px] py-0.5">چ</div>
+      <div class="text-center text-[#272727]/30 text-[9px] py-0.5">پ</div>
+      <div class="text-center text-[#272727]/30 text-[9px] py-0.5">ج</div>
     </div>
-    
-    <!-- Calendar Grid -->
+
     <div id="calGrid" class="grid grid-cols-7 gap-1"></div>
-</div>
   </div>
-  
 </div>
 
 <!-- Step 3: Time Selection -->
-<div id="stepTime" class="max-w-md mx-auto px-4 mt-4">
-  <h2 class="text-[#272727] font-bold text-sm mb-3">انتخاب ساعت</h2>
+<div id="stepTime" class="max-w-md mx-auto px-4 mt-3">
+  <h2 class="text-[#272727] text-xs font-bold mb-2">انتخاب ساعت</h2>
 
-  <div id="timeGrid" class="grid grid-cols-3 gap-2 mb-4"></div>
+  <div id="timeGrid" class="grid grid-cols-4 gap-1.5 mb-2"></div>
 
-  <div class="flex items-center gap-4 text-[10px] text-[#272727]/30 mb-4">
-    <span class="flex items-center gap-1"><span class="w-2 h-2 rounded-full bg-primary inline-block"></span> انتخاب‌شده</span>
-    <span class="flex items-center gap-1"><span class="w-2 h-2 rounded-full bg-surface-lighter inline-block"></span> آزاد</span>
-    <span class="flex items-center gap-1"><span class="w-2 h-2 rounded-full bg-surface-light/50 inline-block"></span> رزرو شده</span>
+  <div class="flex items-center gap-3 text-[9px] text-[#272727]/30 mb-3">
+    <span class="flex items-center gap-1"><span class="w-1.5 h-1.5 rounded-full bg-primary inline-block"></span> انتخاب‌شده</span>
+    <span class="flex items-center gap-1"><span class="w-1.5 h-1.5 rounded-full bg-surface-lighter inline-block"></span> آزاد</span>
+    <span class="flex items-center gap-1"><span class="w-1.5 h-1.5 rounded-full bg-surface-light/50 inline-block"></span> رزرو شده</span>
   </div>
 
-  <div class="bg-surface rounded-2xl border border-primary/15 p-4 mb-28">
-    <h3 class="text-[#272727] font-bold text-sm mb-3">خلاصه رزرو</h3>
-    <div class="space-y-2 text-xs">
+  <div class="bg-surface rounded-2xl border border-primary/15 p-3 mb-20">
+    <h3 class="text-[#272727] text-xs font-bold mb-1.5">خلاصه رزرو</h3>
+    <div class="space-y-1 text-[10px]">
       <div class="flex items-center justify-between">
         <span class="text-[#272727]/40">خدمت</span>
         <span id="sumService" class="text-[#272727] font-medium">—</span>
@@ -275,20 +270,20 @@ img { box-shadow: none !important; }
         <span class="text-[#272727]/40">مدت</span>
         <span id="sumDuration" class="text-[#272727] font-medium">—</span>
       </div>
-      <div class="border-t border-primary/10 pt-2 flex items-center justify-between">
+      <div class="border-t border-primary/10 pt-1 flex items-center justify-between">
         <span class="text-[#272727]/60 font-medium">مبلغ قابل پرداخت</span>
-        <span id="sumPrice" class="text-primary font-bold text-sm">—</span>
+        <span id="sumPrice" class="text-primary font-bold text-xs">—</span>
       </div>
     </div>
   </div>
 </div>
-<!-- Sticky Action Bar -->
+<!-- Sticky Action Bar --><!-- Sticky Action Bar -->
 <div class="fixed bottom-4 left-0 right-0 z-40 px-4">
-  <div class="island max-w-md mx-auto p-3 flex items-center gap-2">
-    <button id="backBtn" class="hidden shrink-0 w-11 h-11 rounded-xl bg-surface-light items-center justify-center" aria-label="مرحله قبل">
+  <div class="island max-w-md mx-auto p-2.5 flex items-center gap-2">
+    <button id="backBtn" class="hidden shrink-0 w-10 h-10 rounded-xl bg-surface-light items-center justify-center" aria-label="مرحله قبل">
       <i data-lucide="arrow-right" class="w-4 h-4 text-[#272727]/60"></i>
     </button>
-    <button id="ctaBtn" class="flex-1 flex items-center justify-center gap-2 bg-gradient-to-l from-primary to-primary-dark text-[#F9F8F2] font-bold py-3.5 rounded-xl shadow-lg shadow-[#272727]/25">
+    <button id="ctaBtn" class="flex-1 flex items-center justify-center gap-2 bg-gradient-to-l from-primary to-primary-dark text-[#F9F8F2] font-bold text-sm py-3 rounded-xl shadow-lg shadow-[#272727]/25">
       <span id="ctaLabel">ادامه</span>
       <i data-lucide="arrow-left" class="w-4 h-4"></i>
     </button>

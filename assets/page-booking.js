@@ -43,19 +43,22 @@
       var el = document.createElement('div');
       el.setAttribute('role', 'button');
       el.setAttribute('tabindex', '0');
-      el.className = 'bg-surface rounded-xl border p-3 flex items-center justify-between cursor-pointer transition-colors ' +
+      el.className = 'bg-surface rounded-xl border p-2.5 cursor-pointer transition-colors flex flex-col justify-between gap-1.5 ' +
         (sel ? 'border-primary border-2' : 'border-[#272727]/5 hover:border-primary/30');
       el.innerHTML =
-        '<div class="min-w-0">' +
-        '<h4 class="text-[#272727] text-xs font-semibold mb-0.5"></h4>' +
-        '<span class="text-[#272727]/30 text-[10px]"></span>' +
-        '</div>' +
-        '<div class="w-5 h-5 rounded-full border shrink-0 mr-2 flex items-center justify-center ' +
+        '<div class="flex items-start justify-between gap-1">' +
+        '<h4 class="text-[#272727] text-[11px] font-semibold leading-snug"></h4>' +
+        '<div class="w-4 h-4 rounded-full border shrink-0 flex items-center justify-center ' +
         (sel ? 'bg-primary border-primary' : 'border-[#272727]/20') + '">' +
-        (sel ? '<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#F9F8F2" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>' : '') +
+        (sel ? '<svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#F9F8F2" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>' : '') +
+        '</div></div>' +
+        '<div class="flex items-center justify-between">' +
+        '<span class="text-primary text-[10px] font-bold"></span>' +
+        '<span class="text-[#272727]/30 text-[9px]"></span>' +
         '</div>';
       el.querySelector('h4').textContent = s.name;
-      el.querySelector('span').textContent = P.money(s.price) + ' — ' + s.duration;
+      el.querySelector('span.text-primary, span.font-bold').textContent = P.moneyShort(s.price);
+      el.querySelectorAll('span')[el.querySelectorAll('span').length - 1].textContent = s.duration;
       function pick() { state.serviceId = s.id; renderServices(); update(); }
       el.addEventListener('click', pick);
       el.addEventListener('keydown', function (e) { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); pick(); } });
@@ -85,7 +88,7 @@
     monthDays.forEach(function (day) {
       var cell = document.createElement('div');
       var disabled = P.isFriday(day.date) || day.date < today;
-      var cls = 'cal-day rounded-xl text-center py-2.5 text-xs ';
+      var cls = 'cal-day rounded-lg text-center py-1.5 text-[11px] ';
       if (disabled) cls += 'disabled text-[#272727]/50';
       else if (day.key === state.dateKey) cls += 'selected font-bold';
       else if (day.key === P.dateKey(today)) cls += 'today text-[#272727] font-semibold';
@@ -128,7 +131,7 @@
         var busy = hash(state.dateKey + t) % 4 === 0 || taken.indexOf(P.fa(t)) > -1;
         var past = isToday && (h < now.getHours() || (h === now.getHours() && m <= now.getMinutes()));
         var slot = document.createElement('div');
-        var cls = 'time-slot bg-surface rounded-xl border text-center py-3 text-xs ';
+        var cls = 'time-slot bg-surface rounded-lg border text-center py-2 text-[11px] ';
         if (busy || past) cls += 'disabled border-[#272727]/5 text-[#272727]/50';
         else if (state.time === t) cls += 'selected border-primary text-primary font-semibold cursor-pointer';
         else cls += 'border-[#272727]/5 text-[#272727]/70 cursor-pointer';
@@ -168,7 +171,7 @@
     for (var i = 1; i <= 3; i++) {
       var dot = $('stepDot' + i), label = $('stepLabel' + i), wrap = $('stepWrap' + i);
       if (!dot) continue;
-      var cls = 'w-8 h-8 rounded-full flex items-center justify-center text-xs font-bold step-dot ';
+      var cls = 'w-6 h-6 rounded-full flex items-center justify-center text-[10px] font-bold step-dot ';
       if (i < n) cls += 'step-done';
       else if (i === n) cls += 'step-active';
       else cls += 'step-pending';
