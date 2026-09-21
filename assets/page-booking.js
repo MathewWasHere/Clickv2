@@ -105,12 +105,6 @@
     if (prev) prev.disabled = mi <= miMin;
     if (next) next.disabled = mi >= months.length - 1;
     [prev, next].forEach(function (b) { if (b) b.style.opacity = b.disabled ? '.3' : '1'; });
-
-    var row = $('selDateText');
-    if (row) {
-      if (state.dateKey) row.textContent = P.shortDateFa(P.fromKey(state.dateKey)) + ' — ' + P.jparts(P.fromKey(state.dateKey)).weekday;
-      else row.textContent = 'هنوز تاریخی انتخاب نشده';
-    }
   }
 
   /* ---------- stage 3: time slots ---------- */
@@ -200,7 +194,6 @@
     set('sumTime', state.time ? P.fa(state.time) : '—');
     set('sumDuration', s ? s.duration : '—');
     set('sumPrice', s ? P.money(s.price) : '—');
-    set('barPrice', s ? P.moneyShort(s.price) : '');
 
     var btn = $('ctaBtn'), lbl = $('ctaLabel');
     if (lbl) lbl.textContent = LABELS[stage];
