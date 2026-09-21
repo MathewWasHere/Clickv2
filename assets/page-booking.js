@@ -125,9 +125,9 @@
     P.store.bookings().forEach(function (b) {
       if (b.dateKey === state.dateKey && b.status !== 'cancelled') taken.push(b.time);
     });
-    for (var h = 9; h < 21; h++) {
-      for (var m = 0; m < 60; m += 30) {
-        var t = String(h).padStart(2, '0') + ':' + String(m).padStart(2, '0');
+    for (let h = 9; h < 21; h++) {
+      for (let m = 0; m < 60; m += 30) {
+        const t = String(h).padStart(2, '0') + ':' + String(m).padStart(2, '0');
         var busy = hash(state.dateKey + t) % 4 === 0 || taken.indexOf(P.fa(t)) > -1;
         var past = isToday && (h < now.getHours() || (h === now.getHours() && m <= now.getMinutes()));
         var slot = document.createElement('div');
