@@ -1,4 +1,8 @@
 /* Dark mode overrides — clean monochrome black/gray */
+
+/* Light-mode default text color. Anything without an explicit color inherits
+   near-black in light mode (never white), no matter the browser's color scheme. */
+body { color: #111111; }
 body[data-theme="dark"] { background: #0A0A0A !important; color: #FFFFFF; }
 
 body[data-theme="dark"] {
