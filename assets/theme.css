@@ -1,0 +1,471 @@
+/* =============================================================================
+   پیرایش — theme engine (light + dark)
+   -----------------------------------------------------------------------------
+   Single source of truth for BOTH modes. Three layers:
+
+   1. PRIMITIVES  — raw palette values, one block per mode (`--l-*` / `--d-*`).
+                    Defined once, never referenced by components directly.
+   2. SEMANTIC    — role names (`--bg`, `--surface`, `--fg`, `--muted`, `--line`,
+                    `--primary`, …) resolved from the primitives. Dark is the
+                    site default; `[data-theme="light"]` re-points every role.
+   3. UTILITIES   — Tailwind reads the roles through a small `@theme inline` block
+                    in each page's <head>, so `bg-surface`, `text-muted`,
+                    `border-line`, `from-primary`… map straight onto the variables
+                    above and flip with the mode on their own. theme.js only writes
+                    the `data-theme` attribute — no runtime stylesheet rewriting, no
+                    `!important` overrides (bar the reduced-motion reset), no
+                    dark-mode override file and no per-page hex values, so a new
+                    page is themed correctly from the first commit.
+
+   Because every role is a *variable*, an element can opt into the other mode
+   just by carrying `data-theme="light"` (see the ZarinPal gateway on
+   payment.html, which stays light on purpose).
+
+   Contrast: fg / muted / faint / accent / status roles are ≥4.5:1 on every
+   surface in both modes; borders and focus rings are ≥3:1 (non-text).
+   ========================================================================== */
+
+/* ── 1. primitives ───────────────────────────────────────────────────────── */
+:root {
+  /* LIGHT — keeps the brand's blue-grey page + white cards */
+  --l-bg: #CED3D6;
+  --l-bg-deep: #C2C8CC;
+  --l-surface: #FFFFFF;
+  --l-surface-2: #EDF0F1;
+  --l-surface-3: #DEE2E5;
+  --l-fg: #151618;
+  --l-muted: #4E5459;
+  --l-faint: #545B5F;
+  --l-line: rgba(21, 22, 24, 0.12);
+  --l-line-strong: rgba(21, 22, 24, 0.22);
+  --l-primary: #151618;
+  --l-primary-dark: #08090A;
+  --l-on-primary: #FFFFFF;
+  --l-primary-tint: rgba(21, 22, 24, 0.07);
+  --l-accent: #6E4C0B;              /* gold that is legible on light surfaces */
+  --l-ok: #14653C;
+  --l-warn: #7A4E05;
+  --l-err: #A62A22;
+  --l-info: #15518F;
+  --l-violet: #5D33A6;
+  --l-veil: #151618;                /* image overlays / always-dark blocks */
+  --l-veil-2: #3C4449;              /* lighter stop of a veil gradient */
+  --l-on-veil: #FFFFFF;
+  --l-on-veil-accent: #E9C582;      /* the hero gold, always on a dark photo */
+  --l-tint: rgba(21, 22, 24, 0.06);
+  --l-tint-strong: rgba(21, 22, 24, 0.11);
+  --l-scrim: rgba(21, 22, 24, 0.55);
+  --l-shadow-card: 0 1px 2px rgba(15, 18, 22, 0.06), 0 12px 28px -16px rgba(15, 18, 22, 0.22);
+  --l-shadow-float: 0 12px 32px -12px rgba(15, 18, 22, 0.28);
+  --l-shadow-cta: 0 10px 24px -12px rgba(15, 18, 22, 0.55);
+  --l-island: rgba(255, 255, 255, 0.80);
+  --l-island-line: rgba(21, 22, 24, 0.08);
+  --l-media-filter: none;
+  --l-logo-filter: brightness(0) saturate(0);
+  --l-logo-opacity: 0.9;
+  --l-sheen: rgba(21, 22, 24, 0.07);
+  --l-focus: rgba(110, 76, 11, 0.42);
+
+  /* DARK — a designed charcoal ramp, not an inverted light mode */
+  --d-bg: #101315;
+  --d-bg-deep: #0A0C0E;
+  --d-surface: #191D20;
+  --d-surface-2: #212629;
+  --d-surface-3: #2A3034;
+  --d-fg: #F3F5F6;
+  --d-muted: #C2C9CE;
+  --d-faint: #9AA3AA;
+  --d-line: rgba(255, 255, 255, 0.10);
+  --d-line-strong: rgba(255, 255, 255, 0.18);
+  --d-primary: #F0F2F3;             /* ivory CTA, dark ink on top */
+  --d-primary-dark: #C8D0D5;
+  --d-on-primary: #0E1113;
+  --d-primary-tint: rgba(255, 255, 255, 0.09);
+  --d-accent: #E3B96F;
+  --d-ok: #7FD1A0;
+  --d-warn: #EFC57A;
+  --d-err: #F0908A;
+  --d-info: #8FBEEF;
+  --d-violet: #C0A6F2;
+  --d-veil: #0A0C0D;
+  --d-veil-2: #262C31;
+  --d-on-veil: #FFFFFF;
+  --d-on-veil-accent: #EAC788;
+  --d-tint: rgba(255, 255, 255, 0.07);
+  --d-tint-strong: rgba(255, 255, 255, 0.13);
+  --d-scrim: rgba(4, 6, 7, 0.72);
+  --d-shadow-card: 0 1px 0 rgba(255, 255, 255, 0.03) inset, 0 16px 32px -20px rgba(0, 0, 0, 0.85);
+  --d-shadow-float: 0 18px 40px -16px rgba(0, 0, 0, 0.85);
+  --d-shadow-cta: 0 10px 26px -12px rgba(0, 0, 0, 0.9);
+  --d-island: rgba(25, 29, 32, 0.82);
+  --d-island-line: rgba(255, 255, 255, 0.09);
+  --d-media-filter: brightness(0.88) contrast(1.02);
+  --d-logo-filter: none;
+  --d-logo-opacity: 1;
+  --d-sheen: rgba(255, 255, 255, 0.10);
+  --d-focus: rgba(227, 185, 111, 0.55);
+}
+
+/* ── 2. semantic roles — dark is the default mode ────────────────────────── */
+:root {
+  color-scheme: dark;
+  --bg: var(--d-bg);
+  --bg-deep: var(--d-bg-deep);
+  --surface: var(--d-surface);
+  --surface-2: var(--d-surface-2);
+  --surface-3: var(--d-surface-3);
+  --fg: var(--d-fg);
+  --muted: var(--d-muted);
+  --faint: var(--d-faint);
+  --line: var(--d-line);
+  --line-strong: var(--d-line-strong);
+  --primary: var(--d-primary);
+  --primary-dark: var(--d-primary-dark);
+  --on-primary: var(--d-on-primary);
+  --primary-tint: var(--d-primary-tint);
+  --accent: var(--d-accent);
+  --ok: var(--d-ok);
+  --warn: var(--d-warn);
+  --err: var(--d-err);
+  --info: var(--d-info);
+  --violet: var(--d-violet);
+  --veil: var(--d-veil);
+  --veil-2: var(--d-veil-2);
+  --on-veil: var(--d-on-veil);
+  --on-veil-accent: var(--d-on-veil-accent);
+  --tint: var(--d-tint);
+  --tint-strong: var(--d-tint-strong);
+  --scrim: var(--d-scrim);
+  --shadow-card: var(--d-shadow-card);
+  --shadow-float: var(--d-shadow-float);
+  --shadow-cta: var(--d-shadow-cta);
+  --island: var(--d-island);
+  --island-line: var(--d-island-line);
+  --media-filter: var(--d-media-filter);
+  --logo-filter: var(--d-logo-filter);
+  --logo-opacity: var(--d-logo-opacity);
+  --map-filter: invert(0.92) hue-rotate(180deg) brightness(0.92) contrast(0.92) saturate(0.85);
+  --sheen: var(--d-sheen);
+  --focus-ring: var(--d-focus);
+  --island-blur: 24px;
+}
+
+/* One selector, two jobs: the document root in light mode, and any subtree
+   that must stay light (see the gateway on payment.html). */
+[data-theme="light"] {
+  color-scheme: light;
+  --bg: var(--l-bg);
+  --bg-deep: var(--l-bg-deep);
+  --surface: var(--l-surface);
+  --surface-2: var(--l-surface-2);
+  --surface-3: var(--l-surface-3);
+  --fg: var(--l-fg);
+  --muted: var(--l-muted);
+  --faint: var(--l-faint);
+  --line: var(--l-line);
+  --line-strong: var(--l-line-strong);
+  --primary: var(--l-primary);
+  --primary-dark: var(--l-primary-dark);
+  --on-primary: var(--l-on-primary);
+  --primary-tint: var(--l-primary-tint);
+  --accent: var(--l-accent);
+  --ok: var(--l-ok);
+  --warn: var(--l-warn);
+  --err: var(--l-err);
+  --info: var(--l-info);
+  --violet: var(--l-violet);
+  --veil: var(--l-veil);
+  --veil-2: var(--l-veil-2);
+  --on-veil: var(--l-on-veil);
+  --on-veil-accent: var(--l-on-veil-accent);
+  --tint: var(--l-tint);
+  --tint-strong: var(--l-tint-strong);
+  --scrim: var(--l-scrim);
+  --shadow-card: var(--l-shadow-card);
+  --shadow-float: var(--l-shadow-float);
+  --shadow-cta: var(--l-shadow-cta);
+  --island: var(--l-island);
+  --island-line: var(--l-island-line);
+  --media-filter: var(--l-media-filter);
+  --logo-filter: var(--l-logo-filter);
+  --logo-opacity: var(--l-logo-opacity);
+  --map-filter: none;
+  --sheen: var(--l-sheen);
+  --focus-ring: var(--l-focus);
+}
+
+/* ── 3. base document ────────────────────────────────────────────────────── */
+* {
+  font-family: 'Vazirmatn', sans-serif;
+  scrollbar-width: none;
+}
+*::-webkit-scrollbar { width: 0; height: 0; display: none; }
+
+html {
+  background-color: var(--bg);
+  -webkit-text-size-adjust: 100%;
+}
+body {
+  margin: 0;
+  background-color: var(--bg);
+  background-image: radial-gradient(120% 60% at 50% 0%, var(--bg-deep) 0%, transparent 60%);
+  color: var(--fg);
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+::selection {
+  background: color-mix(in srgb, var(--accent) 35%, transparent);
+  color: var(--fg);
+}
+a { color: inherit; text-decoration: none; }
+
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible,
+[tabindex]:focus-visible,
+[role="button"]:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+/* photos: a touch of dim so dark mode does not glare; bordered for separation */
+.media-dim {
+  filter: var(--media-filter);
+}
+/* Google Maps has no dark stylesheet — flip it optically instead of leaving a
+   blinding white rectangle in the middle of a dark page. */
+.map-embed {
+  filter: var(--map-filter);
+  background: var(--surface-2);
+}
+/* A subtree pinned to the light palette (it re-declares the roles via
+   data-theme="light"): needs its own edge, since light-on-dark separation
+   cannot come from a themed border. Used by the mock payment gateway. */
+.theme-light-zone {
+  box-shadow: 0 0 0 1px color-mix(in srgb, var(--fg) 14%, transparent), var(--shadow-float);
+}
+.gold-text { color: var(--on-veil-accent); }
+
+/* ── 4. surfaces & chrome ────────────────────────────────────────────────── */
+.elev { box-shadow: var(--shadow-card); }
+.elev-float { box-shadow: var(--shadow-float); }
+.elev-cta { box-shadow: var(--shadow-cta); }
+
+/* floating rounded bars: header island, bottom tab bar, sticky CTA bars */
+.island {
+  background: var(--island);
+  -webkit-backdrop-filter: blur(var(--island-blur)) saturate(1.5);
+  backdrop-filter: blur(var(--island-blur)) saturate(1.5);
+  border: 1px solid var(--island-line);
+  border-radius: 1.25rem;
+  box-shadow: var(--shadow-float);
+  transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+/* bottom tab bar (site + admin) */
+.bottom-nav a {
+  color: var(--faint);
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+.bottom-nav a:hover { color: var(--fg); }
+.bottom-nav a.active {
+  background: var(--tint-strong);
+  color: var(--fg);
+}
+
+/* brand mark: the only logo asset we ship is white, so light mode needs an
+   inverted copy — token-driven, so it also behaves inside a pinned-light zone. */
+.brand-logo {
+  filter: var(--logo-filter);
+  opacity: var(--logo-opacity);
+}
+
+/* ── 5. theme control ────────────────────────────────────────────────────── */
+.theme-btn {
+  width: 2.25rem;
+  height: 2.25rem;
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 9999px;
+  border: 1px solid transparent;
+  cursor: pointer;
+  color: var(--muted);
+  background: var(--tint);
+  transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease, transform 0.12s ease;
+}
+.theme-btn:hover { color: var(--fg); background: var(--tint-strong); border-color: var(--line); }
+.theme-btn:active { transform: scale(0.92); }
+.theme-btn svg { display: block; }
+.theme-btn .i-sun { display: none; }
+.theme-btn .i-moon { display: block; }
+[data-theme="light"] .theme-btn .i-sun { display: block; }
+[data-theme="light"] .theme-btn .i-moon { display: none; }
+/* fallback mount for pages with no header island (hero / confirmation) */
+.theme-btn--floating {
+  position: fixed;
+  inset-inline-start: 1rem;
+  bottom: 5.25rem;
+  z-index: 45;
+  background: var(--island);
+  -webkit-backdrop-filter: blur(var(--island-blur));
+  backdrop-filter: blur(var(--island-blur));
+  border-color: var(--island-line);
+  box-shadow: var(--shadow-float);
+}
+
+/* ── 6. controls ─────────────────────────────────────────────────────────── */
+input, textarea, select {
+  accent-color: var(--primary);
+  caret-color: var(--accent);
+}
+/* (no border override here: pages own focus styling with `focus:border-primary`,
+   and every mode reads that role correctly because --primary is themed) */
+select option { background: var(--surface); color: var(--fg); }
+
+.segmented {
+  display: flex;
+  gap: 0.5rem;
+}
+.seg {
+  border: 1px solid var(--line);
+  background: var(--surface-3);
+  color: var(--muted);
+  border-radius: 0.75rem;
+  cursor: pointer;
+  transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+}
+.seg:hover { color: var(--fg); }
+.seg[aria-pressed="true"],
+.seg.is-active {
+  background: var(--primary);
+  border-color: var(--primary);
+  color: var(--on-primary);
+  font-weight: 600;
+}
+
+.icon-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 9999px;
+  background: var(--surface-3);
+  color: var(--muted);
+  border: 1px solid var(--line);
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+.icon-btn:hover { color: var(--fg); background: var(--tint-strong); }
+.icon-btn:disabled, .icon-btn[disabled] { opacity: 0.4; pointer-events: none; }
+
+
+/* ── 7. booking wizard (shared by every mode — no per-theme overrides) ───── */
+.step-active, .step-done { background: var(--primary); color: var(--on-primary); }
+.step-pending { background: var(--surface-3); color: var(--faint); }
+.step-dot { transition: background-color 0.2s ease, color 0.2s ease; cursor: pointer; }
+
+.time-slot { transition: background-color 0.15s ease, border-color 0.15s ease, color 0.15s ease; }
+.time-slot:hover, .time-slot.selected {
+  background: var(--tint-strong);
+  border-color: var(--primary);
+  color: var(--fg);
+}
+.time-slot.selected { background: var(--primary-tint); color: var(--fg); }
+.time-slot.disabled { opacity: 0.45; pointer-events: none; }
+
+.cal-day { transition: background-color 0.15s ease, color 0.15s ease, border-color 0.15s ease; cursor: pointer; }
+.cal-day:hover { background: var(--tint-strong); }
+.cal-day.selected { background: var(--primary); color: var(--on-primary); }
+.cal-day.today { box-shadow: inset 0 0 0 1px var(--accent); }
+.cal-day.disabled { opacity: 0.35; pointer-events: none; }
+
+.stage { animation: stageIn 0.25s ease; }
+@keyframes stageIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: none; }
+}
+
+/* ── 8. cards, chips, badges, sheen ──────────────────────────────────────── */
+.shimmer { position: relative; overflow: hidden; }
+.shimmer::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  inset-inline-start: -100%;
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, var(--sheen), transparent);
+  animation: shimmer 3.2s infinite;
+}
+@keyframes shimmer { 100% { inset-inline-start: 100%; } }
+
+/* ── 9. modals, toasts, feedback ─────────────────────────────────────────── */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: var(--scrim);
+  -webkit-backdrop-filter: blur(4px);
+  backdrop-filter: blur(4px);
+  z-index: 50;
+  display: flex;
+  align-items: flex-end;
+}
+.modal-content {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 1.5rem 1.5rem 0 0;
+  width: 100%;
+  max-height: 85vh;
+  overflow-y: auto;
+  padding: 1.5rem;
+  box-shadow: var(--shadow-float);
+}
+.toast {
+  position: fixed;
+  bottom: 6rem;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--primary);
+  color: var(--on-primary);
+  border: 1px solid var(--line);
+  font-size: 12px;
+  font-weight: 600;
+  padding: 10px 20px;
+  border-radius: 14px;
+  z-index: 9999;
+  box-shadow: var(--shadow-float);
+  animation: toastIn 0.22s ease;
+}
+@keyframes toastIn {
+  from { opacity: 0; transform: translate(-50%, 8px); }
+  to { opacity: 1; transform: translate(-50%, 0); }
+}
+.pulse-cta { animation: pulseCta 2.8s ease-in-out infinite; }
+@keyframes pulseCta {
+  0%, 100% { box-shadow: var(--shadow-cta), 0 0 0 0 color-mix(in srgb, var(--accent) 34%, transparent); }
+  50% { box-shadow: var(--shadow-cta), 0 0 0 8px transparent; }
+}
+.animate-check { animation: checkmark 0.5s ease-out; }
+.animate-fade { animation: fadeUp 0.4s ease-out 0.3s both; }
+@keyframes checkmark { 0% { transform: scale(0); } 50% { transform: scale(1.2); } 100% { transform: scale(1); } }
+@keyframes fadeUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+
+/* ── 10. theme flip choreography ─────────────────────────────────────────── */
+/* Cross-fade colours only while the user is switching (class added by
+   theme.js) so the first paint and normal interactions stay animation-free. */
+.theme-anim body,
+.theme-anim :is(button, a, div, section, header, nav, input, select, textarea, span, h1, h2, h3, h4, p, i, svg, li) {
+  transition: background-color 0.28s ease, border-color 0.28s ease, color 0.28s ease,
+    fill 0.28s ease, stroke 0.28s ease, box-shadow 0.28s ease;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+  .shimmer::after { display: none; }
+}

@@ -1,71 +1,70 @@
 <!DOCTYPE html>
-<html>
+<html lang="fa" dir="rtl" data-theme="dark">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="manifest" href="manifest.webmanifest" />
-  <meta name="theme-color" content="#151618" />
-  <meta name="apple-mobile-web-app-capable" content="yes" />
-  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
-  <link rel="apple-touch-icon" href="assets/icon-192.png" />
-  <link rel="preconnect" href="https://unpkg.com" />
+  <meta name="theme-color" content="#101315">
+  <meta name="color-scheme" content="dark light">
+  <link rel="manifest" href="manifest.webmanifest">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <link rel="apple-touch-icon" href="assets/icon-192.png">
+  <link rel="preconnect" href="https://unpkg.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700;800;900&display=swap">
+  <!-- Pre-paint theme bootstrap: sets the stored mode before the first frame.
+       Keep inline and in sync with assets/theme.js (KEY = 'pirayesh-theme'). -->
+  <script>(function(d){var m;try{m=localStorage.getItem('pirayesh-theme')}catch(e){}d.documentElement.setAttribute('data-theme',m==='light'?'light':'dark')})(document)</script>
+  <link rel="stylesheet" href="assets/theme.css">
+  <style type="text/tailwindcss">
+/* Semantic roles -> Tailwind utilities. Every value is a CSS variable defined in
+   assets/theme.css, so each utility flips with the mode on its own.
+   NOTE: no --color-base here on purpose -- it collided with Tailwind's own
+   `text-base` font-size utility and made text vanish in dark mode. */
+@theme inline {
+  --color-bg: var(--bg);
+  --color-surface: var(--surface);
+  --color-surface-2: var(--surface-2);
+  --color-surface-3: var(--surface-3);
+  --color-fg: var(--fg);
+  --color-muted: var(--muted);
+  --color-faint: var(--faint);
+  --color-line: var(--line);
+  --color-line-strong: var(--line-strong);
+  --color-primary: var(--primary);
+  --color-primary-dark: var(--primary-dark);
+  --color-primary-tint: var(--primary-tint);
+  --color-on-primary: var(--on-primary);
+  --color-veil: var(--veil);
+  --color-veil-2: var(--veil-2);
+  --color-on-veil: var(--on-veil);
+  --color-on-veil-accent: var(--on-veil-accent);
+  --color-accent: var(--accent);
+  --color-ok: var(--ok);
+  --color-warn: var(--warn);
+  --color-err: var(--err);
+  --color-info: var(--info);
+  --color-violet: var(--violet);
+  --font-family-vazir: 'Vazirmatn', sans-serif;
+}
+  </style>
   <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
   <script src="https://unpkg.com/@fortawesome/fontawesome-free@6.7.2/js/all.min.js"></script>
   <script src="https://unpkg.com/lucide@latest"></script>
-  <style>
-    * {
-      scrollbar-width: none;
-      scrollbar-color: rgba(0, 0, 0, 0.2) transparent;
-    }
-  </style>
-  <link rel="stylesheet" href="assets/dark.css" />
 </head>
 
-<body dir="rtl" lang="fa"><link rel="preconnect" href="https://unpkg.com" />
-<style>
-    * {
-      scrollbar-width: none;
-      scrollbar-color: rgba(0, 0, 0, 0.2) transparent;
-    }
-  </style>
-
-
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700;800;900&display=swap" />
-
-<style type="text/tailwindcss">
-@theme {
-  --color-primary: #151618;
-  --color-primary-dark: #0E0F10;
-  --color-accent: #62676B;
-  --color-surface: #FFFFFF;
-  --color-surface-light: #DDE1E4;
-  --color-surface-lighter: #C9CFD3;
-  --color-base: #CED3D6;
-  --font-family-vazir: 'Vazirmatn', sans-serif;
-}
-</style>
-
-<style>
-* { font-family: 'Vazirmatn', sans-serif; }
-body { background: #CED3D6; margin: 0; }
-.gold-text { color: #CED3D6; }
-.shimmer { position: relative; overflow: hidden; }
-.shimmer::after { content: ''; position: absolute; top: 0; left: -100%; width: 50%; height: 100%; background: linear-gradient(90deg, transparent, rgba(21,22,24,0.06), transparent); animation: shimmer 3s infinite; }
-@keyframes shimmer { 100% { left: 100%; } }
-
-
-</style>
+<body dir="rtl" lang="fa">
 
 <!-- Install Banner -->
-<div id="installBanner" class="fixed top-0 left-0 right-0 z-50 bg-surface-light/95 backdrop-blur-md border-b border-primary/20 px-4 py-3 flex items-center justify-between" style="display:none;">
+<div id="installBanner" class="fixed top-0 left-0 right-0 z-50 bg-surface-3/90 backdrop-blur-md border-b border-primary/20 px-4 py-3 flex items-center justify-between" style="display:none;">
   <div class="flex items-center gap-3">
     <img src="assets/icon-192.png" alt="کلیک" class="w-10 h-10 rounded-xl object-contain" />
     <div>
-      <p class="text-[#151618] text-sm font-semibold">پیرایش را نصب کنید</p>
-      <p class="text-[#151618]/50 text-xs">دسترسی سریع‌تر به رزرو نوبت</p>
+      <p class="text-fg text-sm font-semibold">پیرایش را نصب کنید</p>
+      <p class="text-muted text-xs">دسترسی سریع‌تر به رزرو نوبت</p>
     </div>
   </div>
-  <button id="installBtn" class="bg-primary text-[#FFFFFF] font-semibold text-sm px-4 py-2 rounded-xl">نصب</button>
+  <button id="installBtn" class="bg-primary text-on-primary font-semibold text-sm px-4 py-2 rounded-xl">نصب</button>
 </div>
 
 <!-- Header -->
@@ -73,14 +72,14 @@ body { background: #CED3D6; margin: 0; }
   <div class="island max-w-md mx-auto px-4 py-3 flex items-center justify-between">
     <div class="flex items-center gap-2">
       <img src="assets/logo-white.png" alt="کلیک" class="brand-logo h-8 w-auto object-contain" />
-      <h1 class="text-[#151618] font-bold text-lg">پیرایش کلیک</h1>
+      <h1 class="text-fg font-bold text-lg">پیرایش کلیک</h1>
     </div>
     <div class="flex items-center gap-3">
-      <a href="my-bookings.html" class="w-9 h-9 rounded-full bg-surface-light flex items-center justify-center">
-        <i data-lucide="calendar" class="w-4 h-4 text-[#151618]/60"></i>
+      <a href="my-bookings.html" class="icon-btn w-9 h-9 flex items-center justify-center">
+        <i data-lucide="calendar" class="w-4 h-4 text-fg/75"></i>
       </a>
-      <a href="profile.html" class="w-9 h-9 rounded-full bg-surface-light flex items-center justify-center">
-        <i data-lucide="user" class="w-4 h-4 text-[#151618]/60"></i>
+      <a href="profile.html" class="icon-btn w-9 h-9 flex items-center justify-center">
+        <i data-lucide="user" class="w-4 h-4 text-fg/75"></i>
       </a>
     </div>
   </div>
@@ -89,17 +88,17 @@ body { background: #CED3D6; margin: 0; }
 <!-- Hero Section -->
 <section class="relative overflow-hidden">
   <div class="absolute inset-0">
-    <img src="https://images.unsplash.com/photo-1585747860019-8e8ef3845e64?w=800&h=1000&fit=crop&auto=format&q=80" alt="فضای آرایشگاه مردانه" class="w-full h-full object-cover" />
-    <div class="absolute inset-0 bg-gradient-to-b from-[#151618]/60 via-[#151618]/70 to-[#151618]"></div>
+    <img src="https://images.unsplash.com/photo-1585747860019-8e8ef3845e64?w=800&h=1000&fit=crop&auto=format&q=80" alt="فضای آرایشگاه مردانه" class="w-full h-full object-cover media-dim" />
+    <div class="absolute inset-0 bg-gradient-to-b from-veil/60 via-veil/70 to-veil"></div>
   </div>
   <div class="relative max-w-md mx-auto px-5 pt-12 pb-16 text-center">
-    <div class="inline-flex items-center gap-2 bg-white/10 border border-white/20 rounded-full px-4 py-1.5 mb-5">
-      <i data-lucide="star" class="w-3.5 h-3.5 text-primary fill-primary"></i>
-      <span class="text-white/80 text-xs font-medium">امتیاز ۴.۹ از ۵ — بیش از ۲٬۰۰۰ مشتری</span>
+    <div class="inline-flex items-center gap-2 bg-on-veil/10 border border-on-veil/25 rounded-full px-4 py-1.5 mb-5">
+      <i data-lucide="star" class="w-3.5 h-3.5 text-on-veil-accent fill-on-veil-accent"></i>
+      <span class="text-on-veil/80 text-xs font-medium">امتیاز ۴.۹ از ۵ — بیش از ۲٬۰۰۰ مشتری</span>
     </div>
-    <h2 class="text-3xl font-extrabold text-white leading-relaxed mb-3">استایل شما،<br/><span class="gold-text">هویت شماست</span></h2>
-    <p class="text-white/60 text-sm leading-relaxed mb-8 max-w-xs mx-auto">بهترین خدمات آرایشگری مردانه با متخصصین حرفه‌ای. همین حالا نوبت خود را رزرو کنید.</p>
-    <a href="booking.html" class="inline-flex items-center gap-2 bg-gradient-to-l from-primary to-primary-dark text-[#FFFFFF] font-bold text-base px-8 py-4 rounded-2xl shadow-lg shadow-[#151618]/25 pulse-gold">
+    <h2 class="text-3xl font-extrabold text-on-veil leading-relaxed mb-3">استایل شما،<br/><span class="gold-text">هویت شماست</span></h2>
+    <p class="text-on-veil/60 text-sm leading-relaxed mb-8 max-w-xs mx-auto">بهترین خدمات آرایشگری مردانه با متخصصین حرفه‌ای. همین حالا نوبت خود را رزرو کنید.</p>
+    <a href="booking.html" class="inline-flex items-center gap-2 bg-gradient-to-l from-primary to-primary-dark text-on-primary font-bold text-base px-8 py-4 rounded-2xl elev-cta pulse-cta">
       <i data-lucide="calendar-plus" class="w-5 h-5"></i>
       رزرو نوبت
     </a>
@@ -108,23 +107,23 @@ body { background: #CED3D6; margin: 0; }
 
 <!-- Quick Info Bar -->
 <section class="max-w-md mx-auto px-4 -mt-4 relative z-10">
-  <div class="bg-surface rounded-2xl border border-[#151618]/5 p-4 flex items-center justify-around">
+  <div class="bg-surface rounded-2xl border border-line p-4 flex items-center justify-around elev">
     <div class="text-center">
       <i data-lucide="clock" class="w-5 h-5 text-primary mx-auto mb-1"></i>
-      <p class="text-[#151618] text-xs font-semibold">۹ تا ۲۱</p>
-      <p class="text-[#151618]/40 text-[10px]">ساعت کاری</p>
+      <p class="text-fg text-xs font-semibold">۹ تا ۲۱</p>
+      <p class="text-muted text-[10px]">ساعت کاری</p>
     </div>
-    <div class="w-px h-10 bg-[#151618]/10"></div>
+    <div class="w-px h-10 bg-fg/10"></div>
     <div class="text-center">
       <i data-lucide="map-pin" class="w-5 h-5 text-primary mx-auto mb-1"></i>
-      <p class="text-[#151618] text-xs font-semibold">فسا</p>
-      <p class="text-[#151618]/40 text-[10px]">خیابان شاهزاده قاسم</p>
+      <p class="text-fg text-xs font-semibold">فسا</p>
+      <p class="text-muted text-[10px]">خیابان شاهزاده قاسم</p>
     </div>
-    <div class="w-px h-10 bg-[#151618]/10"></div>
+    <div class="w-px h-10 bg-fg/10"></div>
     <a href="tel:+989179095028" class="text-center">
       <i data-lucide="phone" class="w-5 h-5 text-primary mx-auto mb-1"></i>
-      <p class="text-[#151618] text-xs font-semibold">تماس</p>
-      <p class="text-[#151618]/40 text-[10px]" dir="ltr">۰۹۱۷۹۰۹۵۰۲۸</p>
+      <p class="text-fg text-xs font-semibold">تماس</p>
+      <p class="text-muted text-[10px]" dir="ltr">۰۹۱۷۹۰۹۵۰۲۸</p>
     </a>
   </div>
 </section>
@@ -132,7 +131,7 @@ body { background: #CED3D6; margin: 0; }
 <!-- Featured Services -->
 <section class="max-w-md mx-auto px-4 mt-8">
   <div class="flex items-center justify-between mb-4">
-    <h3 class="text-[#151618] font-bold text-base">خدمات محبوب</h3>
+    <h3 class="text-fg font-bold text-base">خدمات محبوب</h3>
     <a href="services.html" class="text-primary text-xs font-medium flex items-center gap-1">
       مشاهده همه
       <i data-lucide="chevron-left" class="w-4 h-4"></i>
@@ -140,58 +139,58 @@ body { background: #CED3D6; margin: 0; }
   </div>
   <div class="flex gap-3 overflow-x-auto pb-2 -mx-4 px-4 snap-x snap-mandatory" style="scrollbar-width:none;">
     <!-- Service Card 1 -->
-    <a href="service-detail.html?s=vip" class="snap-start shrink-0 w-40 bg-surface rounded-2xl border border-[#151618]/5 overflow-hidden group">
+    <a href="service-detail.html?s=vip" class="snap-start shrink-0 w-40 bg-surface rounded-2xl border border-line overflow-hidden group elev">
       <div class="relative h-28 overflow-hidden">
-        <img src="https://images.unsplash.com/photo-1503951914875-452162b0f3f1?w=400&h=300&fit=crop&auto=format&q=80" alt="اصلاح VIP" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+        <img src="https://images.unsplash.com/photo-1503951914875-452162b0f3f1?w=400&h=300&fit=crop&auto=format&q=80" alt="اصلاح VIP" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 media-dim" />
       </div>
       <div class="p-3">
-        <h4 class="text-[#151618] text-sm font-semibold mb-1">اصلاح VIP</h4>
-        <p class="text-[#151618]/40 text-[10px] mb-2 leading-relaxed">اصلاح حرفه‌ای با بهترین ابزار</p>
+        <h4 class="text-fg text-sm font-semibold mb-1">اصلاح VIP</h4>
+        <p class="text-muted text-[10px] mb-2 leading-relaxed">اصلاح حرفه‌ای با بهترین ابزار</p>
         <div class="flex items-center justify-between">
           <span class="text-primary text-xs font-bold">۳۵۰٬۰۰۰ ت</span>
-          <span class="text-[#151618]/30 text-[10px]">۴۵ دقیقه</span>
+          <span class="text-faint text-[10px]">۴۵ دقیقه</span>
         </div>
       </div>
     </a>
     <!-- Service Card 2 -->
-    <a href="service-detail.html?s=facial" class="snap-start shrink-0 w-40 bg-surface rounded-2xl border border-[#151618]/5 overflow-hidden group">
+    <a href="service-detail.html?s=facial" class="snap-start shrink-0 w-40 bg-surface rounded-2xl border border-line overflow-hidden group elev">
       <div class="relative h-28 overflow-hidden">
-        <img src="https://images.unsplash.com/photo-1622287162716-f311baa1a2b8?w=400&h=300&fit=crop&auto=format&q=80" alt="پاکسازی و فیشیال" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+        <img src="https://images.unsplash.com/photo-1622287162716-f311baa1a2b8?w=400&h=300&fit=crop&auto=format&q=80" alt="پاکسازی و فیشیال" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 media-dim" />
       </div>
       <div class="p-3">
-        <h4 class="text-[#151618] text-sm font-semibold mb-1">پاکسازی و فیشیال</h4>
-        <p class="text-[#151618]/40 text-[10px] mb-2 leading-relaxed">مراقبت تخصصی پوست صورت</p>
+        <h4 class="text-fg text-sm font-semibold mb-1">پاکسازی و فیشیال</h4>
+        <p class="text-muted text-[10px] mb-2 leading-relaxed">مراقبت تخصصی پوست صورت</p>
         <div class="flex items-center justify-between">
           <span class="text-primary text-xs font-bold">۴۵۰٬۰۰۰ ت</span>
-          <span class="text-[#151618]/30 text-[10px]">۶۰ دقیقه</span>
+          <span class="text-faint text-[10px]">۶۰ دقیقه</span>
         </div>
       </div>
     </a>
     <!-- Service Card 3 -->
-    <a href="service-detail.html?s=groom1" class="snap-start shrink-0 w-40 bg-surface rounded-2xl border border-[#151618]/5 overflow-hidden group">
+    <a href="service-detail.html?s=groom1" class="snap-start shrink-0 w-40 bg-surface rounded-2xl border border-line overflow-hidden group elev">
       <div class="relative h-28 overflow-hidden">
-        <img src="https://images.unsplash.com/photo-1593702288056-7927b442d0fa?w=400&h=300&fit=crop&auto=format&q=80" alt="پکیج مراسم" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+        <img src="https://images.unsplash.com/photo-1593702288056-7927b442d0fa?w=400&h=300&fit=crop&auto=format&q=80" alt="پکیج مراسم" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 media-dim" />
       </div>
       <div class="p-3">
-        <h4 class="text-[#151618] text-sm font-semibold mb-1">پکیج مراسم</h4>
-        <p class="text-[#151618]/40 text-[10px] mb-2 leading-relaxed">پکیج کامل داماد</p>
+        <h4 class="text-fg text-sm font-semibold mb-1">پکیج مراسم</h4>
+        <p class="text-muted text-[10px] mb-2 leading-relaxed">پکیج کامل داماد</p>
         <div class="flex items-center justify-between">
           <span class="text-primary text-xs font-bold">۶٬۰۰۰٬۰۰۰ ت</span>
-          <span class="text-[#151618]/30 text-[10px]">۳ ساعت</span>
+          <span class="text-faint text-[10px]">۳ ساعت</span>
         </div>
       </div>
     </a>
     <!-- Service Card 4 -->
-    <a href="service-detail.html?s=keratin" class="snap-start shrink-0 w-40 bg-surface rounded-2xl border border-[#151618]/5 overflow-hidden group">
+    <a href="service-detail.html?s=keratin" class="snap-start shrink-0 w-40 bg-surface rounded-2xl border border-line overflow-hidden group elev">
       <div class="relative h-28 overflow-hidden">
-        <img src="https://images.unsplash.com/photo-1605497788044-5a32c7078486?w=400&h=300&fit=crop&auto=format&q=80" alt="کراتین" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+        <img src="https://images.unsplash.com/photo-1605497788044-5a32c7078486?w=400&h=300&fit=crop&auto=format&q=80" alt="کراتین" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 media-dim" />
       </div>
       <div class="p-3">
-        <h4 class="text-[#151618] text-sm font-semibold mb-1">کراتین و پروتئینه</h4>
-        <p class="text-[#151618]/40 text-[10px] mb-2 leading-relaxed">ترمیم و تقویت عمیق مو</p>
+        <h4 class="text-fg text-sm font-semibold mb-1">کراتین و پروتئینه</h4>
+        <p class="text-muted text-[10px] mb-2 leading-relaxed">ترمیم و تقویت عمیق مو</p>
         <div class="flex items-center justify-between">
           <span class="text-primary text-xs font-bold">۸۰۰٬۰۰۰ ت</span>
-          <span class="text-[#151618]/30 text-[10px]">۹۰ دقیقه</span>
+          <span class="text-faint text-[10px]">۹۰ دقیقه</span>
         </div>
       </div>
     </a>
@@ -201,24 +200,24 @@ body { background: #CED3D6; margin: 0; }
 <!-- Groom Packages Highlight -->
 <section class="max-w-md mx-auto px-4 mt-8">
   <div class="flex items-center justify-between mb-4">
-    <h3 class="text-[#151618] font-bold text-base">پکیج‌های ویژه داماد</h3>
+    <h3 class="text-fg font-bold text-base">پکیج‌های ویژه داماد</h3>
     <a href="services.html#groom" class="text-primary text-xs font-medium flex items-center gap-1">
       مشاهده همه
       <i data-lucide="chevron-left" class="w-4 h-4"></i>
     </a>
   </div>
-  <a href="service-detail.html?s=groom3" class="block shimmer bg-gradient-to-l from-surface-light to-surface rounded-2xl border border-primary/15 overflow-hidden">
+  <a href="service-detail.html?s=groom3" class="block shimmer bg-gradient-to-l from-surface-3 to-surface rounded-2xl border border-line elev overflow-hidden">
     <div class="relative">
-      <img src="https://images.unsplash.com/photo-1519699047748-de8e457a634e?w=800&h=400&fit=crop&auto=format&q=80" alt="پکیج داماد ویژه" class="w-full h-44 object-cover" />
-      <div class="absolute top-3 right-3 bg-primary/90 text-[#FFFFFF] text-[10px] font-bold px-3 py-1 rounded-full">محبوب‌ترین</div>
+      <img src="https://images.unsplash.com/photo-1519699047748-de8e457a634e?w=800&h=400&fit=crop&auto=format&q=80" alt="پکیج داماد ویژه" class="w-full h-44 object-cover media-dim" />
+      <div class="absolute top-3 right-3 bg-primary/90 text-on-primary text-[10px] font-bold px-3 py-1 rounded-full">محبوب‌ترین</div>
     </div>
     <div class="p-4">
-      <h4 class="text-[#151618] font-bold text-base mb-1">پکیج ۳: داماد</h4>
-      <p class="text-[#151618]/50 text-xs leading-relaxed mb-3">کوتاهی مو + طراحی مو و ریش کلاسیک + فشیال پوست + زیرسازی + میکاپ + کانتور</p>
+      <h4 class="text-fg font-bold text-base mb-1">پکیج ۳: داماد</h4>
+      <p class="text-muted text-xs leading-relaxed mb-3">کوتاهی مو + طراحی مو و ریش کلاسیک + فشیال پوست + زیرسازی + میکاپ + کانتور</p>
       <div class="flex items-center justify-between">
         <div>
           <span class="text-primary font-bold">۹٬۵۰۰٬۰۰۰ تومان</span>
-          <span class="text-[#151618]/30 text-xs mr-2">۶ ساعت</span>
+          <span class="text-faint text-xs mr-2">۶ ساعت</span>
         </div>
         <span class="bg-primary/10 text-primary text-xs font-semibold px-3 py-1.5 rounded-xl">رزرو</span>
       </div>
@@ -228,74 +227,73 @@ body { background: #CED3D6; margin: 0; }
 
 <!-- Why Us -->
 <section class="max-w-md mx-auto px-4 mt-10 mb-6">
-  <h3 class="text-[#151618] font-bold text-base mb-4">چرا پیرایش؟</h3>
+  <h3 class="text-fg font-bold text-base mb-4">چرا پیرایش؟</h3>
   <div class="grid grid-cols-2 gap-3">
-    <div class="bg-surface rounded-2xl border border-[#151618]/5 p-4 text-center">
+    <div class="bg-surface rounded-2xl border border-line p-4 text-center elev">
       <div class="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center mx-auto mb-2">
         <i data-lucide="award" class="w-5 h-5 text-primary"></i>
       </div>
-      <p class="text-[#151618] text-xs font-semibold mb-0.5">متخصصین حرفه‌ای</p>
-      <p class="text-[#151618]/40 text-[10px]">بیش از ۱۰ سال تجربه</p>
+      <p class="text-fg text-xs font-semibold mb-0.5">متخصصین حرفه‌ای</p>
+      <p class="text-muted text-[10px]">بیش از ۱۰ سال تجربه</p>
     </div>
-    <div class="bg-surface rounded-2xl border border-[#151618]/5 p-4 text-center">
+    <div class="bg-surface rounded-2xl border border-line p-4 text-center elev">
       <div class="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center mx-auto mb-2">
         <i data-lucide="shield-check" class="w-5 h-5 text-primary"></i>
       </div>
-      <p class="text-[#151618] text-xs font-semibold mb-0.5">بهداشت کامل</p>
-      <p class="text-[#151618]/40 text-[10px]">استانداردهای بین‌المللی</p>
+      <p class="text-fg text-xs font-semibold mb-0.5">بهداشت کامل</p>
+      <p class="text-muted text-[10px]">استانداردهای بین‌المللی</p>
     </div>
-    <div class="bg-surface rounded-2xl border border-[#151618]/5 p-4 text-center">
+    <div class="bg-surface rounded-2xl border border-line p-4 text-center elev">
       <div class="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center mx-auto mb-2">
         <i data-lucide="sparkles" class="w-5 h-5 text-primary"></i>
       </div>
-      <p class="text-[#151618] text-xs font-semibold mb-0.5">محصولات اصل</p>
-      <p class="text-[#151618]/40 text-[10px]">برندهای معتبر جهانی</p>
+      <p class="text-fg text-xs font-semibold mb-0.5">محصولات اصل</p>
+      <p class="text-muted text-[10px]">برندهای معتبر جهانی</p>
     </div>
-    <div class="bg-surface rounded-2xl border border-[#151618]/5 p-4 text-center">
+    <div class="bg-surface rounded-2xl border border-line p-4 text-center elev">
       <div class="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center mx-auto mb-2">
         <i data-lucide="zap" class="w-5 h-5 text-primary"></i>
       </div>
-      <p class="text-[#151618] text-xs font-semibold mb-0.5">رزرو آنلاین</p>
-      <p class="text-[#151618]/40 text-[10px]">بدون نیاز به تماس</p>
+      <p class="text-fg text-xs font-semibold mb-0.5">رزرو آنلاین</p>
+      <p class="text-muted text-[10px]">بدون نیاز به تماس</p>
     </div>
   </div>
 </section>
 
 <!-- Testimonials -->
 <section class="max-w-md mx-auto px-4 mb-28">
-  <h3 class="text-[#151618] font-bold text-base mb-4">نظرات مشتریان</h3>
+  <h3 class="text-fg font-bold text-base mb-4">نظرات مشتریان</h3>
   <div class="space-y-3">
-    <div class="bg-surface rounded-2xl border border-[#151618]/5 p-4">
+    <div class="bg-surface rounded-2xl border border-line p-4 elev">
       <div class="flex items-center gap-3 mb-2">
         <div class="w-9 h-9 rounded-full bg-primary/20 flex items-center justify-center text-primary font-bold text-sm">م</div>
         <div>
-          <p class="text-[#151618] text-sm font-semibold">محمد رضایی</p>
-          <div class="flex gap-0.5"><i data-lucide="star" class="w-3 h-3 text-primary fill-primary"></i><i data-lucide="star" class="w-3 h-3 text-primary fill-primary"></i><i data-lucide="star" class="w-3 h-3 text-primary fill-primary"></i><i data-lucide="star" class="w-3 h-3 text-primary fill-primary"></i><i data-lucide="star" class="w-3 h-3 text-primary fill-primary"></i></div>
+          <p class="text-fg text-sm font-semibold">محمد رضایی</p>
+          <div class="flex gap-0.5"><i data-lucide="star" class="w-3 h-3 text-accent fill-accent"></i><i data-lucide="star" class="w-3 h-3 text-accent fill-accent"></i><i data-lucide="star" class="w-3 h-3 text-accent fill-accent"></i><i data-lucide="star" class="w-3 h-3 text-accent fill-accent"></i><i data-lucide="star" class="w-3 h-3 text-accent fill-accent"></i></div>
         </div>
       </div>
-      <p class="text-[#151618]/50 text-xs leading-relaxed">بهترین آرایشگاه مردانه‌ای که تا حالا رفتم. کارشون حرفه‌ای و تمیزه. حتماً پکیج داماد رو پیشنهاد می‌کنم.</p>
+      <p class="text-muted text-xs leading-relaxed">بهترین آرایشگاه مردانه‌ای که تا حالا رفتم. کارشون حرفه‌ای و تمیزه. حتماً پکیج داماد رو پیشنهاد می‌کنم.</p>
     </div>
-    <div class="bg-surface rounded-2xl border border-[#151618]/5 p-4">
+    <div class="bg-surface rounded-2xl border border-line p-4 elev">
       <div class="flex items-center gap-3 mb-2">
         <div class="w-9 h-9 rounded-full bg-primary/20 flex items-center justify-center text-primary font-bold text-sm">ع</div>
         <div>
-          <p class="text-[#151618] text-sm font-semibold">علی احمدی</p>
-          <div class="flex gap-0.5"><i data-lucide="star" class="w-3 h-3 text-primary fill-primary"></i><i data-lucide="star" class="w-3 h-3 text-primary fill-primary"></i><i data-lucide="star" class="w-3 h-3 text-primary fill-primary"></i><i data-lucide="star" class="w-3 h-3 text-primary fill-primary"></i><i data-lucide="star" class="w-3 h-3 text-primary fill-primary"></i></div>
+          <p class="text-fg text-sm font-semibold">علی احمدی</p>
+          <div class="flex gap-0.5"><i data-lucide="star" class="w-3 h-3 text-accent fill-accent"></i><i data-lucide="star" class="w-3 h-3 text-accent fill-accent"></i><i data-lucide="star" class="w-3 h-3 text-accent fill-accent"></i><i data-lucide="star" class="w-3 h-3 text-accent fill-accent"></i><i data-lucide="star" class="w-3 h-3 text-accent fill-accent"></i></div>
         </div>
       </div>
-      <p class="text-[#151618]/50 text-xs leading-relaxed">رزرو آنلاین خیلی راحته و دیگه نیازی نیست زنگ بزنم. فیشیال پوستشون عالیه.</p>
+      <p class="text-muted text-xs leading-relaxed">رزرو آنلاین خیلی راحته و دیگه نیازی نیست زنگ بزنم. فیشیال پوستشون عالیه.</p>
     </div>
   </div>
 </section>
 
-
 <!-- Address / Map -->
 <section class="max-w-md mx-auto px-4 mt-10 mb-32">
-  <h3 class="text-[#151618] font-bold text-base mb-4">آدرس ما</h3>
-  <div class="bg-surface rounded-2xl border border-[#151618]/5 overflow-hidden">
+  <h3 class="text-fg font-bold text-base mb-4">آدرس ما</h3>
+  <div class="bg-surface rounded-2xl border border-line overflow-hidden elev">
     <iframe
       src="https://www.google.com/maps?q=28.944364,53.644880&amp;hl=fa&amp;z=16&amp;output=embed"
-      class="w-full h-44 block border-0"
+      class="w-full h-44 block border-0 map-embed"
       style="border:0;"
       loading="lazy"
       allowfullscreen
@@ -304,14 +302,14 @@ body { background: #CED3D6; margin: 0; }
     <div class="p-4">
       <div class="flex items-start gap-2 mb-2">
         <i data-lucide="map-pin" class="w-4 h-4 text-primary mt-0.5 shrink-0"></i>
-        <p class="text-[#151618] text-xs font-semibold leading-relaxed">فسا، خیابان شاهزاده قاسم</p>
+        <p class="text-fg text-xs font-semibold leading-relaxed">فسا، خیابان شاهزاده قاسم</p>
       </div>
       <a href="tel:+989179095028" class="flex items-center gap-2 mb-3">
         <i data-lucide="phone" class="w-4 h-4 text-primary shrink-0"></i>
-        <span class="text-[#151618]/60 text-xs font-semibold" dir="ltr">۰۹۱۷۹۰۹۵۰۲۸</span>
+        <span class="text-fg/75 text-xs font-semibold" dir="ltr">۰۹۱۷۹۰۹۵۰۲۸</span>
       </a>
       <a href="https://www.google.com/maps/dir/?api=1&amp;destination=28.944364%2C53.644880&amp;hl=fa" target="_blank" rel="noopener"
-         class="flex items-center justify-center gap-2 w-full bg-gradient-to-l from-primary to-primary-dark text-[#FFFFFF] font-bold text-sm py-3 rounded-xl">
+         class="flex items-center justify-center gap-2 w-full bg-gradient-to-l from-primary to-primary-dark text-on-primary font-bold text-sm py-3 rounded-xl">
         <i data-lucide="navigation" class="w-4 h-4"></i>
         مسیریابی
       </a>
@@ -329,7 +327,7 @@ body { background: #CED3D6; margin: 0; }
   <div class="island max-w-md mx-auto flex items-center justify-around py-2 pointer-events-auto">
     <a href="home.html" class="active flex flex-col items-center gap-1 px-4 py-1.5 rounded-xl"><i data-lucide="home" class="w-5 h-5"></i><span class="text-[10px] font-medium">خانه</span></a>
     <a href="services.html" class="flex flex-col items-center gap-1 px-4 py-1.5 rounded-xl"><i data-lucide="scissors" class="w-5 h-5"></i><span class="text-[10px] font-medium">خدمات</span></a>
-    <a href="booking.html" class="flex items-center gap-1.5 h-10 px-4 rounded-full bg-gradient-to-l from-primary to-primary-dark text-[#FFFFFF] shadow-md shadow-black/20" aria-label="رزرو نوبت">
+    <a href="booking.html" class="flex items-center gap-1.5 h-10 px-4 rounded-full bg-gradient-to-l from-primary to-primary-dark text-on-primary elev-cta" aria-label="رزرو نوبت">
       <i data-lucide="calendar-plus" class="w-5 h-5"></i>
       <span class="text-xs font-bold whitespace-nowrap">رزرو نوبت</span>
     </a>
@@ -337,7 +335,6 @@ body { background: #CED3D6; margin: 0; }
     <a href="profile.html" class="flex flex-col items-center gap-1 px-4 py-1.5 rounded-xl"><i data-lucide="user" class="w-5 h-5"></i><span class="text-[10px] font-medium">پروفایل</span></a>
   </div>
 </nav>
-
 
 </body>
 <script src="assets/data.js"></script>

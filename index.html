@@ -1,13 +1,26 @@
 <!DOCTYPE html>
-<html lang="fa" dir="rtl">
+<html lang="fa" dir="rtl" data-theme="dark">
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="refresh" content="0; url=home.html">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>پیرایش — آرایشگاه مردانه</title>
-  <script>location.replace('home.html');</script>
+  <script>(function(d){var m;try{m=localStorage.getItem('pirayesh-theme')}catch(e){}var t=(m==='light')?'light':'dark';d.documentElement.setAttribute('data-theme',t);d.documentElement.style.background=t==='light'?'#CED3D6':'#101315';})(document)</script>
+  <!-- This shell deliberately inlines its two colours instead of linking
+       assets/theme.css: it must paint correctly before any stylesheet (or the
+       CDN stack) has a chance to arrive, and it lives for <1s. Keep these two
+       values in sync with --l-bg / --d-bg in assets/theme.css. -->
+  <style>
+    html { color-scheme: dark; }
+    html[data-theme="light"] { color-scheme: light; background: #CED3D6; }
+    body { margin: 0; font-family: 'Vazirmatn', sans-serif; padding: 2rem; text-align: center; }
+    a { color: inherit; }
+    html[data-theme="dark"] body { color: #F3F5F6; }
+    html[data-theme="light"] body { color: #151618; }
+  </style>
 </head>
 <body>
   <p><a href="home.html">ورود به سایت پیرایش</a></p>
+  <script>location.replace('home.html');</script>
 </body>
 </html>

@@ -15,7 +15,7 @@
   set('commFee', P.money(commission));
   set('commNet', P.money(revenue - commission));
 
-  var COLORS = ['bg-primary/10 text-primary', 'bg-blue-500/10 text-blue-400', 'bg-green-500/10 text-green-400', 'bg-purple-500/10 text-purple-400'];
+  var COLORS = ['bg-primary/10 text-primary', 'bg-info/10 text-info', 'bg-ok/10 text-ok', 'bg-violet/10 text-violet'];
   var wrap = document.getElementById('dashUpcoming');
   var upcoming = bookings
     .filter(function (b) { return b.dateKey >= todayKey && b.status !== 'cancelled'; })
@@ -23,19 +23,19 @@
     .slice(0, 5);
 
   if (!upcoming.length) {
-    wrap.innerHTML = '<div class="bg-surface rounded-xl border border-[#151618]/5 p-4 text-center text-[#151618]/30 text-xs">نوبت پیش‌رویی وجود ندارد</div>';
+    wrap.innerHTML = '<div class="bg-surface rounded-xl border border-line p-4 text-center text-faint text-xs">نوبت پیش‌رویی وجود ندارد</div>';
   }
   upcoming.forEach(function (b, i) {
     var row = document.createElement('div');
-    row.className = 'bg-surface rounded-xl border border-[#151618]/5 p-3 flex items-center justify-between';
+    row.className = 'bg-surface rounded-xl border border-line p-3 flex items-center justify-between elev';
     row.innerHTML =
       '<div class="flex items-center gap-3">' +
       '<div class="w-9 h-9 rounded-full flex items-center justify-center font-bold text-xs ' + COLORS[i % COLORS.length] + '">' + (b.customer || 'م').trim().charAt(0) + '</div>' +
-      '<div><p class="text-[#151618] text-xs font-semibold"></p>' +
-      '<p class="text-[#151618]/30 text-[10px]"></p></div></div>' +
+      '<div><p class="text-fg text-xs font-semibold"></p>' +
+      '<p class="text-faint text-[10px]"></p></div></div>' +
       '<div class="text-left">' +
       '<p class="text-primary text-[10px] font-bold">' + P.moneyShort(b.price) + '</p>' +
-      '<p class="text-[#151618]/20 text-[10px]">کمیسیون: ' + P.moneyShort(Math.round(b.price * 0.10)) + '</p>' +
+      '<p class="text-faint text-[10px]">کمیسیون: ' + P.moneyShort(Math.round(b.price * 0.10)) + '</p>' +
       '</div>';
     var ps = row.querySelectorAll('p');
     ps[0].textContent = b.customer || 'مشتری';

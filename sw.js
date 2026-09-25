@@ -1,5 +1,5 @@
 /* پیرایش PWA service worker */
-var CACHE = 'pirayesh-v12';
+var CACHE = 'pirayesh-v13';
 var SHELL = [
   './', 'index.html', 'home.html', 'services.html', 'service-detail.html',
   'booking.html', 'payment.html', 'confirmation.html', 'my-bookings.html',
@@ -8,7 +8,7 @@ var SHELL = [
   'manifest.webmanifest',
   'assets/logo-white.png',
   'assets/icon-192.png', 'assets/icon-512.png', 'assets/icon-maskable-512.png',
-  'assets/dark.css', 'assets/data.js', 'assets/theme.js', 'assets/pwa.js',
+  'assets/theme.css', 'assets/data.js', 'assets/theme.js', 'assets/pwa.js',
   'assets/page-services.js', 'assets/page-service-detail.js', 'assets/page-booking.js',
   'assets/page-payment.js', 'assets/page-confirmation.js', 'assets/page-my-bookings.js',
   'assets/page-profile.js', 'assets/page-admin-dashboard.js',

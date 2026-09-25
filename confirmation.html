@@ -1,121 +1,126 @@
 <!DOCTYPE html>
-<html>
+<html lang="fa" dir="rtl" data-theme="dark">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="manifest" href="manifest.webmanifest" />
-  <meta name="theme-color" content="#151618" />
-  <meta name="apple-mobile-web-app-capable" content="yes" />
-  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
-  <link rel="apple-touch-icon" href="assets/icon-192.png" />
-  <link rel="preconnect" href="https://unpkg.com" />
+  <meta name="theme-color" content="#101315">
+  <meta name="color-scheme" content="dark light">
+  <link rel="manifest" href="manifest.webmanifest">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <link rel="apple-touch-icon" href="assets/icon-192.png">
+  <link rel="preconnect" href="https://unpkg.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700;800;900&display=swap">
+  <!-- Pre-paint theme bootstrap: sets the stored mode before the first frame.
+       Keep inline and in sync with assets/theme.js (KEY = 'pirayesh-theme'). -->
+  <script>(function(d){var m;try{m=localStorage.getItem('pirayesh-theme')}catch(e){}d.documentElement.setAttribute('data-theme',m==='light'?'light':'dark')})(document)</script>
+  <link rel="stylesheet" href="assets/theme.css">
+  <style type="text/tailwindcss">
+/* Semantic roles -> Tailwind utilities. Every value is a CSS variable defined in
+   assets/theme.css, so each utility flips with the mode on its own.
+   NOTE: no --color-base here on purpose -- it collided with Tailwind's own
+   `text-base` font-size utility and made text vanish in dark mode. */
+@theme inline {
+  --color-bg: var(--bg);
+  --color-surface: var(--surface);
+  --color-surface-2: var(--surface-2);
+  --color-surface-3: var(--surface-3);
+  --color-fg: var(--fg);
+  --color-muted: var(--muted);
+  --color-faint: var(--faint);
+  --color-line: var(--line);
+  --color-line-strong: var(--line-strong);
+  --color-primary: var(--primary);
+  --color-primary-dark: var(--primary-dark);
+  --color-primary-tint: var(--primary-tint);
+  --color-on-primary: var(--on-primary);
+  --color-veil: var(--veil);
+  --color-veil-2: var(--veil-2);
+  --color-on-veil: var(--on-veil);
+  --color-on-veil-accent: var(--on-veil-accent);
+  --color-accent: var(--accent);
+  --color-ok: var(--ok);
+  --color-warn: var(--warn);
+  --color-err: var(--err);
+  --color-info: var(--info);
+  --color-violet: var(--violet);
+  --font-family-vazir: 'Vazirmatn', sans-serif;
+}
+  </style>
   <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
   <script src="https://unpkg.com/@fortawesome/fontawesome-free@6.7.2/js/all.min.js"></script>
   <script src="https://unpkg.com/lucide@latest"></script>
-  <style>
-    * {
-      scrollbar-width: none;
-      scrollbar-color: rgba(0, 0, 0, 0.2) transparent;
-    }
-  </style>
-  <link rel="stylesheet" href="assets/dark.css" />
 </head>
 
-<body dir="rtl" lang="fa"><link rel="preconnect" href="https://unpkg.com" />
-<style>
-    * {
-      scrollbar-width: none;
-      scrollbar-color: rgba(0, 0, 0, 0.2) transparent;
-    }
-  </style>
-
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700;800;900&display=swap" />
-<style type="text/tailwindcss">
-@theme {
-  --color-primary: #151618;
-  --color-primary-dark: #0E0F10;
-  --color-accent: #62676B;
-  --color-surface: #FFFFFF;
-  --color-surface-light: #DDE1E4;
-  --color-surface-lighter: #C9CFD3;
-  --color-base: #CED3D6;
-}
-</style>
-<style>
-* { font-family: 'Vazirmatn', sans-serif; }
-body { background: #CED3D6; margin: 0; }
-@keyframes checkmark { 0% { transform: scale(0); } 50% { transform: scale(1.2); } 100% { transform: scale(1); } }
-@keyframes fadeUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
-.animate-check { animation: checkmark 0.5s ease-out; }
-.animate-fade { animation: fadeUp 0.4s ease-out 0.3s both; }
-</style>
+<body dir="rtl" lang="fa">
 
 <div class="max-w-md mx-auto px-4 pt-16 pb-8">
   <!-- Success Icon -->
   <div class="text-center mb-8">
-    <div class="w-20 h-20 rounded-full bg-green-500/10 border-2 border-green-500 flex items-center justify-center mx-auto mb-5 animate-check">
-      <i data-lucide="check" class="w-10 h-10 text-green-500"></i>
+    <div class="w-20 h-20 rounded-full bg-ok/10 border-2 border-ok flex items-center justify-center mx-auto mb-5 animate-check">
+      <i data-lucide="check" class="w-10 h-10 text-ok"></i>
     </div>
-    <h1 class="text-[#151618] text-xl font-extrabold mb-2">رزرو شما تأیید شد!</h1>
-    <p class="text-[#151618]/50 text-sm">پرداخت با موفقیت انجام شد</p>
+    <h1 class="text-fg text-xl font-extrabold mb-2">رزرو شما تأیید شد!</h1>
+    <p class="text-muted text-sm">پرداخت با موفقیت انجام شد</p>
   </div>
 
   <!-- Booking Code -->
   <div class="bg-surface rounded-2xl border border-primary/20 p-5 text-center mb-4 animate-fade">
-    <p class="text-[#151618]/40 text-xs mb-2">کد رزرو شما</p>
-    <div class="bg-base rounded-xl py-3 px-4 mb-3">
+    <p class="text-muted text-xs mb-2">کد رزرو شما</p>
+    <div class="bg-surface-2 rounded-xl py-3 px-4 mb-3">
       <p id="confCode" class="text-primary text-2xl font-extrabold tracking-widest" dir="ltr">—</p>
     </div>
-    <p class="text-[#151618]/30 text-[10px]">لطفاً این کد را هنگام مراجعه ارائه دهید</p>
+    <p class="text-faint text-[10px]">لطفاً این کد را هنگام مراجعه ارائه دهید</p>
   </div>
 
   <!-- Booking Details -->
-  <div class="bg-surface rounded-2xl border border-[#151618]/5 p-4 mb-4 animate-fade">
-    <h3 class="text-[#151618] font-bold text-sm mb-3">جزئیات رزرو</h3>
+  <div class="bg-surface rounded-2xl border border-line p-4 mb-4 animate-fade elev">
+    <h3 class="text-fg font-bold text-sm mb-3">جزئیات رزرو</h3>
     <div class="space-y-2.5 text-xs">
       <div class="flex justify-between">
-        <span class="text-[#151618]/40 flex items-center gap-1.5"><i data-lucide="scissors" class="w-3.5 h-3.5"></i> خدمت</span>
-        <span id="confService" class="text-[#151618] font-medium">—</span>
+        <span class="text-muted flex items-center gap-1.5"><i data-lucide="scissors" class="w-3.5 h-3.5"></i> خدمت</span>
+        <span id="confService" class="text-fg font-medium">—</span>
       </div>
       <div class="flex justify-between">
-        <span class="text-[#151618]/40 flex items-center gap-1.5"><i data-lucide="calendar" class="w-3.5 h-3.5"></i> تاریخ</span>
-        <span id="confDate" class="text-[#151618] font-medium">—</span>
+        <span class="text-muted flex items-center gap-1.5"><i data-lucide="calendar" class="w-3.5 h-3.5"></i> تاریخ</span>
+        <span id="confDate" class="text-fg font-medium">—</span>
       </div>
       <div class="flex justify-between">
-        <span class="text-[#151618]/40 flex items-center gap-1.5"><i data-lucide="clock" class="w-3.5 h-3.5"></i> ساعت</span>
-        <span id="confTime" class="text-[#151618] font-medium">—</span>
+        <span class="text-muted flex items-center gap-1.5"><i data-lucide="clock" class="w-3.5 h-3.5"></i> ساعت</span>
+        <span id="confTime" class="text-fg font-medium">—</span>
       </div>
       <div class="flex justify-between">
-        <span class="text-[#151618]/40 flex items-center gap-1.5"><i data-lucide="timer" class="w-3.5 h-3.5"></i> مدت</span>
-        <span id="confDuration" class="text-[#151618] font-medium">—</span>
+        <span class="text-muted flex items-center gap-1.5"><i data-lucide="timer" class="w-3.5 h-3.5"></i> مدت</span>
+        <span id="confDuration" class="text-fg font-medium">—</span>
       </div>
-      <div class="border-t border-[#151618]/5 pt-2 flex justify-between">
-        <span class="text-[#151618]/60 font-medium flex items-center gap-1.5"><i data-lucide="banknote" class="w-3.5 h-3.5"></i> مبلغ پرداختی</span>
+      <div class="border-t border-line pt-2 flex justify-between">
+        <span class="text-fg/75 font-medium flex items-center gap-1.5"><i data-lucide="banknote" class="w-3.5 h-3.5"></i> مبلغ پرداختی</span>
         <span id="confPrice" class="text-primary font-bold">—</span>
       </div>
     </div>
   </div>
 
   <!-- SMS Confirmation -->
-  <div class="bg-green-500/5 rounded-2xl border border-green-500/15 p-4 mb-6 animate-fade">
+  <div class="bg-surface-2 rounded-2xl border border-ok/30 p-4 mb-6 animate-fade">
     <div class="flex items-start gap-3">
-      <div class="w-9 h-9 rounded-xl bg-green-500/10 flex items-center justify-center shrink-0">
-        <i data-lucide="message-square" class="w-4 h-4 text-green-500"></i>
+      <div class="w-9 h-9 rounded-xl bg-ok/10 flex items-center justify-center shrink-0">
+        <i data-lucide="message-square" class="w-4 h-4 text-ok"></i>
       </div>
       <div>
-        <p class="text-[#151618] font-semibold text-sm mb-1">پیامک تأیید ارسال شد</p>
-        <p class="text-[#151618]/40 text-xs leading-relaxed">جزئیات رزرو شما به شماره ۰۹۱۲•••۴۵۶۷ پیامک شد. لطفاً در زمان مقرر مراجعه فرمایید.</p>
+        <p class="text-fg font-semibold text-sm mb-1">پیامک تأیید ارسال شد</p>
+        <p class="text-muted text-xs leading-relaxed">جزئیات رزرو شما به شماره ۰۹۱۲•••۴۵۶۷ پیامک شد. لطفاً در زمان مقرر مراجعه فرمایید.</p>
       </div>
     </div>
   </div>
 
   <!-- Actions -->
   <div class="space-y-3 animate-fade">
-    <a href="my-bookings.html" class="flex items-center justify-center gap-2 w-full bg-gradient-to-l from-primary to-primary-dark text-[#FFFFFF] font-bold py-4 rounded-2xl">
+    <a href="my-bookings.html" class="flex items-center justify-center gap-2 w-full bg-gradient-to-l from-primary to-primary-dark text-on-primary font-bold py-4 rounded-2xl">
       <i data-lucide="calendar-check" class="w-4 h-4"></i>
       مشاهده رزروهای من
     </a>
-    <a href="home.html" class="flex items-center justify-center gap-2 w-full bg-surface border border-[#151618]/10 text-[#151618] font-medium py-3.5 rounded-2xl text-sm">
+    <a href="home.html" class="flex items-center justify-center gap-2 w-full bg-surface-2 border border-line-strong text-fg font-medium py-3.5 rounded-2xl text-sm">
       بازگشت به صفحه اصلی
     </a>
   </div>

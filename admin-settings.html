@@ -1,109 +1,120 @@
 <!DOCTYPE html>
-<html>
+<html lang="fa" dir="rtl" data-theme="dark">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="manifest" href="manifest.webmanifest" />
-  <meta name="theme-color" content="#151618" />
-  <meta name="apple-mobile-web-app-capable" content="yes" />
-  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
-  <link rel="apple-touch-icon" href="assets/icon-192.png" />
-  <link rel="preconnect" href="https://unpkg.com" />
+  <meta name="theme-color" content="#101315">
+  <meta name="color-scheme" content="dark light">
+  <link rel="manifest" href="manifest.webmanifest">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <link rel="apple-touch-icon" href="assets/icon-192.png">
+  <link rel="preconnect" href="https://unpkg.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700;800;900&display=swap">
+  <!-- Pre-paint theme bootstrap: sets the stored mode before the first frame.
+       Keep inline and in sync with assets/theme.js (KEY = 'pirayesh-theme'). -->
+  <script>(function(d){var m;try{m=localStorage.getItem('pirayesh-theme')}catch(e){}d.documentElement.setAttribute('data-theme',m==='light'?'light':'dark')})(document)</script>
+  <link rel="stylesheet" href="assets/theme.css">
+  <style type="text/tailwindcss">
+/* Semantic roles -> Tailwind utilities. Every value is a CSS variable defined in
+   assets/theme.css, so each utility flips with the mode on its own.
+   NOTE: no --color-base here on purpose -- it collided with Tailwind's own
+   `text-base` font-size utility and made text vanish in dark mode. */
+@theme inline {
+  --color-bg: var(--bg);
+  --color-surface: var(--surface);
+  --color-surface-2: var(--surface-2);
+  --color-surface-3: var(--surface-3);
+  --color-fg: var(--fg);
+  --color-muted: var(--muted);
+  --color-faint: var(--faint);
+  --color-line: var(--line);
+  --color-line-strong: var(--line-strong);
+  --color-primary: var(--primary);
+  --color-primary-dark: var(--primary-dark);
+  --color-primary-tint: var(--primary-tint);
+  --color-on-primary: var(--on-primary);
+  --color-veil: var(--veil);
+  --color-veil-2: var(--veil-2);
+  --color-on-veil: var(--on-veil);
+  --color-on-veil-accent: var(--on-veil-accent);
+  --color-accent: var(--accent);
+  --color-ok: var(--ok);
+  --color-warn: var(--warn);
+  --color-err: var(--err);
+  --color-info: var(--info);
+  --color-violet: var(--violet);
+  --font-family-vazir: 'Vazirmatn', sans-serif;
+}
+  </style>
   <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
   <script src="https://unpkg.com/@fortawesome/fontawesome-free@6.7.2/js/all.min.js"></script>
   <script src="https://unpkg.com/lucide@latest"></script>
-  <style>
-    * {
-      scrollbar-width: none;
-      scrollbar-color: rgba(0, 0, 0, 0.2) transparent;
-    }
-  </style>
-  <link rel="stylesheet" href="assets/dark.css" />
 </head>
 
-<body dir="rtl" lang="fa"><link rel="preconnect" href="https://unpkg.com" />
-<style>
-    * {
-      scrollbar-width: none;
-      scrollbar-color: rgba(0, 0, 0, 0.2) transparent;
-    }
-  </style>
-
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700;800;900&display=swap" />
-<style type="text/tailwindcss">
-@theme {
-  --color-primary: #151618;
-  --color-primary-dark: #0E0F10;
-  --color-accent: #62676B;
-  --color-surface: #FFFFFF;
-  --color-surface-light: #DDE1E4;
-  --color-surface-lighter: #C9CFD3;
-  --color-base: #CED3D6;
-}
-</style>
-<style>* { font-family: 'Vazirmatn', sans-serif; } body { background: #CED3D6; margin: 0; }</style>
+<body dir="rtl" lang="fa">
 
 <header class="sticky top-2 z-40 px-3">
   <div class="island max-w-md mx-auto px-4 py-3 flex items-center gap-3">
-    <a href="admin-dashboard.html" class="w-9 h-9 rounded-full bg-surface-light flex items-center justify-center"><i data-lucide="arrow-right" class="w-4 h-4 text-[#151618]/60"></i></a>
-    <h1 class="text-[#151618] font-bold text-lg">تنظیمات</h1>
+    <a href="admin-dashboard.html" class="icon-btn w-9 h-9 flex items-center justify-center"><i data-lucide="arrow-right" class="w-4 h-4 text-fg/75"></i></a>
+    <h1 class="text-fg font-bold text-lg">تنظیمات</h1>
   </div>
 </header>
-
 
 <div class="max-w-md mx-auto px-4 space-y-6 mb-28">
 
   <!-- Shop Info -->
   <section>
-    <h2 class="text-[#151618] font-bold text-sm mb-3 flex items-center gap-2"><i data-lucide="store" class="w-4 h-4 text-primary"></i> اطلاعات آرایشگاه</h2>
-    <div class="bg-surface rounded-2xl border border-[#151618]/5 p-4 space-y-3">
+    <h2 class="text-fg font-bold text-sm mb-3 flex items-center gap-2"><i data-lucide="store" class="w-4 h-4 text-primary"></i> اطلاعات آرایشگاه</h2>
+    <div class="bg-surface rounded-2xl border border-line p-4 space-y-3 elev">
       <div>
-        <label class="text-[#151618]/40 text-xs mb-1 block">نام آرایشگاه</label>
-        <input type="text" value="پیرایش" class="w-full bg-base border border-[#151618]/10 rounded-xl px-4 py-3 text-[#151618] text-sm outline-none focus:border-primary" />
+        <label class="text-muted text-xs mb-1 block">نام آرایشگاه</label>
+        <input type="text" value="پیرایش" class="w-full bg-surface-2 border border-line-strong rounded-xl px-4 py-3 text-fg text-sm outline-none focus:border-primary" />
       </div>
       <div>
-        <label class="text-[#151618]/40 text-xs mb-1 block">آدرس</label>
-        <input type="text" value="تهران، خیابان ولیعصر، پلاک ۱۲۳" class="w-full bg-base border border-[#151618]/10 rounded-xl px-4 py-3 text-[#151618] text-sm outline-none focus:border-primary" />
+        <label class="text-muted text-xs mb-1 block">آدرس</label>
+        <input type="text" value="تهران، خیابان ولیعصر، پلاک ۱۲۳" class="w-full bg-surface-2 border border-line-strong rounded-xl px-4 py-3 text-fg text-sm outline-none focus:border-primary" />
       </div>
       <div>
-        <label class="text-[#151618]/40 text-xs mb-1 block">شماره تماس</label>
-        <input type="tel" value="۰۹۱۷۹۰۹۵۰۲۸" class="w-full bg-base border border-[#151618]/10 rounded-xl px-4 py-3 text-[#151618] text-sm outline-none focus:border-primary" dir="ltr" />
+        <label class="text-muted text-xs mb-1 block">شماره تماس</label>
+        <input type="tel" value="۰۹۱۷۹۰۹۵۰۲۸" class="w-full bg-surface-2 border border-line-strong rounded-xl px-4 py-3 text-fg text-sm outline-none focus:border-primary" dir="ltr" />
       </div>
       <div>
-        <label class="text-[#151618]/40 text-xs mb-1 block">توضیحات</label>
-        <textarea rows="2" class="w-full bg-base border border-[#151618]/10 rounded-xl px-4 py-3 text-[#151618] text-sm outline-none focus:border-primary resize-none">بهترین خدمات آرایشگری مردانه در تهران</textarea>
+        <label class="text-muted text-xs mb-1 block">توضیحات</label>
+        <textarea rows="2" class="w-full bg-surface-2 border border-line-strong rounded-xl px-4 py-3 text-fg text-sm outline-none focus:border-primary resize-none">بهترین خدمات آرایشگری مردانه در تهران</textarea>
       </div>
     </div>
   </section>
 
   <!-- Working Hours -->
   <section>
-    <h2 class="text-[#151618] font-bold text-sm mb-3 flex items-center gap-2"><i data-lucide="clock" class="w-4 h-4 text-primary"></i> ساعات کاری</h2>
-    <div class="bg-surface rounded-2xl border border-[#151618]/5 p-4 space-y-2">
+    <h2 class="text-fg font-bold text-sm mb-3 flex items-center gap-2"><i data-lucide="clock" class="w-4 h-4 text-primary"></i> ساعات کاری</h2>
+    <div class="bg-surface rounded-2xl border border-line p-4 space-y-2 elev">
       <div class="flex items-center justify-between py-2">
-        <span class="text-[#151618] text-xs">شنبه تا چهارشنبه</span>
+        <span class="text-fg text-xs">شنبه تا چهارشنبه</span>
         <div class="flex items-center gap-2">
-          <input type="text" value="۰۹:۰۰" class="w-14 bg-base border border-[#151618]/10 rounded-lg text-center py-1.5 text-[#151618] text-xs outline-none" />
-          <span class="text-[#151618]/30 text-xs">تا</span>
-          <input type="text" value="۲۱:۰۰" class="w-14 bg-base border border-[#151618]/10 rounded-lg text-center py-1.5 text-[#151618] text-xs outline-none" />
+          <input type="text" value="۰۹:۰۰" class="w-14 bg-surface-2 border border-line-strong rounded-lg text-center py-1.5 text-fg text-xs outline-none" />
+          <span class="text-faint text-xs">تا</span>
+          <input type="text" value="۲۱:۰۰" class="w-14 bg-surface-2 border border-line-strong rounded-lg text-center py-1.5 text-fg text-xs outline-none" />
         </div>
       </div>
-      <div class="border-t border-[#151618]/5"></div>
+      <div class="border-t border-line"></div>
       <div class="flex items-center justify-between py-2">
-        <span class="text-[#151618] text-xs">پنجشنبه</span>
+        <span class="text-fg text-xs">پنجشنبه</span>
         <div class="flex items-center gap-2">
-          <input type="text" value="۰۹:۰۰" class="w-14 bg-base border border-[#151618]/10 rounded-lg text-center py-1.5 text-[#151618] text-xs outline-none" />
-          <span class="text-[#151618]/30 text-xs">تا</span>
-          <input type="text" value="۲۲:۰۰" class="w-14 bg-base border border-[#151618]/10 rounded-lg text-center py-1.5 text-[#151618] text-xs outline-none" />
+          <input type="text" value="۰۹:۰۰" class="w-14 bg-surface-2 border border-line-strong rounded-lg text-center py-1.5 text-fg text-xs outline-none" />
+          <span class="text-faint text-xs">تا</span>
+          <input type="text" value="۲۲:۰۰" class="w-14 bg-surface-2 border border-line-strong rounded-lg text-center py-1.5 text-fg text-xs outline-none" />
         </div>
       </div>
-      <div class="border-t border-[#151618]/5"></div>
+      <div class="border-t border-line"></div>
       <div class="flex items-center justify-between py-2">
-        <span class="text-[#151618] text-xs">جمعه</span>
+        <span class="text-fg text-xs">جمعه</span>
         <div class="flex items-center gap-2">
-          <span class="text-red-400 text-xs">تعطیل</span>
-          <div class="w-9 h-5 bg-surface-light rounded-full relative cursor-pointer">
-            <div class="absolute top-0.5 left-0.5 w-4 h-4 bg-[#151618]/30 rounded-full"></div>
+          <span class="text-err text-xs">تعطیل</span>
+          <div class="w-9 h-5 bg-surface-3 border border-line rounded-full relative cursor-pointer" role="switch" aria-checked="false">
+            <div class="absolute top-0.5 left-0.5 w-4 h-4 bg-faint/80 rounded-full"></div>
           </div>
         </div>
       </div>
@@ -112,62 +123,62 @@
 
   <!-- SMS Settings -->
   <section>
-    <h2 class="text-[#151618] font-bold text-sm mb-3 flex items-center gap-2"><i data-lucide="message-square" class="w-4 h-4 text-primary"></i> تنظیمات پیامک</h2>
-    <div class="bg-surface rounded-2xl border border-[#151618]/5 p-4 space-y-3">
+    <h2 class="text-fg font-bold text-sm mb-3 flex items-center gap-2"><i data-lucide="message-square" class="w-4 h-4 text-primary"></i> تنظیمات پیامک</h2>
+    <div class="bg-surface rounded-2xl border border-line p-4 space-y-3 elev">
       <div class="flex items-center justify-between">
         <div>
-          <p class="text-[#151618] text-xs font-medium">ارسال تأییدیه رزرو</p>
-          <p class="text-[#151618]/30 text-[10px]">ارسال خودکار پیامک پس از رزرو</p>
+          <p class="text-fg text-xs font-medium">ارسال تأییدیه رزرو</p>
+          <p class="text-faint text-[10px]">ارسال خودکار پیامک پس از رزرو</p>
         </div>
-        <div class="w-11 h-6 bg-primary rounded-full relative cursor-pointer">
-          <div class="absolute top-0.5 right-0.5 w-5 h-5 bg-white rounded-full shadow"></div>
+        <div class="w-11 h-6 bg-primary rounded-full relative cursor-pointer" role="switch" aria-checked="true">
+          <div class="absolute top-0.5 right-0.5 w-5 h-5 bg-on-primary rounded-full"></div>
         </div>
       </div>
-      <div class="border-t border-[#151618]/5"></div>
+      <div class="border-t border-line"></div>
       <div class="flex items-center justify-between">
         <div>
-          <p class="text-[#151618] text-xs font-medium">یادآوری نوبت</p>
-          <p class="text-[#151618]/30 text-[10px]">ارسال یادآوری ۲ ساعت قبل</p>
+          <p class="text-fg text-xs font-medium">یادآوری نوبت</p>
+          <p class="text-faint text-[10px]">ارسال یادآوری ۲ ساعت قبل</p>
         </div>
-        <div class="w-11 h-6 bg-primary rounded-full relative cursor-pointer">
-          <div class="absolute top-0.5 right-0.5 w-5 h-5 bg-white rounded-full shadow"></div>
+        <div class="w-11 h-6 bg-primary rounded-full relative cursor-pointer" role="switch" aria-checked="true">
+          <div class="absolute top-0.5 right-0.5 w-5 h-5 bg-on-primary rounded-full"></div>
         </div>
       </div>
-      <div class="border-t border-[#151618]/5"></div>
+      <div class="border-t border-line"></div>
       <div class="flex items-center justify-between">
         <div>
-          <p class="text-[#151618] text-xs font-medium">اعلان لغو</p>
-          <p class="text-[#151618]/30 text-[10px]">اطلاع‌رسانی در صورت لغو نوبت</p>
+          <p class="text-fg text-xs font-medium">اعلان لغو</p>
+          <p class="text-faint text-[10px]">اطلاع‌رسانی در صورت لغو نوبت</p>
         </div>
-        <div class="w-11 h-6 bg-surface-light rounded-full relative cursor-pointer">
-          <div class="absolute top-0.5 left-0.5 w-5 h-5 bg-[#151618]/30 rounded-full"></div>
+        <div class="w-11 h-6 bg-surface-3 border border-line rounded-full relative cursor-pointer" role="switch" aria-checked="false">
+          <div class="absolute top-0.5 left-0.5 w-5 h-5 bg-faint/80 rounded-full"></div>
         </div>
       </div>
 
       <!-- SMS Log -->
-      <div class="border-t border-[#151618]/5 pt-3">
-        <h4 class="text-[#151618]/50 text-xs font-medium mb-2">آخرین پیامک‌های ارسالی</h4>
+      <div class="border-t border-line pt-3">
+        <h4 class="text-muted text-xs font-medium mb-2">آخرین پیامک‌های ارسالی</h4>
         <div class="space-y-1.5">
-          <div class="flex items-center justify-between bg-base rounded-lg p-2">
+          <div class="flex items-center justify-between bg-surface-2 rounded-lg p-2">
             <div>
-              <p class="text-[#151618] text-[10px]">تأییدیه رزرو — امیرحسین محمدی</p>
-              <p class="text-[#151618]/20 text-[9px]">۳۰ تیر ۱۴۰۴ — ۱۰:۳۲</p>
+              <p class="text-fg text-[10px]">تأییدیه رزرو — امیرحسین محمدی</p>
+              <p class="text-faint text-[9px]">۳۰ تیر ۱۴۰۴ — ۱۰:۳۲</p>
             </div>
-            <span class="text-green-400 text-[9px]">ارسال شد</span>
+            <span class="text-ok text-[9px]">ارسال شد</span>
           </div>
-          <div class="flex items-center justify-between bg-base rounded-lg p-2">
+          <div class="flex items-center justify-between bg-surface-2 rounded-lg p-2">
             <div>
-              <p class="text-[#151618] text-[10px]">یادآوری — علی کریمی</p>
-              <p class="text-[#151618]/20 text-[9px]">۲۹ تیر ۱۴۰۴ — ۱۴:۰۰</p>
+              <p class="text-fg text-[10px]">یادآوری — علی کریمی</p>
+              <p class="text-faint text-[9px]">۲۹ تیر ۱۴۰۴ — ۱۴:۰۰</p>
             </div>
-            <span class="text-green-400 text-[9px]">ارسال شد</span>
+            <span class="text-ok text-[9px]">ارسال شد</span>
           </div>
-          <div class="flex items-center justify-between bg-base rounded-lg p-2">
+          <div class="flex items-center justify-between bg-surface-2 rounded-lg p-2">
             <div>
-              <p class="text-[#151618] text-[10px]">تأییدیه رزرو — محمد رضایی</p>
-              <p class="text-[#151618]/20 text-[9px]">۲۸ تیر ۱۴۰۴ — ۱۱:۱۵</p>
+              <p class="text-fg text-[10px]">تأییدیه رزرو — محمد رضایی</p>
+              <p class="text-faint text-[9px]">۲۸ تیر ۱۴۰۴ — ۱۱:۱۵</p>
             </div>
-            <span class="text-green-400 text-[9px]">ارسال شد</span>
+            <span class="text-ok text-[9px]">ارسال شد</span>
           </div>
         </div>
       </div>
@@ -176,20 +187,20 @@
 
   <!-- Commission Settings -->
   <section>
-    <h2 class="text-[#151618] font-bold text-sm mb-3 flex items-center gap-2"><i data-lucide="percent" class="w-4 h-4 text-primary"></i> تنظیمات کمیسیون</h2>
-    <div class="bg-surface rounded-2xl border border-[#151618]/5 p-4">
+    <h2 class="text-fg font-bold text-sm mb-3 flex items-center gap-2"><i data-lucide="percent" class="w-4 h-4 text-primary"></i> تنظیمات کمیسیون</h2>
+    <div class="bg-surface rounded-2xl border border-line p-4 elev">
       <div class="flex items-center justify-between mb-3">
-        <span class="text-[#151618] text-xs">درصد کمیسیون</span>
+        <span class="text-fg text-xs">درصد کمیسیون</span>
         <div class="flex items-center gap-2">
-          <input type="text" value="۱۰" class="w-14 bg-base border border-[#151618]/10 rounded-lg text-center py-1.5 text-primary text-sm font-bold outline-none" />
-          <span class="text-[#151618]/30 text-xs">٪</span>
+          <input type="text" value="۱۰" class="w-14 bg-surface-2 border border-line-strong rounded-lg text-center py-1.5 text-primary text-sm font-bold outline-none" />
+          <span class="text-faint text-xs">٪</span>
         </div>
       </div>
-      <p class="text-[#151618]/30 text-[10px]">این درصد از مبلغ هر رزرو به عنوان کمیسیون محاسبه می‌شود.</p>
+      <p class="text-faint text-[10px]">این درصد از مبلغ هر رزرو به عنوان کمیسیون محاسبه می‌شود.</p>
     </div>
   </section>
 
-  <button id="saveSettings" class="w-full bg-gradient-to-l from-primary to-primary-dark text-[#FFFFFF] font-bold py-3.5 rounded-xl">ذخیره تنظیمات</button>
+  <button id="saveSettings" class="w-full bg-gradient-to-l from-primary to-primary-dark text-on-primary font-bold py-3.5 rounded-xl">ذخیره تنظیمات</button>
 </div>
 
 <!-- Bottom island navbar -->

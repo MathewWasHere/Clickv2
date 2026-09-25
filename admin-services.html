@@ -1,71 +1,78 @@
 <!DOCTYPE html>
-<html>
+<html lang="fa" dir="rtl" data-theme="dark">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="manifest" href="manifest.webmanifest" />
-  <meta name="theme-color" content="#151618" />
-  <meta name="apple-mobile-web-app-capable" content="yes" />
-  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
-  <link rel="apple-touch-icon" href="assets/icon-192.png" />
-  <link rel="preconnect" href="https://unpkg.com" />
+  <meta name="theme-color" content="#101315">
+  <meta name="color-scheme" content="dark light">
+  <link rel="manifest" href="manifest.webmanifest">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <link rel="apple-touch-icon" href="assets/icon-192.png">
+  <link rel="preconnect" href="https://unpkg.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700;800;900&display=swap">
+  <!-- Pre-paint theme bootstrap: sets the stored mode before the first frame.
+       Keep inline and in sync with assets/theme.js (KEY = 'pirayesh-theme'). -->
+  <script>(function(d){var m;try{m=localStorage.getItem('pirayesh-theme')}catch(e){}d.documentElement.setAttribute('data-theme',m==='light'?'light':'dark')})(document)</script>
+  <link rel="stylesheet" href="assets/theme.css">
+  <style type="text/tailwindcss">
+/* Semantic roles -> Tailwind utilities. Every value is a CSS variable defined in
+   assets/theme.css, so each utility flips with the mode on its own.
+   NOTE: no --color-base here on purpose -- it collided with Tailwind's own
+   `text-base` font-size utility and made text vanish in dark mode. */
+@theme inline {
+  --color-bg: var(--bg);
+  --color-surface: var(--surface);
+  --color-surface-2: var(--surface-2);
+  --color-surface-3: var(--surface-3);
+  --color-fg: var(--fg);
+  --color-muted: var(--muted);
+  --color-faint: var(--faint);
+  --color-line: var(--line);
+  --color-line-strong: var(--line-strong);
+  --color-primary: var(--primary);
+  --color-primary-dark: var(--primary-dark);
+  --color-primary-tint: var(--primary-tint);
+  --color-on-primary: var(--on-primary);
+  --color-veil: var(--veil);
+  --color-veil-2: var(--veil-2);
+  --color-on-veil: var(--on-veil);
+  --color-on-veil-accent: var(--on-veil-accent);
+  --color-accent: var(--accent);
+  --color-ok: var(--ok);
+  --color-warn: var(--warn);
+  --color-err: var(--err);
+  --color-info: var(--info);
+  --color-violet: var(--violet);
+  --font-family-vazir: 'Vazirmatn', sans-serif;
+}
+  </style>
   <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
   <script src="https://unpkg.com/@fortawesome/fontawesome-free@6.7.2/js/all.min.js"></script>
   <script src="https://unpkg.com/lucide@latest"></script>
-  <style>
-    * {
-      scrollbar-width: none;
-      scrollbar-color: rgba(0, 0, 0, 0.2) transparent;
-    }
-  </style>
-  <link rel="stylesheet" href="assets/dark.css" />
 </head>
 
-<body dir="rtl" lang="fa"><link rel="preconnect" href="https://unpkg.com" />
-<style>
-    * {
-      scrollbar-width: none;
-      scrollbar-color: rgba(0, 0, 0, 0.2) transparent;
-    }
-  </style>
-
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700;800;900&display=swap" />
-<style type="text/tailwindcss">
-@theme {
-  --color-primary: #151618;
-  --color-primary-dark: #0E0F10;
-  --color-accent: #62676B;
-  --color-surface: #FFFFFF;
-  --color-surface-light: #DDE1E4;
-  --color-surface-lighter: #C9CFD3;
-  --color-base: #CED3D6;
-}
-</style>
-<style>
-* { font-family: 'Vazirmatn', sans-serif; } body { background: #CED3D6; margin: 0; }
-.modal-overlay { position: fixed; inset: 0; background: rgba(21,22,24,0.5); z-index: 50; display: flex; align-items: flex-end; }
-.modal-content { background: #FFFFFF; border-radius: 1.5rem 1.5rem 0 0; width: 100%; max-height: 85vh; overflow-y: auto; padding: 1.5rem; }
-</style>
+<body dir="rtl" lang="fa">
 
 <header class="sticky top-2 z-40 px-3">
   <div class="island max-w-md mx-auto px-4 py-3 flex items-center justify-between">
     <div class="flex items-center gap-3">
-      <a href="admin-dashboard.html" class="w-9 h-9 rounded-full bg-surface-light flex items-center justify-center"><i data-lucide="arrow-right" class="w-4 h-4 text-[#151618]/60"></i></a>
-      <h1 class="text-[#151618] font-bold text-lg">مدیریت خدمات</h1>
+      <a href="admin-dashboard.html" class="icon-btn w-9 h-9 flex items-center justify-center"><i data-lucide="arrow-right" class="w-4 h-4 text-fg/75"></i></a>
+      <h1 class="text-fg font-bold text-lg">مدیریت خدمات</h1>
     </div>
-    <button onclick="document.getElementById('addModal').style.display='flex'" class="bg-primary text-[#FFFFFF] text-xs font-bold px-4 py-2 rounded-xl flex items-center gap-1">
+    <button onclick="document.getElementById('addModal').style.display='flex'" class="bg-primary text-on-primary text-xs font-bold px-4 py-2 rounded-xl flex items-center gap-1">
       <i data-lucide="plus" class="w-3.5 h-3.5"></i> افزودن
     </button>
   </div>
 </header>
 
-
 <div class="max-w-md mx-auto px-4">
   <!-- Category: Main -->
   <div class="flex items-center gap-2 mb-3">
     <div class="w-1 h-5 bg-primary rounded-full"></div>
-    <h2 class="text-[#151618]/70 text-sm font-semibold">خدمات اصلی</h2>
-    <span id="countMain" class="text-[#151618]/20 text-[10px]"></span>
+    <h2 class="text-fg/85 text-sm font-semibold">خدمات اصلی</h2>
+    <span id="countMain" class="text-faint text-[10px]"></span>
   </div>
 
   <div id="adminMainList" class="space-y-2 mb-6"></div>
@@ -73,8 +80,8 @@
   <!-- Category: Groom -->
   <div class="flex items-center gap-2 mb-3">
     <div class="w-1 h-5 bg-primary rounded-full"></div>
-    <h2 class="text-[#151618]/70 text-sm font-semibold">پکیج‌های داماد</h2>
-    <span id="countGroom" class="text-[#151618]/20 text-[10px]"></span>
+    <h2 class="text-fg/85 text-sm font-semibold">پکیج‌های داماد</h2>
+    <span id="countGroom" class="text-faint text-[10px]"></span>
   </div>
 
   <div id="adminGroomList" class="space-y-2 mb-28"></div>
@@ -84,42 +91,42 @@
 <div id="addModal" class="modal-overlay" style="display:none;" onclick="if(event.target===this)this.style.display='none'">
   <div class="modal-content">
     <div class="flex items-center justify-between mb-5">
-      <h2 class="text-[#151618] font-bold text-base">افزودن خدمت جدید</h2>
-      <button onclick="document.getElementById('addModal').style.display='none'" class="w-8 h-8 rounded-full bg-surface-light flex items-center justify-center"><i data-lucide="x" class="w-4 h-4 text-[#151618]/40"></i></button>
+      <h2 class="text-fg font-bold text-base">افزودن خدمت جدید</h2>
+      <button onclick="document.getElementById('addModal').style.display='none'" class="icon-btn w-8 h-8 flex items-center justify-center"><i data-lucide="x" class="w-4 h-4 text-muted"></i></button>
     </div>
     <div class="space-y-4">
       <div>
-        <label class="text-[#151618]/50 text-xs mb-1.5 block">نام خدمت</label>
-        <input id="svcName" type="text" placeholder="مثلاً: اصلاح کلاسیک" class="w-full bg-base border border-[#151618]/10 rounded-xl px-4 py-3 text-[#151618] text-sm outline-none focus:border-primary" />
+        <label class="text-muted text-xs mb-1.5 block">نام خدمت</label>
+        <input id="svcName" type="text" placeholder="مثلاً: اصلاح کلاسیک" class="w-full bg-surface-2 border border-line-strong rounded-xl px-4 py-3 text-fg text-sm outline-none focus:border-primary" />
       </div>
       <div>
-        <label class="text-[#151618]/50 text-xs mb-1.5 block">دسته‌بندی</label>
-        <select id="svcCat" class="w-full bg-base border border-[#151618]/10 rounded-xl px-4 py-3 text-[#151618] text-sm outline-none focus:border-primary">
+        <label class="text-muted text-xs mb-1.5 block">دسته‌بندی</label>
+        <select id="svcCat" class="w-full bg-surface-2 border border-line-strong rounded-xl px-4 py-3 text-fg text-sm outline-none focus:border-primary">
           <option value="main">خدمات اصلی</option>
           <option value="groom">پکیج‌های داماد</option>
         </select>
       </div>
       <div>
-        <label class="text-[#151618]/50 text-xs mb-1.5 block">توضیحات</label>
-        <textarea id="svcDesc" rows="3" placeholder="توضیح کوتاه درباره خدمت..." class="w-full bg-base border border-[#151618]/10 rounded-xl px-4 py-3 text-[#151618] text-sm outline-none focus:border-primary resize-none"></textarea>
+        <label class="text-muted text-xs mb-1.5 block">توضیحات</label>
+        <textarea id="svcDesc" rows="3" placeholder="توضیح کوتاه درباره خدمت..." class="w-full bg-surface-2 border border-line-strong rounded-xl px-4 py-3 text-fg text-sm outline-none focus:border-primary resize-none"></textarea>
       </div>
       <div class="grid grid-cols-2 gap-3">
         <div>
-          <label class="text-[#151618]/50 text-xs mb-1.5 block">قیمت (تومان)</label>
-          <input id="svcPrice" type="text" placeholder="۰" class="w-full bg-base border border-[#151618]/10 rounded-xl px-4 py-3 text-[#151618] text-sm outline-none focus:border-primary" />
+          <label class="text-muted text-xs mb-1.5 block">قیمت (تومان)</label>
+          <input id="svcPrice" type="text" placeholder="۰" class="w-full bg-surface-2 border border-line-strong rounded-xl px-4 py-3 text-fg text-sm outline-none focus:border-primary" />
         </div>
         <div>
-          <label class="text-[#151618]/50 text-xs mb-1.5 block">مدت زمان (دقیقه)</label>
-          <input id="svcMinutes" type="text" placeholder="۰" class="w-full bg-base border border-[#151618]/10 rounded-xl px-4 py-3 text-[#151618] text-sm outline-none focus:border-primary" />
+          <label class="text-muted text-xs mb-1.5 block">مدت زمان (دقیقه)</label>
+          <input id="svcMinutes" type="text" placeholder="۰" class="w-full bg-surface-2 border border-line-strong rounded-xl px-4 py-3 text-fg text-sm outline-none focus:border-primary" />
         </div>
       </div>
-      <div class="flex items-center justify-between bg-base rounded-xl p-3 border border-[#151618]/10">
-        <span class="text-[#151618] text-sm">فعال</span>
+      <div class="flex items-center justify-between bg-surface-2 rounded-xl p-3 border border-line">
+        <span class="text-fg text-sm">فعال</span>
         <div class="w-11 h-6 bg-primary rounded-full relative cursor-pointer">
-          <div class="absolute top-0.5 right-0.5 w-5 h-5 bg-white rounded-full shadow"></div>
+          <div class="absolute top-0.5 right-0.5 w-5 h-5 bg-on-primary rounded-full"></div>
         </div>
       </div>
-      <button id="svcSave" class="w-full bg-gradient-to-l from-primary to-primary-dark text-[#FFFFFF] font-bold py-3.5 rounded-xl mt-2">ذخیره خدمت</button>
+      <button id="svcSave" class="w-full bg-gradient-to-l from-primary to-primary-dark text-on-primary font-bold py-3.5 rounded-xl mt-2">ذخیره خدمت</button>
     </div>
   </div>
 </div>
@@ -128,39 +135,39 @@
 <div id="editModal" class="modal-overlay" style="display:none;" onclick="if(event.target===this)this.style.display='none'">
   <div class="modal-content">
     <div class="flex items-center justify-between mb-5">
-      <h2 class="text-[#151618] font-bold text-base">ویرایش خدمت</h2>
-      <button onclick="document.getElementById('editModal').style.display='none'" class="w-8 h-8 rounded-full bg-surface-light flex items-center justify-center"><i data-lucide="x" class="w-4 h-4 text-[#151618]/40"></i></button>
+      <h2 class="text-fg font-bold text-base">ویرایش خدمت</h2>
+      <button onclick="document.getElementById('editModal').style.display='none'" class="icon-btn w-8 h-8 flex items-center justify-center"><i data-lucide="x" class="w-4 h-4 text-muted"></i></button>
     </div>
     <div class="space-y-4">
       <input type="hidden" id="eId" />
       <div>
-        <label class="text-[#151618]/50 text-xs mb-1.5 block">نام خدمت</label>
-        <input id="eName" type="text" class="w-full bg-base border border-[#151618]/10 rounded-xl px-4 py-3 text-[#151618] text-sm outline-none focus:border-primary" />
+        <label class="text-muted text-xs mb-1.5 block">نام خدمت</label>
+        <input id="eName" type="text" class="w-full bg-surface-2 border border-line-strong rounded-xl px-4 py-3 text-fg text-sm outline-none focus:border-primary" />
       </div>
       <div>
-        <label class="text-[#151618]/50 text-xs mb-1.5 block">توضیحات</label>
-        <textarea id="eDesc" rows="2" class="w-full bg-base border border-[#151618]/10 rounded-xl px-4 py-3 text-[#151618] text-sm outline-none focus:border-primary resize-none"></textarea>
+        <label class="text-muted text-xs mb-1.5 block">توضیحات</label>
+        <textarea id="eDesc" rows="2" class="w-full bg-surface-2 border border-line-strong rounded-xl px-4 py-3 text-fg text-sm outline-none focus:border-primary resize-none"></textarea>
       </div>
       <div class="grid grid-cols-2 gap-3">
         <div>
-          <label class="text-[#151618]/50 text-xs mb-1.5 block">قیمت (تومان)</label>
-          <input id="ePrice" type="text" inputmode="numeric" class="w-full bg-base border border-[#151618]/10 rounded-xl px-4 py-3 text-[#151618] text-sm outline-none focus:border-primary" dir="ltr" />
+          <label class="text-muted text-xs mb-1.5 block">قیمت (تومان)</label>
+          <input id="ePrice" type="text" inputmode="numeric" class="w-full bg-surface-2 border border-line-strong rounded-xl px-4 py-3 text-fg text-sm outline-none focus:border-primary" dir="ltr" />
         </div>
         <div>
-          <label class="text-[#151618]/50 text-xs mb-1.5 block">مدت زمان (دقیقه)</label>
-          <input id="eMinutes" type="text" inputmode="numeric" class="w-full bg-base border border-[#151618]/10 rounded-xl px-4 py-3 text-[#151618] text-sm outline-none focus:border-primary" dir="ltr" />
+          <label class="text-muted text-xs mb-1.5 block">مدت زمان (دقیقه)</label>
+          <input id="eMinutes" type="text" inputmode="numeric" class="w-full bg-surface-2 border border-line-strong rounded-xl px-4 py-3 text-fg text-sm outline-none focus:border-primary" dir="ltr" />
         </div>
       </div>
       <div>
-        <label class="text-[#151618]/50 text-xs mb-1.5 block">جزئیات / خدمات شامل (هر مورد در یک خط)</label>
-        <textarea id="eIncludes" rows="4" class="w-full bg-base border border-[#151618]/10 rounded-xl px-4 py-3 text-[#151618] text-sm outline-none focus:border-primary resize-none"></textarea>
+        <label class="text-muted text-xs mb-1.5 block">جزئیات / خدمات شامل (هر مورد در یک خط)</label>
+        <textarea id="eIncludes" rows="4" class="w-full bg-surface-2 border border-line-strong rounded-xl px-4 py-3 text-fg text-sm outline-none focus:border-primary resize-none"></textarea>
       </div>
       <div>
-        <label class="text-[#151618]/50 text-xs mb-1.5 block">آدرس تصویر (اختیاری)</label>
-        <input id="eImg" type="text" placeholder="https://..." dir="ltr" class="w-full bg-base border border-[#151618]/10 rounded-xl px-4 py-3 text-[#151618] text-sm outline-none focus:border-primary" />
+        <label class="text-muted text-xs mb-1.5 block">آدرس تصویر (اختیاری)</label>
+        <input id="eImg" type="text" placeholder="https://..." dir="ltr" class="w-full bg-surface-2 border border-line-strong rounded-xl px-4 py-3 text-fg text-sm outline-none focus:border-primary" />
       </div>
-      <button id="editReset" style="display:none" class="w-full bg-red-500/10 text-red-400 font-bold text-xs py-3 rounded-xl mt-1">بازگردانی به پیش‌فرض</button>
-      <button id="editSave" class="w-full bg-gradient-to-l from-primary to-primary-dark text-[#FFFFFF] font-bold py-3.5 rounded-xl mt-2">ذخیره تغییرات</button>
+      <button id="editReset" style="display:none" class="w-full bg-err/10 text-err font-bold text-xs py-3 rounded-xl mt-1">بازگردانی به پیش‌فرض</button>
+      <button id="editSave" class="w-full bg-gradient-to-l from-primary to-primary-dark text-on-primary font-bold py-3.5 rounded-xl mt-2">ذخیره تغییرات</button>
     </div>
   </div>
 </div>

@@ -1,52 +1,64 @@
 <!DOCTYPE html>
-<html>
+<html lang="fa" dir="rtl" data-theme="dark">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="manifest" href="manifest.webmanifest" />
-  <meta name="theme-color" content="#151618" />
-  <meta name="apple-mobile-web-app-capable" content="yes" />
-  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
-  <link rel="apple-touch-icon" href="assets/icon-192.png" />
-  <link rel="preconnect" href="https://unpkg.com" />
+  <meta name="theme-color" content="#101315">
+  <meta name="color-scheme" content="dark light">
+  <link rel="manifest" href="manifest.webmanifest">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <link rel="apple-touch-icon" href="assets/icon-192.png">
+  <link rel="preconnect" href="https://unpkg.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700;800;900&display=swap">
+  <!-- Pre-paint theme bootstrap: sets the stored mode before the first frame.
+       Keep inline and in sync with assets/theme.js (KEY = 'pirayesh-theme'). -->
+  <script>(function(d){var m;try{m=localStorage.getItem('pirayesh-theme')}catch(e){}d.documentElement.setAttribute('data-theme',m==='light'?'light':'dark')})(document)</script>
+  <link rel="stylesheet" href="assets/theme.css">
+  <style type="text/tailwindcss">
+/* Semantic roles -> Tailwind utilities. Every value is a CSS variable defined in
+   assets/theme.css, so each utility flips with the mode on its own.
+   NOTE: no --color-base here on purpose -- it collided with Tailwind's own
+   `text-base` font-size utility and made text vanish in dark mode. */
+@theme inline {
+  --color-bg: var(--bg);
+  --color-surface: var(--surface);
+  --color-surface-2: var(--surface-2);
+  --color-surface-3: var(--surface-3);
+  --color-fg: var(--fg);
+  --color-muted: var(--muted);
+  --color-faint: var(--faint);
+  --color-line: var(--line);
+  --color-line-strong: var(--line-strong);
+  --color-primary: var(--primary);
+  --color-primary-dark: var(--primary-dark);
+  --color-primary-tint: var(--primary-tint);
+  --color-on-primary: var(--on-primary);
+  --color-veil: var(--veil);
+  --color-veil-2: var(--veil-2);
+  --color-on-veil: var(--on-veil);
+  --color-on-veil-accent: var(--on-veil-accent);
+  --color-accent: var(--accent);
+  --color-ok: var(--ok);
+  --color-warn: var(--warn);
+  --color-err: var(--err);
+  --color-info: var(--info);
+  --color-violet: var(--violet);
+  --font-family-vazir: 'Vazirmatn', sans-serif;
+}
+  </style>
   <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
   <script src="https://unpkg.com/@fortawesome/fontawesome-free@6.7.2/js/all.min.js"></script>
   <script src="https://unpkg.com/lucide@latest"></script>
-  <style>
-    * {
-      scrollbar-width: none;
-      scrollbar-color: rgba(0, 0, 0, 0.2) transparent;
-    }
-  </style>
-  <link rel="stylesheet" href="assets/dark.css" />
 </head>
 
-<body dir="rtl" lang="fa"><link rel="preconnect" href="https://unpkg.com" />
-<style>
-    * {
-      scrollbar-width: none;
-      scrollbar-color: rgba(0, 0, 0, 0.2) transparent;
-    }
-  </style>
-
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700;800;900&display=swap" />
-<style type="text/tailwindcss">
-@theme {
-  --color-primary: #151618;
-  --color-primary-dark: #0E0F10;
-  --color-accent: #62676B;
-  --color-surface: #FFFFFF;
-  --color-surface-light: #DDE1E4;
-  --color-surface-lighter: #C9CFD3;
-  --color-base: #CED3D6;
-}
-</style>
-<style>* { font-family: 'Vazirmatn', sans-serif; } body { background: #CED3D6; margin: 0; }</style>
+<body dir="rtl" lang="fa">
 
 <header class="sticky top-2 z-40 px-3">
   <div class="island max-w-md mx-auto px-4 py-3 flex items-center gap-3">
-    <a href="home.html" class="w-9 h-9 rounded-full bg-surface-light flex items-center justify-center"><i data-lucide="arrow-right" class="w-4 h-4 text-[#151618]/60"></i></a>
-    <h1 class="text-[#151618] font-bold text-lg">حساب کاربری</h1>
+    <a href="home.html" class="icon-btn w-9 h-9 flex items-center justify-center"><i data-lucide="arrow-right" class="w-4 h-4 text-fg/75"></i></a>
+    <h1 class="text-fg font-bold text-lg">حساب کاربری</h1>
   </div>
 </header>
 
@@ -54,23 +66,23 @@
   <!-- Avatar & Name -->
   <div class="text-center mb-8">
     <div class="w-20 h-20 rounded-full bg-gradient-to-br from-primary to-primary-dark flex items-center justify-center mx-auto mb-3">
-      <span id="profAvatar" class="text-[#FFFFFF] text-2xl font-bold">ا</span>
+      <span id="profAvatar" class="text-on-primary text-2xl font-bold">ا</span>
     </div>
-    <h2 id="profName" class="text-[#151618] font-bold text-lg">—</h2>
-    <p id="profPhone" class="text-[#151618]/40 text-xs mt-1">—</p>
+    <h2 id="profName" class="text-fg font-bold text-lg">—</h2>
+    <p id="profPhone" class="text-muted text-xs mt-1">—</p>
   </div>
 
   <!-- Profile Form -->
   <div class="space-y-4 mb-8">
     <div>
-      <label class="text-[#151618]/50 text-xs mb-1.5 block">نام و نام خانوادگی</label>
-      <input id="inputName" type="text" value="" class="w-full bg-surface border border-[#151618]/10 rounded-xl px-4 py-3 text-[#151618] text-sm focus:border-primary outline-none" />
+      <label class="text-muted text-xs mb-1.5 block">نام و نام خانوادگی</label>
+      <input id="inputName" type="text" value="" class="w-full bg-surface-2 border border-line-strong rounded-xl px-4 py-3 text-fg text-sm focus:border-primary outline-none" />
     </div>
     <div>
-      <label class="text-[#151618]/50 text-xs mb-1.5 block">شماره موبایل</label>
-      <input id="inputPhone" type="tel" value="" class="w-full bg-surface border border-[#151618]/10 rounded-xl px-4 py-3 text-[#151618] text-sm focus:border-primary outline-none" dir="ltr" />
+      <label class="text-muted text-xs mb-1.5 block">شماره موبایل</label>
+      <input id="inputPhone" type="tel" value="" class="w-full bg-surface-2 border border-line-strong rounded-xl px-4 py-3 text-fg text-sm focus:border-primary outline-none" dir="ltr" />
     </div>
-    <button id="saveProfile" class="w-full bg-gradient-to-l from-primary to-primary-dark text-[#FFFFFF] font-bold py-3.5 rounded-xl">ذخیره تغییرات</button>
+    <button id="saveProfile" class="w-full bg-gradient-to-l from-primary to-primary-dark text-on-primary font-bold py-3.5 rounded-xl">ذخیره تغییرات</button>
   </div>
 
   <!-- Menu Items -->
@@ -78,40 +90,40 @@
     <a href="my-bookings.html" class="flex items-center justify-between bg-surface rounded-xl p-4">
       <div class="flex items-center gap-3">
         <div class="w-9 h-9 rounded-lg bg-primary/10 flex items-center justify-center"><i data-lucide="calendar" class="w-4 h-4 text-primary"></i></div>
-        <span class="text-[#151618] text-sm">رزروهای من</span>
+        <span class="text-fg text-sm">رزروهای من</span>
       </div>
-      <i data-lucide="chevron-left" class="w-4 h-4 text-[#151618]/20"></i>
+      <i data-lucide="chevron-left" class="w-4 h-4 text-faint"></i>
     </a>
     <a href="#" class="flex items-center justify-between bg-surface rounded-xl p-4">
       <div class="flex items-center gap-3">
         <div class="w-9 h-9 rounded-lg bg-primary/10 flex items-center justify-center"><i data-lucide="bell" class="w-4 h-4 text-primary"></i></div>
-        <span class="text-[#151618] text-sm">اعلان‌ها</span>
+        <span class="text-fg text-sm">اعلان‌ها</span>
       </div>
-      <i data-lucide="chevron-left" class="w-4 h-4 text-[#151618]/20"></i>
+      <i data-lucide="chevron-left" class="w-4 h-4 text-faint"></i>
     </a>
     <a href="#" class="flex items-center justify-between bg-surface rounded-xl p-4">
       <div class="flex items-center gap-3">
         <div class="w-9 h-9 rounded-lg bg-primary/10 flex items-center justify-center"><i data-lucide="help-circle" class="w-4 h-4 text-primary"></i></div>
-        <span class="text-[#151618] text-sm">پشتیبانی</span>
+        <span class="text-fg text-sm">پشتیبانی</span>
       </div>
-      <i data-lucide="chevron-left" class="w-4 h-4 text-[#151618]/20"></i>
+      <i data-lucide="chevron-left" class="w-4 h-4 text-faint"></i>
     </a>
     <a href="#" class="flex items-center justify-between bg-surface rounded-xl p-4">
       <div class="flex items-center gap-3">
         <div class="w-9 h-9 rounded-lg bg-primary/10 flex items-center justify-center"><i data-lucide="info" class="w-4 h-4 text-primary"></i></div>
-        <span class="text-[#151618] text-sm">درباره ما</span>
+        <span class="text-fg text-sm">درباره ما</span>
       </div>
-      <i data-lucide="chevron-left" class="w-4 h-4 text-[#151618]/20"></i>
+      <i data-lucide="chevron-left" class="w-4 h-4 text-faint"></i>
     </a>
   </div>
 
   <!-- Admin Link -->
-  <a href="admin-dashboard.html" class="flex items-center justify-center gap-2 bg-surface-light border border-[#151618]/5 rounded-xl p-3 text-[#151618]/40 text-xs mb-4">
+  <a href="admin-dashboard.html" class="flex items-center justify-center gap-2 bg-surface-3 border border-line rounded-xl p-3 text-muted text-xs mb-4">
     <i data-lucide="settings" class="w-4 h-4"></i>
     ورود به پنل مدیریت
   </a>
 
-  <button class="flex items-center justify-center gap-2 w-full text-red-400/60 text-sm py-3 mb-28">
+  <button class="flex items-center justify-center gap-2 w-full text-err text-sm py-3 mb-28">
     <i data-lucide="log-out" class="w-4 h-4"></i>
     خروج از حساب
   </button>
@@ -121,7 +133,7 @@
   <div class="island max-w-md mx-auto flex items-center justify-around py-2 pointer-events-auto">
     <a href="home.html" class="flex flex-col items-center gap-1 px-4 py-1.5 rounded-xl"><i data-lucide="home" class="w-5 h-5"></i><span class="text-[10px] font-medium">خانه</span></a>
     <a href="services.html" class="flex flex-col items-center gap-1 px-4 py-1.5 rounded-xl"><i data-lucide="scissors" class="w-5 h-5"></i><span class="text-[10px] font-medium">خدمات</span></a>
-    <a href="booking.html" class="flex items-center gap-1.5 h-10 px-4 rounded-full bg-gradient-to-l from-primary to-primary-dark text-[#FFFFFF] shadow-md shadow-black/20" aria-label="رزرو نوبت">
+    <a href="booking.html" class="flex items-center gap-1.5 h-10 px-4 rounded-full bg-gradient-to-l from-primary to-primary-dark text-on-primary elev-cta" aria-label="رزرو نوبت">
       <i data-lucide="calendar-plus" class="w-5 h-5"></i>
       <span class="text-xs font-bold whitespace-nowrap">رزرو نوبت</span>
     </a>

@@ -1,127 +1,138 @@
 <!DOCTYPE html>
-<html>
+<html lang="fa" dir="rtl" data-theme="dark">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="manifest" href="manifest.webmanifest" />
-  <meta name="theme-color" content="#151618" />
-  <meta name="apple-mobile-web-app-capable" content="yes" />
-  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
-  <link rel="apple-touch-icon" href="assets/icon-192.png" />
-  <link rel="preconnect" href="https://unpkg.com" />
+  <meta name="theme-color" content="#101315">
+  <meta name="color-scheme" content="dark light">
+  <link rel="manifest" href="manifest.webmanifest">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <link rel="apple-touch-icon" href="assets/icon-192.png">
+  <link rel="preconnect" href="https://unpkg.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700;800;900&display=swap">
+  <!-- Pre-paint theme bootstrap: sets the stored mode before the first frame.
+       Keep inline and in sync with assets/theme.js (KEY = 'pirayesh-theme'). -->
+  <script>(function(d){var m;try{m=localStorage.getItem('pirayesh-theme')}catch(e){}d.documentElement.setAttribute('data-theme',m==='light'?'light':'dark')})(document)</script>
+  <link rel="stylesheet" href="assets/theme.css">
+  <style type="text/tailwindcss">
+/* Semantic roles -> Tailwind utilities. Every value is a CSS variable defined in
+   assets/theme.css, so each utility flips with the mode on its own.
+   NOTE: no --color-base here on purpose -- it collided with Tailwind's own
+   `text-base` font-size utility and made text vanish in dark mode. */
+@theme inline {
+  --color-bg: var(--bg);
+  --color-surface: var(--surface);
+  --color-surface-2: var(--surface-2);
+  --color-surface-3: var(--surface-3);
+  --color-fg: var(--fg);
+  --color-muted: var(--muted);
+  --color-faint: var(--faint);
+  --color-line: var(--line);
+  --color-line-strong: var(--line-strong);
+  --color-primary: var(--primary);
+  --color-primary-dark: var(--primary-dark);
+  --color-primary-tint: var(--primary-tint);
+  --color-on-primary: var(--on-primary);
+  --color-veil: var(--veil);
+  --color-veil-2: var(--veil-2);
+  --color-on-veil: var(--on-veil);
+  --color-on-veil-accent: var(--on-veil-accent);
+  --color-accent: var(--accent);
+  --color-ok: var(--ok);
+  --color-warn: var(--warn);
+  --color-err: var(--err);
+  --color-info: var(--info);
+  --color-violet: var(--violet);
+  --font-family-vazir: 'Vazirmatn', sans-serif;
+}
+  </style>
   <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
   <script src="https://unpkg.com/@fortawesome/fontawesome-free@6.7.2/js/all.min.js"></script>
   <script src="https://unpkg.com/lucide@latest"></script>
-  <style>
-    * {
-      scrollbar-width: none;
-      scrollbar-color: rgba(0, 0, 0, 0.2) transparent;
-    }
-  </style>
-  <link rel="stylesheet" href="assets/dark.css" />
 </head>
 
-<body dir="rtl" lang="fa"><link rel="preconnect" href="https://unpkg.com" />
-<style>
-    * {
-      scrollbar-width: none;
-      scrollbar-color: rgba(0, 0, 0, 0.2) transparent;
-    }
-  </style>
-
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700;800;900&display=swap" />
-<style type="text/tailwindcss">
-@theme {
-  --color-primary: #151618;
-  --color-primary-dark: #0E0F10;
-  --color-accent: #62676B;
-  --color-surface: #FFFFFF;
-  --color-surface-light: #DDE1E4;
-  --color-surface-lighter: #C9CFD3;
-  --color-base: #CED3D6;
-}
-</style>
-<style>
-* { font-family: 'Vazirmatn', sans-serif; }
-body { background: #CED3D6; margin: 0; }
-</style>
+<body dir="rtl" lang="fa">
 
 <!-- Hero Image -->
 <div class="relative">
-  <img id="sd-img" src="https://images.unsplash.com/photo-1593702288056-7927b442d0fa?w=800&h=500&fit=crop&auto=format&q=80" alt="پکیج داماد" class="w-full h-64 object-cover" />
-  <div class="absolute top-0 left-0 right-0 p-4 flex items-center justify-between">
-    <a href="services.html" class="w-9 h-9 rounded-full bg-[#151618]/40 backdrop-blur flex items-center justify-center">
-      <i data-lucide="arrow-right" class="w-4 h-4 text-[#151618]"></i>
+  <img id="sd-img" class="media-dim" src="https://images.unsplash.com/photo-1593702288056-7927b442d0fa?w=800&h=500&fit=crop&auto=format&q=80" alt="پکیج داماد" class="w-full h-64 object-cover media-dim" />
+  <div class="absolute top-0 left-0 right-0 p-4 flex items-center justify-between before:absolute before:inset-0 before:bg-gradient-to-b before:from-veil/45 before:to-transparent">
+    <div class="relative contents">
+    <a href="services.html" class="relative w-9 h-9 rounded-full bg-veil/55 backdrop-blur border border-on-veil/20 flex items-center justify-center">
+      <i data-lucide="arrow-right" class="w-4 h-4 text-on-veil"></i>
     </a>
-    <button class="w-9 h-9 rounded-full bg-[#151618]/40 backdrop-blur flex items-center justify-center">
-      <i data-lucide="share-2" class="w-4 h-4 text-[#151618]"></i>
+    <button class="relative w-9 h-9 rounded-full bg-veil/55 backdrop-blur border border-on-veil/20 flex items-center justify-center" aria-label="اشتراک‌گذاری">
+      <i data-lucide="share-2" class="w-4 h-4 text-on-veil"></i>
     </button>
+    </div>
   </div>
 </div>
 
 <!-- Content -->
 <div class="max-w-md mx-auto px-4 -mt-8 relative z-10">
-  <div id="sd-badge" class="bg-primary text-[#FFFFFF] text-[10px] font-bold px-3 py-1 rounded-full inline-block mb-3">محبوب‌ترین</div>
-  <h1 id="sd-title" class="text-[#151618] text-xl font-extrabold mb-2">پکیج ۳: داماد</h1>
-  <p id="sd-desc" class="text-[#151618]/50 text-sm leading-relaxed mb-5">پکیج کامل و حرفه‌ای مخصوص داماد شامل تمامی خدمات آرایشی و زیبایی برای بهترین روز زندگی شما.</p>
+  <div id="sd-badge" class="bg-primary text-on-primary text-[10px] font-bold px-3 py-1 rounded-full inline-block mb-3">محبوب‌ترین</div>
+  <h1 id="sd-title" class="text-fg text-xl font-extrabold mb-2">پکیج ۳: داماد</h1>
+  <p id="sd-desc" class="text-muted text-sm leading-relaxed mb-5">پکیج کامل و حرفه‌ای مخصوص داماد شامل تمامی خدمات آرایشی و زیبایی برای بهترین روز زندگی شما.</p>
 
   <!-- Price & Duration -->
   <div class="flex gap-3 mb-6">
-    <div class="flex-1 bg-surface rounded-2xl border border-[#151618]/5 p-3 text-center">
+    <div class="flex-1 bg-surface rounded-2xl border border-line p-3 text-center elev">
       <i data-lucide="banknote" class="w-5 h-5 text-primary mx-auto mb-1"></i>
       <p id="sd-price" class="text-primary font-bold text-sm">۹٬۵۰۰٬۰۰۰</p>
-      <p class="text-[#151618]/40 text-[10px]">تومان</p>
+      <p class="text-muted text-[10px]">تومان</p>
     </div>
-    <div class="flex-1 bg-surface rounded-2xl border border-[#151618]/5 p-3 text-center">
+    <div class="flex-1 bg-surface rounded-2xl border border-line p-3 text-center elev">
       <i data-lucide="clock" class="w-5 h-5 text-primary mx-auto mb-1"></i>
-      <p id="sd-duration" class="text-[#151618] font-bold text-sm">۶ ساعت</p>
-      <p class="text-[#151618]/40 text-[10px]">مدت زمان</p>
+      <p id="sd-duration" class="text-fg font-bold text-sm">۶ ساعت</p>
+      <p class="text-muted text-[10px]">مدت زمان</p>
     </div>
-    <div class="flex-1 bg-surface rounded-2xl border border-[#151618]/5 p-3 text-center">
+    <div class="flex-1 bg-surface rounded-2xl border border-line p-3 text-center elev">
       <i data-lucide="star" class="w-5 h-5 text-primary mx-auto mb-1"></i>
-      <p class="text-[#151618] font-bold text-sm">۴.۹</p>
-      <p class="text-[#151618]/40 text-[10px]">امتیاز</p>
+      <p class="text-fg font-bold text-sm">۴.۹</p>
+      <p class="text-muted text-[10px]">امتیاز</p>
     </div>
   </div>
 
   <!-- Included Services -->
-  <h3 class="text-[#151618] font-bold text-sm mb-3">شامل خدمات:</h3>
+  <h3 class="text-fg font-bold text-sm mb-3">شامل خدمات:</h3>
   <div id="sd-includes" class="space-y-2 mb-6">
     <div class="flex items-center gap-3 bg-surface rounded-xl p-3">
       <div class="w-8 h-8 rounded-lg bg-primary/10 flex items-center justify-center shrink-0">
         <i data-lucide="scissors" class="w-4 h-4 text-primary"></i>
       </div>
-      <span class="text-[#151618]/70 text-xs">کوتاهی مو</span>
+      <span class="text-fg/85 text-xs">کوتاهی مو</span>
     </div>
     <div class="flex items-center gap-3 bg-surface rounded-xl p-3">
       <div class="w-8 h-8 rounded-lg bg-primary/10 flex items-center justify-center shrink-0">
         <i data-lucide="pen-tool" class="w-4 h-4 text-primary"></i>
       </div>
-      <span class="text-[#151618]/70 text-xs">طراحی مو و ریش به صورت کلاسیک (استایل)</span>
+      <span class="text-fg/85 text-xs">طراحی مو و ریش به صورت کلاسیک (استایل)</span>
     </div>
     <div class="flex items-center gap-3 bg-surface rounded-xl p-3">
       <div class="w-8 h-8 rounded-lg bg-primary/10 flex items-center justify-center shrink-0">
         <i data-lucide="sparkles" class="w-4 h-4 text-primary"></i>
       </div>
-      <span class="text-[#151618]/70 text-xs">فشیال پوست</span>
+      <span class="text-fg/85 text-xs">فشیال پوست</span>
     </div>
     <div class="flex items-center gap-3 bg-surface rounded-xl p-3">
       <div class="w-8 h-8 rounded-lg bg-primary/10 flex items-center justify-center shrink-0">
         <i data-lucide="layers" class="w-4 h-4 text-primary"></i>
       </div>
-      <span class="text-[#151618]/70 text-xs">زیرسازی</span>
+      <span class="text-fg/85 text-xs">زیرسازی</span>
     </div>
     <div class="flex items-center gap-3 bg-surface rounded-xl p-3">
       <div class="w-8 h-8 rounded-lg bg-primary/10 flex items-center justify-center shrink-0">
         <i data-lucide="palette" class="w-4 h-4 text-primary"></i>
       </div>
-      <span class="text-[#151618]/70 text-xs">میکاپ</span>
+      <span class="text-fg/85 text-xs">میکاپ</span>
     </div>
     <div class="flex items-center gap-3 bg-surface rounded-xl p-3">
       <div class="w-8 h-8 rounded-lg bg-primary/10 flex items-center justify-center shrink-0">
         <i data-lucide="scan-face" class="w-4 h-4 text-primary"></i>
       </div>
-      <span class="text-[#151618]/70 text-xs">کانتور (متعادل‌سازی)</span>
+      <span class="text-fg/85 text-xs">کانتور (متعادل‌سازی)</span>
     </div>
   </div>
 
@@ -129,7 +140,7 @@ body { background: #CED3D6; margin: 0; }
   <div class="bg-surface rounded-2xl border border-primary/10 p-4 mb-28">
     <div class="flex items-start gap-3">
       <i data-lucide="info" class="w-4 h-4 text-primary mt-0.5 shrink-0"></i>
-      <p class="text-[#151618]/40 text-xs leading-relaxed">لطفاً حداقل ۲ روز قبل از مراسم نوبت خود را رزرو کنید. برای پکیج‌های ویژه هماهنگی قبلی الزامی است.</p>
+      <p class="text-muted text-xs leading-relaxed">لطفاً حداقل ۲ روز قبل از مراسم نوبت خود را رزرو کنید. برای پکیج‌های ویژه هماهنگی قبلی الزامی است.</p>
     </div>
   </div>
 </div>
@@ -138,10 +149,10 @@ body { background: #CED3D6; margin: 0; }
 <div class="fixed bottom-4 left-0 right-0 z-40 px-4 pb-1">
   <div class="island max-w-md mx-auto flex items-center justify-between p-4">
     <div>
-      <p class="text-[#151618]/40 text-[10px]">قیمت</p>
+      <p class="text-muted text-[10px]">قیمت</p>
       <p id="sd-price2" class="text-primary font-bold">۹٬۵۰۰٬۰۰۰ تومان</p>
     </div>
-    <a id="sd-book" href="booking.html?s=groom3" class="bg-gradient-to-l from-primary to-primary-dark text-[#FFFFFF] font-bold px-8 py-3.5 rounded-2xl shadow-lg shadow-[#151618]/25 flex items-center gap-2">
+    <a id="sd-book" href="booking.html?s=groom3" class="bg-gradient-to-l from-primary to-primary-dark text-on-primary font-bold px-8 py-3.5 rounded-2xl elev-cta flex items-center gap-2">
       <i data-lucide="calendar-plus" class="w-4 h-4"></i>
       رزرو نوبت
     </a>
