@@ -67,8 +67,8 @@
       'body[data-theme="dark"] .island{background:rgba(10,10,10,0.88);border-color:rgba(255,255,255,0.08);box-shadow:0 10px 30px rgba(0,0,0,0.5);}' +
       '.bottom-nav{background:transparent !important;border-top:none !important;-webkit-backdrop-filter:none;backdrop-filter:none;}' +
       'body[data-theme="dark"] .bottom-nav{background:transparent !important;border-top:none !important;}' +
-      '.bottom-nav a{color:rgba(17,17,17,0.5);}' +
-      'body[data-theme="dark"] .bottom-nav a{color:rgba(255,255,255,0.5);}' +
+      '.bottom-nav a:not(.bg-primary){color:rgba(17,17,17,0.5);}' +
+      'body[data-theme="dark"] .bottom-nav a:not(.bg-primary){color:rgba(255,255,255,0.5);}' +
       '.bottom-nav a.active{background:rgba(17,17,17,0.08);color:#111;}' +
       'body[data-theme="dark"] .bottom-nav a.active{background:rgba(255,255,255,0.12);color:#fff;}';
     document.head.appendChild(st);
