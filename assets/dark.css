@@ -96,3 +96,46 @@ img { box-shadow: none !important; }
 .pay-card .bg-\[#111111\]\/\[0\.04\] { background-color: rgba(17,17,17,0.04) !important; }
 #payBtn { background-color: #111111 !important; }
 #payBtn:hover { background-color: #000000 !important; }
+
+/* ---------- Audit fixes: missing dark-mode overrides ---------- */
+
+/* Dividers / translucent dark fills that had no dark variant */
+body[data-theme="dark"] .bg-\[#111111\]\/10 { background-color: rgba(255,255,255,0.12) !important; }
+body[data-theme="dark"] .bg-\[#111111\]\/30 { background-color: rgba(255,255,255,0.32) !important; }
+body[data-theme="dark"] .bg-\[#111111\]\/\[0\.02\] { background-color: rgba(255,255,255,0.03) !important; }
+body[data-theme="dark"] .text-\[#111111\]\/80 { color: rgba(255,255,255,0.85) !important; }
+
+/* Toggle "on" knob: white knob on a primary track. The track turns white in
+   dark mode, so the knob must turn dark. Scoped to the toggle track size so
+   unrelated .bg-white elements (ZarinPal card/badge) are never affected. */
+body[data-theme="dark"] .w-11.h-6.bg-primary.rounded-full > .absolute.bg-white { background-color: #0A0A0A !important; }
+/* (Toggle "off" knobs use bg-[#111111]/30, covered by the global override above.) */
+
+/* Photo-overlay icon buttons (service-detail hero): the pill sits on a photo,
+   so it stays dark in dark mode while the icon inverts to white — same idea
+   as the home hero overlay, which intentionally never inverts. */
+body[data-theme="dark"] a.bg-\[#111111\]\/40, body[data-theme="dark"] button.bg-\[#111111\]\/40 { background-color: rgba(0,0,0,0.45) !important; }
+
+/* ZarinPal card dark-mode guards: these must beat the body[data-theme="dark"]
+   utility overrides on specificity so the card truly stays light in dark mode. */
+body[data-theme="dark"] .pay-card .text-\[#111111\] { color: #111111 !important; }
+body[data-theme="dark"] .pay-card .text-\[#111111\]\/40 { color: rgba(17,17,17,0.4) !important; }
+body[data-theme="dark"] .pay-card .text-\[#111111\]\/50 { color: rgba(17,17,17,0.5) !important; }
+body[data-theme="dark"] .pay-card .border-\[#111111\]\/5 { border-color: rgba(17,17,17,0.06) !important; }
+body[data-theme="dark"] .pay-card .bg-\[#111111\]\/\[0\.04\] { background-color: rgba(17,17,17,0.04) !important; }
+/* #payBtn background is pinned dark in both modes, so its label must stay white in dark mode. */
+body[data-theme="dark"] #payBtn { color: #FFFFFF !important; }
+
+/* Status colors stay the same hue in dark mode (visibility boost only, same as red/green) */
+body[data-theme="dark"] .text-purple-400, body[data-theme="dark"] .text-purple-500 { color: #C084FC !important; }
+body[data-theme="dark"] .bg-red-500\/5 { background-color: rgba(248,113,113,0.1) !important; }
+body[data-theme="dark"] .bg-yellow-500\/5, body[data-theme="dark"] .bg-yellow-500\/10 { background-color: rgba(234,179,8,0.12) !important; }
+body[data-theme="dark"] .bg-blue-500\/10 { background-color: rgba(59,130,246,0.12) !important; }
+body[data-theme="dark"] .bg-purple-500\/10 { background-color: rgba(168,85,247,0.12) !important; }
+body[data-theme="dark"] .bg-amber-500\/10 { background-color: rgba(245,158,11,0.12) !important; }
+
+/* CTA shadow keeps depth in dark mode (near-black shadow instead of invisible #111/25) */
+body[data-theme="dark"] .shadow-\[#111111\]\/25 { --tw-shadow-color: rgba(0,0,0,0.5) !important; }
+
+/* Shimmer sweep stays visible on dark cards */
+body[data-theme="dark"] .shimmer::after { background: linear-gradient(90deg, transparent, rgba(255,255,255,0.06), transparent) !important; }

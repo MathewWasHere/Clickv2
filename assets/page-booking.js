@@ -56,8 +56,8 @@
         '<div class="flex items-start justify-between gap-1">' +
         '<h4 class="text-[#111111] text-[11px] font-semibold leading-snug"></h4>' +
         '<div class="w-4 h-4 rounded-full border shrink-0 flex items-center justify-center ' +
-        (sel ? 'bg-primary border-primary' : 'border-[#111111]/20') + '">' +
-        (sel ? '<svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>' : '') +
+        (sel ? 'bg-primary border-primary text-on-primary' : 'border-[#111111]/20') + '">' +
+        (sel ? '<svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>' : '') +
         '</div></div>' +
         '<div class="flex items-center justify-between">' +
         '<span class="text-primary text-[10px] font-bold"></span>' +
@@ -87,15 +87,15 @@
       if (disabled) {
         cls += 'border-[#111111]/5 bg-[#111111]/[0.02] text-[#111111]/30 cursor-not-allowed';
       } else if (sel) {
-        cls += 'border-primary bg-primary text-white';
+        cls += 'border-primary bg-primary text-on-primary';
       } else {
-        cls += 'border-[#111111]/10 bg-white text-[#111111]/80 hover:border-primary/40';
+        cls += 'border-[#111111]/10 bg-surface text-[#111111]/80 hover:border-primary/40';
       }
       cell.className = cls;
       cell.innerHTML =
-        '<span class="text-[10px] ' + (sel ? 'text-white/80' : (disabled ? 'text-[#111111]/30' : 'text-[#111111]/50')) + '">' + day.weekday + '</span>' +
-        '<span class="text-lg font-black leading-none ' + (sel ? 'text-white' : 'text-[#111111]') + '">' + P.fa(day.dayNum) + '</span>' +
-        '<span class="text-[9px] ' + (sel ? 'text-white/80' : (disabled ? 'text-[#111111]/30' : (isToday ? 'text-primary font-bold' : 'text-[#111111]/40'))) + '">' + day.monthLabel + '</span>';
+        '<span class="text-[10px] ' + (sel ? 'text-on-primary/80' : (disabled ? 'text-[#111111]/30' : 'text-[#111111]/50')) + '">' + day.weekday + '</span>' +
+        '<span class="text-lg font-black leading-none ' + (sel ? 'text-on-primary' : 'text-[#111111]') + '">' + P.fa(day.dayNum) + '</span>' +
+        '<span class="text-[9px] ' + (sel ? 'text-on-primary/80' : (disabled ? 'text-[#111111]/30' : (isToday ? 'text-primary font-bold' : 'text-[#111111]/40'))) + '">' + day.monthLabel + '</span>';
       if (!disabled) {
         cell.addEventListener('click', function () {
           state.dateKey = day.key; state.time = null;
