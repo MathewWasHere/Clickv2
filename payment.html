@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="manifest" href="manifest.webmanifest" />
-  <meta name="theme-color" content="#151618" />
+  <meta name="theme-color" content="#ECEEF0" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
   <link rel="apple-touch-icon" href="assets/icon-192.png" />
@@ -46,20 +46,21 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700;800;900&display=swap" />
 <style type="text/tailwindcss">
 @theme {
-  --color-primary: #151618;
-  --color-primary-dark: #0E0F10;
-  --color-accent: #62676B;
+  --color-primary: #111111;
+  --color-primary-dark: #000000;
+  --color-accent: #6B7280;
   --color-surface: #FFFFFF;
-  --color-surface-light: #DDE1E4;
-  --color-surface-lighter: #C9CFD3;
-  --color-base: #CED3D6;
+  --color-surface-light: #F3F4F6;
+  --color-surface-lighter: #E5E7EB;
+  --color-base: #ECEEF0;
+  --color-on-primary: #FFFFFF;
   --color-zarinpal: #FFC107;
   --color-zarinpal-dark: #E6AC00;
 }
 </style>
 <style>
 * { font-family: 'Vazirmatn', sans-serif; }
-body { background: #CED3D6; margin: 0; }
+body { background: #ECEEF0; margin: 0; }
 </style>
 
 
@@ -69,96 +70,56 @@ body { background: #CED3D6; margin: 0; }
 <header class="sticky top-2 z-40 px-3">
   <div class="island max-w-md mx-auto px-4 py-3 flex items-center gap-3">
     <a href="booking.html" class="w-9 h-9 rounded-full bg-surface-light flex items-center justify-center">
-      <i data-lucide="arrow-right" class="w-4 h-4 text-[#151618]/60"></i>
+      <i data-lucide="arrow-right" class="w-4 h-4 text-[#111111]/60"></i>
     </a>
-    <h1 class="text-[#151618] font-bold text-lg">پرداخت</h1>
+    <h1 class="text-[#111111] font-bold text-lg">پرداخت</h1>
   </div>
 </header>
 
 <div class="max-w-md mx-auto px-4 mt-6">
 
   <!-- Order Summary -->
-  <div class="bg-surface rounded-2xl border border-[#151618]/5 p-4 mb-4">
-    <h2 class="text-[#151618] font-bold text-sm mb-3">خلاصه سفارش</h2>
+  <div class="bg-surface rounded-2xl border border-[#111111]/5 p-4 mb-4">
+    <h2 class="text-[#111111] font-bold text-sm mb-3">خلاصه سفارش</h2>
     <div class="space-y-2 text-xs">
-      <div class="flex justify-between"><span class="text-[#151618]/40">خدمت</span><span id="payService" class="text-[#151618]">—</span></div>
-      <div class="flex justify-between"><span class="text-[#151618]/40">تاریخ</span><span id="payDate" class="text-[#151618]">—</span></div>
-      <div class="flex justify-between"><span class="text-[#151618]/40">ساعت</span><span id="payTime" class="text-[#151618]">—</span></div>
-      <div class="border-t border-[#151618]/5 pt-2 mt-2 flex justify-between">
-        <span class="text-[#151618] font-semibold">مبلغ کل</span>
+      <div class="flex justify-between items-center"><span class="text-[#111111]/40 text-xs">خدمت</span><span id="payService" class="text-[#111111] font-semibold text-sm">—</span></div>
+      <div class="flex justify-between items-center py-1"><span class="text-[#111111]/40 text-xs">تاریخ</span><span id="payDate" class="text-[#111111] font-extrabold text-base">—</span></div>
+      <div class="flex justify-between items-center"><span class="text-[#111111]/40 text-xs">ساعت</span><span id="payTime" class="text-[#111111] font-semibold text-sm">—</span></div>
+      <div class="border-t border-[#111111]/5 pt-2 mt-2 flex justify-between">
+        <span class="text-[#111111] font-semibold">مبلغ کل</span>
         <span id="payTotal" class="text-primary font-bold text-lg">—</span>
       </div>
     </div>
   </div>
 
-  <!-- ZarinPal Mock Gateway -->
-  <div class="bg-white rounded-2xl overflow-hidden mb-4">
-    <!-- ZarinPal Header -->
-    <div class="bg-gradient-to-l from-[#3C4449] to-[#151618] px-4 py-3 flex items-center justify-between">
-      <div class="flex items-center gap-2">
-        <div class="w-8 h-8 rounded-lg bg-white/15 flex items-center justify-center">
-          <span class="text-white font-bold text-sm">Z</span>
-        </div>
-        <div>
-          <p class="text-white font-bold text-sm">درگاه پرداخت زرین‌پال</p>
-          <p class="text-white/70 text-[10px]">پرداخت امن اینترنتی</p>
-        </div>
+  <!-- ZarinPal Gateway Button -->
+  <div class="pay-card bg-white rounded-2xl border border-[#111111]/5 p-5 mb-4 text-center">
+    <!-- ZarinPal brand -->
+    <div class="flex items-center justify-center gap-3 mb-5">
+      <img src="assets/zarinpal-logo.svg" alt="زرین‌پال" class="w-12 h-12" />
+      <div class="text-right">
+        <p class="text-[#111111] font-bold text-base leading-tight">درگاه پرداخت زرین‌پال</p>
+        <p class="text-[#111111]/50 text-[11px]">پرداخت امن اینترنتی</p>
       </div>
-      <i data-lucide="shield-check" class="w-5 h-5 text-white/70"></i>
     </div>
-    
-    <!-- Payment Details -->
-    <div class="p-4">
-      <div class="bg-gray-50 rounded-xl p-3 mb-4">
-        <div class="flex justify-between text-xs mb-2">
-          <span class="text-gray-500">فروشگاه</span>
-          <span class="text-gray-800 font-semibold">پیرایش — آرایشگاه مردانه</span>
-        </div>
-        <div class="flex justify-between text-xs mb-2">
-          <span class="text-gray-500">شماره سفارش</span>
-          <span id="payOrder" class="text-gray-800 font-semibold" dir="ltr">—</span>
-        </div>
-        <div class="flex justify-between text-xs">
-          <span class="text-gray-500">مبلغ</span>
-          <span id="payAmount" class="text-gray-900 font-bold text-base">—</span>
-        </div>
-      </div>
-      
-      <!-- Card Input (Mock) -->
-      <div class="mb-3">
-        <label class="text-gray-600 text-xs mb-1.5 block">شماره کارت</label>
-        <div class="flex gap-2" dir="ltr">
-          <input type="text" value="6037" class="flex-1 bg-gray-100 border border-gray-200 rounded-lg text-center py-2.5 text-sm text-gray-800 font-mono" readonly />
-          <input type="text" value="99••" class="flex-1 bg-gray-100 border border-gray-200 rounded-lg text-center py-2.5 text-sm text-gray-800 font-mono" readonly />
-          <input type="text" value="••••" class="flex-1 bg-gray-100 border border-gray-200 rounded-lg text-center py-2.5 text-sm text-gray-800 font-mono" readonly />
-          <input type="text" value="1234" class="flex-1 bg-gray-100 border border-gray-200 rounded-lg text-center py-2.5 text-sm text-gray-800 font-mono" readonly />
-        </div>
-      </div>
-      
-      <div class="grid grid-cols-2 gap-3 mb-4">
-        <div>
-          <label class="text-gray-600 text-xs mb-1.5 block">رمز دوم</label>
-          <input type="password" value="••••••" class="w-full bg-gray-100 border border-gray-200 rounded-lg text-center py-2.5 text-sm" readonly />
-        </div>
-        <div>
-          <label class="text-gray-600 text-xs mb-1.5 block">CVV2</label>
-          <input type="text" value="•••" class="w-full bg-gray-100 border border-gray-200 rounded-lg text-center py-2.5 text-sm font-mono" readonly />
-        </div>
-      </div>
-      
-      <div class="mb-4">
-        <label class="text-gray-600 text-xs mb-1.5 block">تاریخ انقضا</label>
-        <div class="flex gap-2 items-center" dir="ltr">
-          <input type="text" value="۰۵" class="w-16 bg-gray-100 border border-gray-200 rounded-lg text-center py-2.5 text-sm" readonly />
-          <span class="text-gray-400">/</span>
-          <input type="text" value="۰۸" class="w-16 bg-gray-100 border border-gray-200 rounded-lg text-center py-2.5 text-sm" readonly />
-        </div>
-      </div>
-      
-      <button id="payBtn" class="block w-full bg-gradient-to-l from-[#3C4449] to-[#151618] text-white font-bold text-center py-3.5 rounded-xl shadow-lg">پرداخت</button>
-      
-      <a id="cancelPay" href="booking.html" class="block w-full text-red-500 text-xs font-medium text-center py-3 mt-2">انصراف از پرداخت</a>
+
+    <!-- Amount highlight -->
+    <div class="bg-[#111111]/[0.04] rounded-xl py-3 px-4 mb-5">
+      <p class="text-[#111111]/50 text-[11px] mb-1">مبلغ قابل پرداخت</p>
+      <p id="payAmount" class="text-[#111111] font-black text-2xl">—</p>
     </div>
+
+    <button id="payBtn" class="group w-full bg-primary hover:bg-primary-dark active:opacity-90 active:scale-[0.98] transition-all duration-200 text-on-primary font-bold py-4 rounded-xl flex items-center justify-center gap-3">
+      <span class="text-base">انتقال به درگاه</span>
+      <span class="w-px h-5 bg-white/25"></span>
+      <span class="flex items-center gap-2 bg-white rounded-lg px-2.5 py-1.5">
+        <img src="assets/zarinpal-logo.svg" alt="" class="w-5 h-5" />
+        <span class="text-[#111111] font-extrabold tracking-tight text-sm">زرین‌پال</span>
+      </span>
+      <i data-lucide="arrow-left" class="w-4 h-4 mr-1 opacity-70"></i>
+    </button>
+
+    <a id="cancelPay" href="booking.html" class="block w-full text-[#111111]/50 hover:text-red-500 text-xs font-medium text-center py-3 mt-2 transition-colors">انصراف و بازگشت</a>
   </div>
 
   <!-- Payment Failure State (hidden, for design reference) -->
@@ -166,14 +127,14 @@ body { background: #CED3D6; margin: 0; }
     <div class="w-16 h-16 rounded-full bg-red-500/10 flex items-center justify-center mx-auto mb-4">
       <i data-lucide="x-circle" class="w-8 h-8 text-red-500"></i>
     </div>
-    <h3 class="text-[#151618] font-bold text-lg mb-2">پرداخت ناموفق</h3>
-    <p class="text-[#151618]/50 text-xs mb-4">متأسفانه پرداخت شما با خطا مواجه شد. لطفاً دوباره تلاش کنید.</p>
+    <h3 class="text-[#111111] font-bold text-lg mb-2">پرداخت ناموفق</h3>
+    <p class="text-[#111111]/50 text-xs mb-4">متأسفانه پرداخت شما با خطا مواجه شد. لطفاً دوباره تلاش کنید.</p>
     <button class="bg-primary text-[#FFFFFF] font-bold px-6 py-3 rounded-xl w-full mb-2">تلاش مجدد</button>
-    <button class="text-[#151618]/40 text-xs py-2">بازگشت به صفحه رزرو</button>
+    <button class="text-[#111111]/40 text-xs py-2">بازگشت به صفحه رزرو</button>
   </div>
 
   <!-- Security Notice -->
-  <div class="flex items-center justify-center gap-2 text-[#151618]/20 text-[10px] mb-8">
+  <div class="flex items-center justify-center gap-2 text-[#111111]/20 text-[10px] mb-8">
     <i data-lucide="lock" class="w-3 h-3"></i>
     <span>پرداخت امن با رمزنگاری SSL</span>
   </div>

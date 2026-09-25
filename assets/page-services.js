@@ -11,7 +11,7 @@
       var active = b.getAttribute('data-cat') === cat;
       b.className = 'shrink-0 text-xs px-4 py-2 rounded-full ' + (active
         ? 'bg-primary text-[#FFFFFF] font-semibold'
-        : 'bg-surface-light text-[#151618]/60 font-medium');
+        : 'bg-surface-light text-[#111111]/60 font-medium');
     });
   };
 
@@ -32,17 +32,17 @@
   function mainCard(s) {
     var el = document.createElement('a');
     el.href = 'service-detail.html?s=' + s.id;
-    el.className = 'flex items-center gap-3 bg-surface rounded-2xl border border-[#151618]/5 p-3 group';
+    el.className = 'flex items-center gap-3 bg-surface rounded-2xl border border-[#111111]/5 p-3 group';
     el.innerHTML =
       thumb(s) +
       '<div class="flex-1 min-w-0">' +
-      '<h3 class="text-[#151618] text-sm font-semibold mb-0.5"></h3>' +
-      '<p class="text-[#151618]/40 text-[11px] leading-relaxed"></p>' +
+      '<h3 class="text-[#111111] text-sm font-semibold mb-0.5"></h3>' +
+      '<p class="text-[#111111]/40 text-[11px] leading-relaxed"></p>' +
       '<div class="flex items-center gap-3 mt-1.5">' +
       '<span class="text-primary text-xs font-bold price"></span>' +
-      '<span class="text-[#151618]/30 text-[10px] flex items-center gap-1"><i data-lucide="clock" class="w-3 h-3"></i> <span class="dur"></span></span>' +
+      '<span class="text-[#111111]/30 text-[10px] flex items-center gap-1"><i data-lucide="clock" class="w-3 h-3"></i> <span class="dur"></span></span>' +
       '</div></div>' +
-      '<i data-lucide="chevron-left" class="w-4 h-4 text-[#151618]/20 shrink-0"></i>';
+      '<i data-lucide="chevron-left" class="w-4 h-4 text-[#111111]/20 shrink-0"></i>';
     fill(el, s);
     return el;
   }
@@ -53,13 +53,13 @@
     el.className = 'block bg-surface rounded-2xl border border-primary/10 p-4';
     el.innerHTML =
       '<div class="flex items-center justify-between mb-2">' +
-      '<h3 class="text-[#151618] font-bold text-sm"></h3>' +
+      '<h3 class="text-[#111111] font-bold text-sm"></h3>' +
       (s.badge ? '<span class="bg-primary/10 text-primary text-[10px] font-semibold px-2 py-1 rounded-lg badge"></span>' : '') +
       '</div>' +
-      '<p class="text-[#151618]/40 text-[11px] leading-relaxed mb-3"></p>' +
+      '<p class="text-[#111111]/40 text-[11px] leading-relaxed mb-3"></p>' +
       '<div class="flex items-center justify-between">' +
       '<span class="text-primary font-bold text-sm price"></span>' +
-      '<span class="text-[#151618]/30 text-[10px] flex items-center gap-1"><i data-lucide="clock" class="w-3 h-3"></i> <span class="dur"></span></span>' +
+      '<span class="text-[#111111]/30 text-[10px] flex items-center gap-1"><i data-lucide="clock" class="w-3 h-3"></i> <span class="dur"></span></span>' +
       '</div>';
     fill(el, s);
     return el;

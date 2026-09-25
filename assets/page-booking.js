@@ -16,22 +16,29 @@
   if (draft && draft.dateKey) state.dateKey = draft.dateKey;
   if (draft && draft.time) state.time = P.toEnDigits(draft.time);
 
-  /* ---------- calendar data ---------- */
+  /* ---------- calendar data: only today + 10 days ahead (11 days total) ---------- */
+  var WEEKDAYS = ['ش', 'ی', 'د', 'س', 'چ', 'پ', 'ج'];
   var days = [];
-  for (var i = -40; i <= 100; i++) {
+  for (var i = 0; i <= 10; i++) {
     var d = P.addDays(today, i);
-    days.push({ date: d, key: P.dateKey(d), j: P.jparts(d) });
+    var jp = P.jparts(d);
+    days.push({
+      date: d,
+      key: P.dateKey(d),
+      j: jp,
+      dayNum: jp.jd,
+      monthLabel: jp.jm,
+      weekday: i === 0 ? 'امروز' : WEEKDAYS[P.weekIndex(d)]
+    });
   }
-  var months = [];
-  days.forEach(function (day) {
-    var k = day.j.jy + '|' + day.j.jm;
-    if (!months.some(function (m) { return m.k === k; })) months.push({ k: k, label: day.j.jm + ' ' + P.fa(day.j.jy) });
-  });
-  var tjp = P.jparts(today);
-  var miMin = Math.max(0, months.findIndex(function (m) { return m.k === (tjp.jy + '|' + tjp.jm); }));
-  var mi = miMin;
 
   function $(id) { return document.getElementById(id); }
+
+  function hash(str) {
+    var h = 0;
+    for (var i = 0; i < str.length; i++) { h = (h * 31 + str.charCodeAt(i)) | 0; }
+    return Math.abs(h);
+  }
 
   /* ---------- stage 1: services ---------- */
   function renderServices() {
@@ -44,17 +51,17 @@
       el.setAttribute('role', 'button');
       el.setAttribute('tabindex', '0');
       el.className = 'bg-surface rounded-xl border p-2.5 cursor-pointer transition-colors flex flex-col justify-between gap-1.5 ' +
-        (sel ? 'border-primary border-2' : 'border-[#151618]/5 hover:border-primary/30');
+        (sel ? 'border-primary border-2' : 'border-[#111111]/5 hover:border-primary/30');
       el.innerHTML =
         '<div class="flex items-start justify-between gap-1">' +
-        '<h4 class="text-[#151618] text-[11px] font-semibold leading-snug"></h4>' +
+        '<h4 class="text-[#111111] text-[11px] font-semibold leading-snug"></h4>' +
         '<div class="w-4 h-4 rounded-full border shrink-0 flex items-center justify-center ' +
-        (sel ? 'bg-primary border-primary' : 'border-[#151618]/20') + '">' +
+        (sel ? 'bg-primary border-primary' : 'border-[#111111]/20') + '">' +
         (sel ? '<svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>' : '') +
         '</div></div>' +
         '<div class="flex items-center justify-between">' +
         '<span class="text-primary text-[10px] font-bold"></span>' +
-        '<span class="text-[#151618]/30 text-[9px]"></span>' +
+        '<span class="text-[#111111]/30 text-[9px]"></span>' +
         '</div>';
       el.querySelector('h4').textContent = s.name;
       el.querySelector('span.text-primary, span.font-bold').textContent = P.moneyShort(s.price);
@@ -66,35 +73,29 @@
     });
   }
 
-  /* ---------- stage 2: calendar ---------- */
-  function hash(str) {
-    var h = 0;
-    for (var i = 0; i < str.length; i++) { h = (h * 31 + str.charCodeAt(i)) | 0; }
-    return Math.abs(h);
-  }
-
+  /* ---------- stage 2: 6-col grid — all 11 days visible at once ---------- */
   function renderCalendar() {
-    var month = months[mi];
-    var title = $('calTitle'), grid = $('calGrid');
+    var grid = $('dayScroller');
     if (!grid) return;
-    if (title) title.textContent = month.label;
-
-    var monthDays = days.filter(function (d) { return (d.j.jy + '|' + d.j.jm) === month.k; });
     grid.innerHTML = '';
-    if (monthDays.length) {
-      var lead = P.weekIndex(monthDays[0].date);
-      for (var e = 0; e < lead; e++) grid.appendChild(document.createElement('div'));
-    }
-    monthDays.forEach(function (day) {
+    days.forEach(function (day) {
+      var disabled = P.isFriday(day.date);
+      var sel = day.key === state.dateKey;
+      var isToday = day.key === P.dateKey(today);
       var cell = document.createElement('div');
-      var disabled = P.isFriday(day.date) || day.date < today;
-      var cls = 'cal-day rounded-lg text-center py-1.5 text-[11px] ';
-      if (disabled) cls += 'disabled text-[#151618]/50';
-      else if (day.key === state.dateKey) cls += 'selected font-bold';
-      else if (day.key === P.dateKey(today)) cls += 'today text-[#151618] font-semibold';
-      else cls += 'text-[#151618]/70';
+      var cls = 'rounded-xl border flex flex-col items-center justify-center py-2 gap-0.5 text-center cursor-pointer transition-colors ';
+      if (disabled) {
+        cls += 'border-[#111111]/5 bg-[#111111]/[0.02] text-[#111111]/30 cursor-not-allowed';
+      } else if (sel) {
+        cls += 'border-primary bg-primary text-white';
+      } else {
+        cls += 'border-[#111111]/10 bg-white text-[#111111]/80 hover:border-primary/40';
+      }
       cell.className = cls;
-      cell.textContent = P.fa(day.j.jd);
+      cell.innerHTML =
+        '<span class="text-[10px] ' + (sel ? 'text-white/80' : (disabled ? 'text-[#111111]/30' : 'text-[#111111]/50')) + '">' + day.weekday + '</span>' +
+        '<span class="text-lg font-black leading-none ' + (sel ? 'text-white' : 'text-[#111111]') + '">' + P.fa(day.dayNum) + '</span>' +
+        '<span class="text-[9px] ' + (sel ? 'text-white/80' : (disabled ? 'text-[#111111]/30' : (isToday ? 'text-primary font-bold' : 'text-[#111111]/40'))) + '">' + day.monthLabel + '</span>';
       if (!disabled) {
         cell.addEventListener('click', function () {
           state.dateKey = day.key; state.time = null;
@@ -103,11 +104,6 @@
       }
       grid.appendChild(cell);
     });
-
-    var prev = $('calPrev'), next = $('calNext');
-    if (prev) prev.disabled = mi <= miMin;
-    if (next) next.disabled = mi >= months.length - 1;
-    [prev, next].forEach(function (b) { if (b) b.style.opacity = b.disabled ? '.3' : '1'; });
   }
 
   /* ---------- stage 3: time slots ---------- */
@@ -116,7 +112,7 @@
     if (!grid) return;
     grid.innerHTML = '';
     if (!state.dateKey) {
-      grid.innerHTML = '<p class="col-span-3 text-center text-[#151618]/30 text-[11px] py-4">ابتدا تاریخ را انتخاب کنید</p>';
+      grid.innerHTML = '<p class="col-span-3 text-center text-[#111111]/30 text-[11px] py-4">ابتدا تاریخ را انتخاب کنید</p>';
       return;
     }
     var isToday = state.dateKey === P.dateKey(today);
@@ -132,9 +128,9 @@
         var past = isToday && (h < now.getHours() || (h === now.getHours() && m <= now.getMinutes()));
         var slot = document.createElement('div');
         var cls = 'time-slot bg-surface rounded-lg border text-center py-2 text-[11px] ';
-        if (busy || past) cls += 'disabled border-[#151618]/5 text-[#151618]/50';
+        if (busy || past) cls += 'disabled border-[#111111]/5 text-[#111111]/50';
         else if (state.time === t) cls += 'selected border-primary text-primary font-semibold cursor-pointer';
-        else cls += 'border-[#151618]/5 text-[#151618]/70 cursor-pointer';
+        else cls += 'border-[#111111]/5 text-[#111111]/70 cursor-pointer';
         slot.className = cls;
         slot.textContent = P.fa(t);
         if (!busy && !past) {
@@ -177,7 +173,7 @@
       else cls += 'step-pending';
       dot.className = cls;
       dot.innerHTML = i < n ? '<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>' : P.fa(i);
-      if (label) label.className = 'text-[10px] ' + (i === n ? 'text-primary font-medium' : i < n ? 'text-[#151618]/60' : 'text-[#151618]/30');
+      if (label) label.className = 'text-[10px] ' + (i === n ? 'text-primary font-medium' : i < n ? 'text-[#111111]/60' : 'text-[#111111]/30');
       if (wrap) wrap.style.cursor = i < n ? 'pointer' : 'default';
     }
     var back = $('backBtn');
@@ -230,9 +226,6 @@
     var wrap = $('stepWrap' + n);
     if (wrap) wrap.addEventListener('click', function () { if (n < stage) show(n, true); });
   });
-
-  $('calPrev').addEventListener('click', function () { if (mi > miMin) { mi--; renderCalendar(); } });
-  $('calNext').addEventListener('click', function () { if (mi < months.length - 1) { mi++; renderCalendar(); } });
 
   /* predictable back: browser back returns to the previous stage */
   window.addEventListener('popstate', function (e) {

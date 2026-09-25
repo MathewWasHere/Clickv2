@@ -1,5 +1,5 @@
 /* پیرایش PWA service worker */
-var CACHE = 'pirayesh-v12';
+var CACHE = 'pirayesh-v15-navfix';
 var SHELL = [
   './', 'index.html', 'home.html', 'services.html', 'service-detail.html',
   'booking.html', 'payment.html', 'confirmation.html', 'my-bookings.html',

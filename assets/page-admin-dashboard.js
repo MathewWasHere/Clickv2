@@ -23,19 +23,19 @@
     .slice(0, 5);
 
   if (!upcoming.length) {
-    wrap.innerHTML = '<div class="bg-surface rounded-xl border border-[#151618]/5 p-4 text-center text-[#151618]/30 text-xs">نوبت پیش‌رویی وجود ندارد</div>';
+    wrap.innerHTML = '<div class="bg-surface rounded-xl border border-[#111111]/5 p-4 text-center text-[#111111]/30 text-xs">نوبت پیش‌رویی وجود ندارد</div>';
   }
   upcoming.forEach(function (b, i) {
     var row = document.createElement('div');
-    row.className = 'bg-surface rounded-xl border border-[#151618]/5 p-3 flex items-center justify-between';
+    row.className = 'bg-surface rounded-xl border border-[#111111]/5 p-3 flex items-center justify-between';
     row.innerHTML =
       '<div class="flex items-center gap-3">' +
       '<div class="w-9 h-9 rounded-full flex items-center justify-center font-bold text-xs ' + COLORS[i % COLORS.length] + '">' + (b.customer || 'م').trim().charAt(0) + '</div>' +
-      '<div><p class="text-[#151618] text-xs font-semibold"></p>' +
-      '<p class="text-[#151618]/30 text-[10px]"></p></div></div>' +
+      '<div><p class="text-[#111111] text-xs font-semibold"></p>' +
+      '<p class="text-[#111111]/30 text-[10px]"></p></div></div>' +
       '<div class="text-left">' +
       '<p class="text-primary text-[10px] font-bold">' + P.moneyShort(b.price) + '</p>' +
-      '<p class="text-[#151618]/20 text-[10px]">کمیسیون: ' + P.moneyShort(Math.round(b.price * 0.10)) + '</p>' +
+      '<p class="text-[#111111]/20 text-[10px]">کمیسیون: ' + P.moneyShort(Math.round(b.price * 0.10)) + '</p>' +
       '</div>';
     var ps = row.querySelectorAll('p');
     ps[0].textContent = b.customer || 'مشتری';

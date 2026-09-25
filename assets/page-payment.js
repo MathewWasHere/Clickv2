@@ -24,11 +24,11 @@
   set('payAmount', P.money(item.price));
   set('payOrder', P.fa(orderCode));
   var payBtn = document.getElementById('payBtn');
-  if (payBtn) payBtn.textContent = 'پرداخت ' + P.money(item.price);
 
   if (payBtn) payBtn.addEventListener('click', function () {
     payBtn.disabled = true;
-    payBtn.textContent = 'در حال پردازش…';
+    payBtn.innerHTML = '<i data-lucide="loader-2" class="w-5 h-5 animate-spin"></i><span class="text-base">در حال انتقال به درگاه…</span>';
+    if (window.lucide) lucide.createIcons();
     setTimeout(function () {
       var id;
       if (item.existingId) {

@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="manifest" href="manifest.webmanifest" />
-  <meta name="theme-color" content="#151618" />
+  <meta name="theme-color" content="#ECEEF0" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
   <link rel="apple-touch-icon" href="assets/icon-192.png" />
@@ -46,28 +46,30 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700;800;900&display=swap" />
 <style type="text/tailwindcss">
 @theme {
-  --color-primary: #151618;
-  --color-primary-dark: #0E0F10;
-  --color-accent: #62676B;
+  --color-primary: #111111;
+  --color-primary-dark: #000000;
+  --color-accent: #6B7280;
   --color-surface: #FFFFFF;
-  --color-surface-light: #DDE1E4;
-  --color-surface-lighter: #C9CFD3;
-  --color-base: #CED3D6;
+  --color-surface-light: #F3F4F6;
+  --color-surface-lighter: #E5E7EB;
+  --color-base: #ECEEF0;
+  --color-on-primary: #FFFFFF;
+  --font-family-vazir: 'Vazirmatn', sans-serif;
 }
 </style>
 <style>
 * { font-family: 'Vazirmatn', sans-serif; }
-body { background: #CED3D6; margin: 0; }
-.step-active { background: #151618; color: #FFFFFF; }
-.step-done { background: #151618; color: #FFFFFF; }
-.step-pending { background: #DDE1E4; color: rgba(21,22,24,0.3); }
+body { background: #ECEEF0; margin: 0; }
+.step-active { background: #111111; color: #FFFFFF; }
+.step-done { background: #111111; color: #FFFFFF; }
+.step-pending { background: #F3F4F6; color: rgba(21,22,24,0.3); }
 .time-slot { transition: all 0.15s; }
-.time-slot:hover, .time-slot.selected { background: rgba(21,22,24,0.08); border-color: #151618; color: #151618; }
+.time-slot:hover, .time-slot.selected { background: rgba(21,22,24,0.08); border-color: #111111; color: #111111; }
 .time-slot.disabled { opacity: 0.3; pointer-events: none; }
 .cal-day { transition: all 0.15s; cursor: pointer; }
-.cal-day:hover, .cal-day.selected { background: #151618; color: #FFFFFF; }
+.cal-day:hover, .cal-day.selected { background: #111111; color: #FFFFFF; }
 .cal-day.disabled { opacity: 0.25; pointer-events: none; }
-.cal-day.today { border: 1px solid #151618; }
+.cal-day.today { border: 1px solid #111111; }
 .stage { animation: stageIn .25s ease; }
 @keyframes stageIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: none; } }
 @media (prefers-reduced-motion: reduce) {
@@ -78,109 +80,16 @@ body { background: #CED3D6; margin: 0; }
 </style>
 
 
-<style id="dark-mode-styles">
-/* Dark mode overrides */
-body[data-theme="dark"] { background: #151618 !important; }
-
-/* Theme variable overrides for dark mode */
-body[data-theme="dark"] {
-  --color-primary: #FFFFFF;
-  --color-primary-dark: #C9CFD3;
-  --color-base: #151618;
-  --color-surface: #2E3438;
-  --color-surface-light: #3C4449;
-  --color-surface-lighter: #4A5257;
-}
-
-/* Hardcoded text color overrides */
-body[data-theme="dark"] .text-\[\#151618\] { color: #FFFFFF !important; }
-body[data-theme="dark"] .text-\[\#151618\]\/20 { color: rgba(255,255,255,0.2) !important; }
-body[data-theme="dark"] .text-\[\#151618\]\/30 { color: rgba(255,255,255,0.3) !important; }
-body[data-theme="dark"] .text-\[\#151618\]\/40 { color: rgba(255,255,255,0.4) !important; }
-body[data-theme="dark"] .text-\[\#151618\]\/50 { color: rgba(255,255,255,0.5) !important; }
-body[data-theme="dark"] .text-\[\#151618\]\/60 { color: rgba(255,255,255,0.6) !important; }
-body[data-theme="dark"] .text-\[\#151618\]\/70 { color: rgba(255,255,255,0.7) !important; }
-
-/* Invert text on primary buttons/badges (was ivory on charcoal, now charcoal on ivory) */
-body[data-theme="dark"] .text-\[\#FFFFFF\] { color: #151618 !important; }
-
-/* Background overrides for hardcoded values */
-body[data-theme="dark"] .bg-\[\#151618\] { background-color: #FFFFFF !important; }
-body[data-theme="dark"] .bg-\[\#151618\]\/40 { background-color: rgba(255,255,255,0.4) !important; }
-body[data-theme="dark"] .bg-\[\#151618\]\/20 { background-color: rgba(255,255,255,0.2) !important; }
-body[data-theme="dark"] .bg-\[\#151618\]\/5 { background-color: rgba(255,255,255,0.05) !important; }
-
-/* Border overrides */
-body[data-theme="dark"] .border-\[\#151618\]\/5 { border-color: rgba(255,255,255,0.08) !important; }
-body[data-theme="dark"] .border-\[\#151618\]\/10 { border-color: rgba(255,255,255,0.1) !important; }
-body[data-theme="dark"] .border-\[\#151618\]\/15 { border-color: rgba(255,255,255,0.12) !important; }
-body[data-theme="dark"] .border-\[\#151618\]\/20 { border-color: rgba(255,255,255,0.15) !important; }
-
-/* Shadow overrides */
-body[data-theme="dark"] .shadow-\[\#151618\]\/20 { --tw-shadow-color: rgba(0,0,0,0.4) !important; }
-body[data-theme="dark"] .shadow-\[\#151618\]\/25 { --tw-shadow-color: rgba(0,0,0,0.5) !important; }
-
-/* Body background in plain style */
-body[data-theme="dark"] { color: #FFFFFF; }
-
-/* Step classes for booking page */
-body[data-theme="dark"] .step-active { background: #FFFFFF !important; color: #151618 !important; }
-body[data-theme="dark"] .step-done { background: #FFFFFF !important; color: #151618 !important; }
-body[data-theme="dark"] .step-pending { background: #333 !important; color: rgba(255,255,255,0.3) !important; }
-body[data-theme="dark"] .time-slot:hover, body[data-theme="dark"] .time-slot.selected { background: rgba(255,255,255,0.1) !important; border-color: #FFFFFF !important; color: #FFFFFF !important; }
-body[data-theme="dark"] .cal-day:hover, body[data-theme="dark"] .cal-day.selected { background: #FFFFFF !important; color: #151618 !important; }
-body[data-theme="dark"] .cal-day.today { border-color: #FFFFFF !important; }
-
-/* ZarinPal gateway - keep mostly light for realism but adapt surrounding */
-body[data-theme="dark"] .bg-gray-50 { background-color: #f5f5f5 !important; }
-body[data-theme="dark"] .bg-gray-100 { background-color: #eee !important; }
-body[data-theme="dark"] .bg-white { background-color: #2E3438 !important; }
-body[data-theme="dark"] .text-gray-900 { color: #FFFFFF !important; }
-body[data-theme="dark"] .text-gray-800 { color: #e0e0e0 !important; }
-body[data-theme="dark"] .text-gray-700 { color: #ccc !important; }
-body[data-theme="dark"] .text-gray-600 { color: #bbb !important; }
-body[data-theme="dark"] .text-gray-500 { color: #aaa !important; }
-body[data-theme="dark"] .text-gray-400 { color: #999 !important; }
-body[data-theme="dark"] .border-gray-200 { border-color: #555 !important; }
-body[data-theme="dark"] .bg-gray-50, body[data-theme="dark"] .bg-gray-100 { background-color: #3a3a3a !important; color: #FFFFFF !important; }
-
-/* Gold text (accent) */
-body[data-theme="dark"] .gold-text { color: #c2455a !important; }
-
-/* Modal overlay for admin-services */
-body[data-theme="dark"] .modal-content { background: #2E3438 !important; }
-
-/* Input fields */
-body[data-theme="dark"] input, body[data-theme="dark"] textarea, body[data-theme="dark"] select {
-  background-color: #333 !important;
-  color: #FFFFFF !important;
-  border-color: rgba(255,255,255,0.12) !important;
-}
-body[data-theme="dark"] input::placeholder, body[data-theme="dark"] textarea::placeholder {
-  color: rgba(255,255,255,0.3) !important;
-}
-
-/* Admin nav - active pill override */
-body[data-theme="dark"] .bg-primary.text-\[\#FFFFFF\] { background-color: #FFFFFF !important; color: #151618 !important; }
-
-/* Fix: header, sticky bars, bottom CTAs */
-body[data-theme="dark"] .bg-base\/90 { background-color: rgba(21,22,24,0.9) !important; }
-
-
-/* Theme toggle pill */
-body[data-theme="dark"] .theme-toggle-btn { background-color: #FFFFFF !important; color: #151618 !important; border-color: #FFFFFF !important; }
-/* Remove all shadows from images */
-img { box-shadow: none !important; }
-</style>
+<style>img { box-shadow: none !important; }</style>
 
 
 <!-- Header -->
 <header class="sticky top-2 z-40 px-3">
   <div class="island max-w-md mx-auto px-4 py-3 flex items-center gap-3">
     <a href="services.html" class="w-9 h-9 rounded-full bg-surface-light flex items-center justify-center">
-      <i data-lucide="arrow-right" class="w-4 h-4 text-[#151618]/60"></i>
+      <i data-lucide="arrow-right" class="w-4 h-4 text-[#111111]/60"></i>
     </a>
-    <h1 class="text-[#151618] font-bold text-lg">رزرو نوبت</h1>
+    <h1 class="text-[#111111] font-bold text-lg">رزرو نوبت</h1>
   </div>
 </header>
 
@@ -194,83 +103,66 @@ img { box-shadow: none !important; }
     </div>
     <div class="relative z-10 flex flex-col items-center gap-0.5" id="stepWrap2">
       <div class="w-6 h-6 rounded-full step-pending flex items-center justify-center text-[10px] font-bold" id="stepDot2">۲</div>
-      <span class="text-[#151618]/30 text-[9px]" id="stepLabel2">تاریخ</span>
+      <span class="text-[#111111]/30 text-[9px]" id="stepLabel2">تاریخ</span>
     </div>
     <div class="relative z-10 flex flex-col items-center gap-0.5" id="stepWrap3">
       <div class="w-6 h-6 rounded-full step-pending flex items-center justify-center text-[10px] font-bold" id="stepDot3">۳</div>
-      <span class="text-[#151618]/30 text-[9px]" id="stepLabel3">ساعت</span>
+      <span class="text-[#111111]/30 text-[9px]" id="stepLabel3">ساعت</span>
     </div>
   </div>
 </div>
 
 <!-- Step 1: Service Selection (pre-filled) -->
 <div id="stepService" class="max-w-md mx-auto px-4 mb-20">
-  <h2 class="text-[#151618] text-xs font-bold mb-2">انتخاب خدمت</h2>
+  <h2 class="text-[#111111] text-xs font-bold mb-2">انتخاب خدمت</h2>
   <div id="serviceList" class="grid grid-cols-2 gap-2"></div>
 </div>
 
-<!-- Step 2: Date Selection (Jalali Calendar) -->
+<!-- Step 2: Date Selection (next 10 days) -->
 <div id="stepDate" class="max-w-md mx-auto px-4 mt-3 mb-20">
-  <h2 class="text-[#151618] text-xs font-bold mb-2">انتخاب تاریخ</h2>
+  <div class="flex items-center justify-between mb-2">
+    <h2 class="text-[#111111] text-xs font-bold">انتخاب تاریخ</h2>
+    <span class="text-[#111111]/40 text-[10px]">۱۰ روز آینده</span>
+  </div>
 
-  <div class="bg-surface rounded-2xl border border-[#151618]/5 p-3">
-    <div class="flex items-center justify-between mb-2.5">
-      <button id="calPrev" class="w-7 h-7 rounded-full bg-surface-light flex items-center justify-center">
-        <i data-lucide="chevron-right" class="w-3.5 h-3.5 text-[#151618]/60"></i>
-      </button>
-      <h3 id="calTitle" class="text-[#151618] font-bold text-xs">…</h3>
-      <button id="calNext" class="w-7 h-7 rounded-full bg-surface-light flex items-center justify-center">
-        <i data-lucide="chevron-left" class="w-3.5 h-3.5 text-[#151618]/60"></i>
-      </button>
-    </div>
-
-    <div class="grid grid-cols-7 gap-1 mb-1">
-      <div class="text-center text-[#151618]/30 text-[9px] py-0.5">ش</div>
-      <div class="text-center text-[#151618]/30 text-[9px] py-0.5">ی</div>
-      <div class="text-center text-[#151618]/30 text-[9px] py-0.5">د</div>
-      <div class="text-center text-[#151618]/30 text-[9px] py-0.5">س</div>
-      <div class="text-center text-[#151618]/30 text-[9px] py-0.5">چ</div>
-      <div class="text-center text-[#151618]/30 text-[9px] py-0.5">پ</div>
-      <div class="text-center text-[#151618]/30 text-[9px] py-0.5">ج</div>
-    </div>
-
-    <div id="calGrid" class="grid grid-cols-7 gap-1"></div>
+  <div class="bg-surface rounded-2xl border border-[#111111]/5 p-3">
+    <div id="dayScroller" class="grid grid-cols-6 gap-1.5"></div>
   </div>
 </div>
 
 <!-- Step 3: Time Selection -->
 <div id="stepTime" class="max-w-md mx-auto px-4 mt-3">
-  <h2 class="text-[#151618] text-xs font-bold mb-2">انتخاب ساعت</h2>
+  <h2 class="text-[#111111] text-xs font-bold mb-2">انتخاب ساعت</h2>
 
   <div id="timeGrid" class="grid grid-cols-4 gap-1.5 mb-2"></div>
 
-  <div class="flex items-center gap-3 text-[9px] text-[#151618]/30 mb-3">
+  <div class="flex items-center gap-3 text-[9px] text-[#111111]/30 mb-3">
     <span class="flex items-center gap-1"><span class="w-1.5 h-1.5 rounded-full bg-primary inline-block"></span> انتخاب‌شده</span>
     <span class="flex items-center gap-1"><span class="w-1.5 h-1.5 rounded-full bg-surface-lighter inline-block"></span> آزاد</span>
     <span class="flex items-center gap-1"><span class="w-1.5 h-1.5 rounded-full bg-surface-light/50 inline-block"></span> رزرو شده</span>
   </div>
 
   <div class="bg-surface rounded-2xl border border-primary/15 p-3 mb-20">
-    <h3 class="text-[#151618] text-xs font-bold mb-1.5">خلاصه رزرو</h3>
+    <h3 class="text-[#111111] text-xs font-bold mb-1.5">خلاصه رزرو</h3>
     <div class="space-y-1 text-[10px]">
       <div class="flex items-center justify-between">
-        <span class="text-[#151618]/40">خدمت</span>
-        <span id="sumService" class="text-[#151618] font-medium">—</span>
+        <span class="text-[#111111]/40">خدمت</span>
+        <span id="sumService" class="text-[#111111] font-medium">—</span>
       </div>
       <div class="flex items-center justify-between">
-        <span class="text-[#151618]/40">تاریخ</span>
-        <span id="sumDate" class="text-[#151618] font-medium">—</span>
+        <span class="text-[#111111]/40">تاریخ</span>
+        <span id="sumDate" class="text-[#111111] font-medium">—</span>
       </div>
       <div class="flex items-center justify-between">
-        <span class="text-[#151618]/40">ساعت</span>
-        <span id="sumTime" class="text-[#151618] font-medium">—</span>
+        <span class="text-[#111111]/40">ساعت</span>
+        <span id="sumTime" class="text-[#111111] font-medium">—</span>
       </div>
       <div class="flex items-center justify-between">
-        <span class="text-[#151618]/40">مدت</span>
-        <span id="sumDuration" class="text-[#151618] font-medium">—</span>
+        <span class="text-[#111111]/40">مدت</span>
+        <span id="sumDuration" class="text-[#111111] font-medium">—</span>
       </div>
       <div class="border-t border-primary/10 pt-1 flex items-center justify-between">
-        <span class="text-[#151618]/60 font-medium">مبلغ قابل پرداخت</span>
+        <span class="text-[#111111]/60 font-medium">مبلغ قابل پرداخت</span>
         <span id="sumPrice" class="text-primary font-bold text-xs">—</span>
       </div>
     </div>
@@ -280,9 +172,9 @@ img { box-shadow: none !important; }
 <div class="fixed bottom-4 left-0 right-0 z-40 px-4">
   <div class="island max-w-md mx-auto p-2.5 flex items-center gap-2">
     <button id="backBtn" class="hidden shrink-0 w-10 h-10 rounded-xl bg-surface-light items-center justify-center" aria-label="مرحله قبل">
-      <i data-lucide="arrow-right" class="w-4 h-4 text-[#151618]/60"></i>
+      <i data-lucide="arrow-right" class="w-4 h-4 text-[#111111]/60"></i>
     </button>
-    <button id="ctaBtn" class="flex-1 flex items-center justify-center gap-2 bg-gradient-to-l from-primary to-primary-dark text-[#FFFFFF] font-bold text-sm py-3 rounded-xl shadow-lg shadow-[#151618]/25">
+    <button id="ctaBtn" class="flex-1 flex items-center justify-center gap-2 bg-primary text-on-primary font-bold text-sm py-3 rounded-xl shadow-lg shadow-[#111111]/25">
       <span id="ctaLabel">ادامه</span>
       <i data-lucide="arrow-left" class="w-4 h-4"></i>
     </button>
