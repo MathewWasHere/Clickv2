@@ -2,6 +2,7 @@
 <html>
 <head>
   <meta charset="UTF-8">
+  <script src="assets/auth.js"></script>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="manifest" href="manifest.webmanifest" />
   <meta name="theme-color" content="#ECEEF0" />
@@ -20,6 +21,7 @@
     }
   </style>
   <link rel="stylesheet" href="assets/dark.css" />
+  <link rel="stylesheet" href="assets/admin.css" />
 </head>
 
 <body dir="rtl" lang="fa"><link rel="preconnect" href="https://unpkg.com" />
@@ -39,14 +41,14 @@
   --color-surface: #FFFFFF;
   --color-surface-light: #F3F4F6;
   --color-surface-lighter: #E5E7EB;
-  --color-base: #ECEEF0;
+  --color-canvas: #ECEEF0;
   --color-on-primary: #FFFFFF;
   --font-family-vazir: 'Vazirmatn', sans-serif;
 }
 </style>
 <style>* { font-family: 'Vazirmatn', sans-serif; } body { background: #ECEEF0; margin: 0; }</style>
 
-<header class="sticky top-2 z-40 px-3">
+<header class="admin-header">
   <div class="island max-w-md mx-auto px-4 py-3 flex items-center gap-3">
     <a href="admin-dashboard.html" class="w-9 h-9 rounded-full bg-surface-light flex items-center justify-center"><i data-lucide="arrow-right" class="w-4 h-4 text-[#111111]/60"></i></a>
     <h1 class="text-[#111111] font-bold text-lg">تنظیمات</h1>
@@ -56,25 +58,53 @@
 
 <div class="max-w-md mx-auto px-4 space-y-6 mb-28">
 
+  <!-- Owner-managed admin access -->
+  <section aria-labelledby="adminAccessTitle">
+    <h2 id="adminAccessTitle" class="text-[#111111] font-bold text-sm mb-3 flex items-center gap-2"><i data-lucide="shield-check" class="w-4 h-4 text-primary"></i> مدیریت دسترسی مدیران</h2>
+    <div class="bg-surface rounded-2xl border border-[#111111]/5 p-4 space-y-4">
+      <p id="adminAccessHelp" class="text-[#111111]/60 text-xs leading-relaxed">فقط مالکان می‌توانند شماره مدیر جدید اضافه کنند.</p>
+      <form id="addAdminForm" novalidate>
+        <fieldset id="adminAccessFields" disabled aria-describedby="adminAccessHelp" class="space-y-3">
+          <legend class="text-[#111111] text-sm font-semibold mb-2">افزودن مدیر</legend>
+          <label for="newAdminPhone" class="text-[#111111]/70 text-xs block">شماره موبایل مدیر جدید</label>
+          <input id="newAdminPhone" name="adminPhone" type="tel" inputmode="tel" autocomplete="off" maxlength="24" dir="ltr" placeholder="09xxxxxxxxx" required aria-describedby="adminAccessHelp adminAccessError" class="w-full bg-canvas border border-[#111111]/10 rounded-xl px-4 py-3 text-[#111111] text-sm outline-none focus:border-primary" />
+          <button type="submit" id="addAdminButton" class="w-full bg-primary text-on-primary font-bold text-sm py-3 rounded-xl">افزودن مدیر</button>
+        </fieldset>
+      </form>
+      <p id="adminAccessError" role="alert" class="text-red-500 text-xs leading-relaxed" hidden></p>
+      <p id="adminAccessSuccess" role="status" class="text-[#111111] text-xs leading-relaxed" hidden></p>
+      <div class="border-t border-[#111111]/5 pt-3">
+        <h3 class="text-[#111111]/70 text-xs font-semibold mb-2">مالکان ثابت</h3>
+        <ul id="ownerNumbers" class="space-y-2" aria-label="شماره‌های مالکان"></ul>
+      </div>
+      <div>
+        <h3 class="text-[#111111]/70 text-xs font-semibold mb-2">مدیران مجاز</h3>
+        <ul id="adminNumbers" class="space-y-2" aria-label="شماره‌های مدیران"></ul>
+        <p id="noAdmins" class="text-[#111111]/50 text-xs" hidden>هنوز مدیری اضافه نشده است.</p>
+      </div>
+      <p class="text-[#111111]/60 text-[11px] leading-relaxed">نسخه آزمایشی: این فهرست فقط در همین مرورگر ذخیره می‌شود و بین دستگاه‌ها همگام نیست.</p>
+    </div>
+  </section>
+
   <!-- Shop Info -->
   <section>
     <h2 class="text-[#111111] font-bold text-sm mb-3 flex items-center gap-2"><i data-lucide="store" class="w-4 h-4 text-primary"></i> اطلاعات آرایشگاه</h2>
     <div class="bg-surface rounded-2xl border border-[#111111]/5 p-4 space-y-3">
       <div>
         <label class="text-[#111111]/40 text-xs mb-1 block">نام آرایشگاه</label>
-        <input type="text" value="پیرایش" class="w-full bg-base border border-[#111111]/10 rounded-xl px-4 py-3 text-[#111111] text-sm outline-none focus:border-primary" />
+        <input type="text" value="پیرایش" class="w-full bg-canvas border border-[#111111]/10 rounded-xl px-4 py-3 text-[#111111] text-sm outline-none focus:border-primary" />
       </div>
       <div>
         <label class="text-[#111111]/40 text-xs mb-1 block">آدرس</label>
-        <input type="text" value="تهران، خیابان ولیعصر، پلاک ۱۲۳" class="w-full bg-base border border-[#111111]/10 rounded-xl px-4 py-3 text-[#111111] text-sm outline-none focus:border-primary" />
+        <input type="text" value="تهران، خیابان ولیعصر، پلاک ۱۲۳" class="w-full bg-canvas border border-[#111111]/10 rounded-xl px-4 py-3 text-[#111111] text-sm outline-none focus:border-primary" />
       </div>
       <div>
         <label class="text-[#111111]/40 text-xs mb-1 block">شماره تماس</label>
-        <input type="tel" value="۰۹۱۷۹۰۹۵۰۲۸" class="w-full bg-base border border-[#111111]/10 rounded-xl px-4 py-3 text-[#111111] text-sm outline-none focus:border-primary" dir="ltr" />
+        <input type="tel" value="۰۹۱۷۹۰۹۵۰۲۸" class="w-full bg-canvas border border-[#111111]/10 rounded-xl px-4 py-3 text-[#111111] text-sm outline-none focus:border-primary" dir="ltr" />
       </div>
       <div>
         <label class="text-[#111111]/40 text-xs mb-1 block">توضیحات</label>
-        <textarea rows="2" class="w-full bg-base border border-[#111111]/10 rounded-xl px-4 py-3 text-[#111111] text-sm outline-none focus:border-primary resize-none">بهترین خدمات آرایشگری مردانه در تهران</textarea>
+        <textarea rows="2" class="w-full bg-canvas border border-[#111111]/10 rounded-xl px-4 py-3 text-[#111111] text-sm outline-none focus:border-primary resize-none">بهترین خدمات آرایشگری مردانه در تهران</textarea>
       </div>
     </div>
   </section>
@@ -86,18 +116,18 @@
       <div class="flex items-center justify-between py-2">
         <span class="text-[#111111] text-xs">شنبه تا چهارشنبه</span>
         <div class="flex items-center gap-2">
-          <input type="text" value="۰۹:۰۰" class="w-14 bg-base border border-[#111111]/10 rounded-lg text-center py-1.5 text-[#111111] text-xs outline-none" />
+          <input type="text" value="۰۹:۰۰" class="w-14 bg-canvas border border-[#111111]/10 rounded-lg text-center py-1.5 text-[#111111] text-xs outline-none" />
           <span class="text-[#111111]/30 text-xs">تا</span>
-          <input type="text" value="۲۱:۰۰" class="w-14 bg-base border border-[#111111]/10 rounded-lg text-center py-1.5 text-[#111111] text-xs outline-none" />
+          <input type="text" value="۲۱:۰۰" class="w-14 bg-canvas border border-[#111111]/10 rounded-lg text-center py-1.5 text-[#111111] text-xs outline-none" />
         </div>
       </div>
       <div class="border-t border-[#111111]/5"></div>
       <div class="flex items-center justify-between py-2">
         <span class="text-[#111111] text-xs">پنجشنبه</span>
         <div class="flex items-center gap-2">
-          <input type="text" value="۰۹:۰۰" class="w-14 bg-base border border-[#111111]/10 rounded-lg text-center py-1.5 text-[#111111] text-xs outline-none" />
+          <input type="text" value="۰۹:۰۰" class="w-14 bg-canvas border border-[#111111]/10 rounded-lg text-center py-1.5 text-[#111111] text-xs outline-none" />
           <span class="text-[#111111]/30 text-xs">تا</span>
-          <input type="text" value="۲۲:۰۰" class="w-14 bg-base border border-[#111111]/10 rounded-lg text-center py-1.5 text-[#111111] text-xs outline-none" />
+          <input type="text" value="۲۲:۰۰" class="w-14 bg-canvas border border-[#111111]/10 rounded-lg text-center py-1.5 text-[#111111] text-xs outline-none" />
         </div>
       </div>
       <div class="border-t border-[#111111]/5"></div>
@@ -151,21 +181,21 @@
       <div class="border-t border-[#111111]/5 pt-3">
         <h4 class="text-[#111111]/50 text-xs font-medium mb-2">آخرین پیامک‌های ارسالی</h4>
         <div class="space-y-1.5">
-          <div class="flex items-center justify-between bg-base rounded-lg p-2">
+          <div class="flex items-center justify-between bg-canvas rounded-lg p-2">
             <div>
               <p class="text-[#111111] text-[10px]">تأییدیه رزرو — امیرحسین محمدی</p>
               <p class="text-[#111111]/20 text-[9px]">۳۰ تیر ۱۴۰۴ — ۱۰:۳۲</p>
             </div>
             <span class="text-green-400 text-[9px]">ارسال شد</span>
           </div>
-          <div class="flex items-center justify-between bg-base rounded-lg p-2">
+          <div class="flex items-center justify-between bg-canvas rounded-lg p-2">
             <div>
               <p class="text-[#111111] text-[10px]">یادآوری — علی کریمی</p>
               <p class="text-[#111111]/20 text-[9px]">۲۹ تیر ۱۴۰۴ — ۱۴:۰۰</p>
             </div>
             <span class="text-green-400 text-[9px]">ارسال شد</span>
           </div>
-          <div class="flex items-center justify-between bg-base rounded-lg p-2">
+          <div class="flex items-center justify-between bg-canvas rounded-lg p-2">
             <div>
               <p class="text-[#111111] text-[10px]">تأییدیه رزرو — محمد رضایی</p>
               <p class="text-[#111111]/20 text-[9px]">۲۸ تیر ۱۴۰۴ — ۱۱:۱۵</p>
@@ -184,7 +214,7 @@
       <div class="flex items-center justify-between mb-3">
         <span class="text-[#111111] text-xs">درصد کمیسیون</span>
         <div class="flex items-center gap-2">
-          <input type="text" value="۱۰" class="w-14 bg-base border border-[#111111]/10 rounded-lg text-center py-1.5 text-primary text-sm font-bold outline-none" />
+          <input type="text" value="۱۰" class="w-14 bg-canvas border border-[#111111]/10 rounded-lg text-center py-1.5 text-primary text-sm font-bold outline-none" />
           <span class="text-[#111111]/30 text-xs">٪</span>
         </div>
       </div>
@@ -193,6 +223,9 @@
   </section>
 
   <button id="saveSettings" class="w-full bg-primary text-on-primary font-bold py-3.5 rounded-xl">ذخیره تنظیمات</button>
+  <button type="button" data-logout class="flex items-center justify-center gap-2 w-full text-red-500 text-sm py-3 rounded-xl border border-red-500/20">
+    <i data-lucide="log-out" class="w-4 h-4"></i> خروج از حساب
+  </button>
 </div>
 
 <!-- Bottom island navbar -->
@@ -206,9 +239,7 @@
 </nav>
 </body>
 <script src="assets/data.js"></script>
-<script>
-document.getElementById('saveSettings').addEventListener('click', function(){ P.toast('تنظیمات ذخیره شد'); });
-</script>
+<script src="assets/page-admin-settings.js"></script>
 <script src="assets/theme.js"></script>
 <script src="assets/pwa.js"></script>
 <script>if (window.lucide) lucide.createIcons();</script>

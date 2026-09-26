@@ -9,7 +9,7 @@ body[data-theme="dark"] {
   --color-primary: #FFFFFF;
   --color-primary-dark: #F3F4F6;
   --color-accent: #9CA3AF;
-  --color-base: #0A0A0A;
+  --color-canvas: #0A0A0A;
   --color-surface: #1C1C1E;
   --color-surface-light: #2C2C2E;
   --color-surface-lighter: #3A3A3D;
@@ -42,7 +42,7 @@ body[data-theme="dark"] .border-\[\#111111\]\/10 { border-color: rgba(255,255,25
 body[data-theme="dark"] .border-\[\#111111\]\/15 { border-color: rgba(255,255,255,0.14) !important; }
 body[data-theme="dark"] .border-\[\#111111\]\/20 { border-color: rgba(255,255,255,0.18) !important; }
 
-body[data-theme="dark"] .bg-base\/90 { background-color: rgba(10,10,10,0.9) !important; }
+body[data-theme="dark"] .bg-canvas\/90 { background-color: rgba(10,10,10,0.9) !important; }
 
 /* Steps */
 body[data-theme="dark"] .step-active { background: #FFFFFF !important; color: #0A0A0A !important; }
@@ -143,3 +143,6 @@ body[data-theme="dark"] .shadow-\[\#111111\]\/25 { --tw-shadow-color: rgba(0,0,0
 
 /* Shimmer sweep stays visible on dark cards */
 body[data-theme="dark"] .shimmer::after { background: linear-gradient(90deg, transparent, rgba(255,255,255,0.06), transparent) !important; }
+
+/* Honor native hidden states even when a Tailwind display utility is present. */
+[hidden] { display: none !important; }

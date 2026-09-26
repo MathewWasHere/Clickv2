@@ -1,5 +1,6 @@
 /* admin services: list catalog + custom services, add/edit via modals, edit seed prices/details, delete custom */
 (function () {
+  if (!P.auth.isAdmin()) return;
   function enDigits(str) {
     return String(str).replace(/[۰-۹]/g, function (c) { return '۰۱۲۳۴۵۶۷۸۹'.indexOf(c); });
   }

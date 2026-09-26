@@ -20,13 +20,12 @@
   });
 
   /* ---------- dynamic cards (reflect admin price/detail edits + custom services) ---------- */
-  function thumb(s) {
-    if (s.img) {
-      return '<div class="w-16 h-16 rounded-xl overflow-hidden shrink-0">' +
-        '<img src="' + s.img + '" alt="" class="w-full h-full object-cover" /></div>';
-    }
-    return '<div class="w-16 h-16 rounded-xl bg-surface-light flex items-center justify-center shrink-0">' +
-      '<i data-lucide="scissors" class="w-5 h-5 text-primary"></i></div>';
+  function thumb(s, wide) {
+    var classes = wide ? 'w-full aspect-[3/2] mb-3' : 'w-20 h-20 shrink-0';
+    return '<div class="' + classes + ' rounded-xl overflow-hidden bg-surface-light flex items-center justify-center">' +
+      (s.img
+        ? '<img data-service-image alt="" width="1200" height="800" loading="lazy" decoding="async" class="w-full h-full object-cover" />'
+        : '<i data-lucide="scissors" class="w-5 h-5 text-primary"></i>') + '</div>';
   }
 
   function mainCard(s) {
@@ -52,6 +51,7 @@
     el.href = 'service-detail.html?s=' + s.id;
     el.className = 'block bg-surface rounded-2xl border border-primary/10 p-4';
     el.innerHTML =
+      thumb(s, true) +
       '<div class="flex items-center justify-between mb-2">' +
       '<h3 class="text-[#111111] font-bold text-sm"></h3>' +
       (s.badge ? '<span class="bg-primary/10 text-primary text-[10px] font-semibold px-2 py-1 rounded-lg badge"></span>' : '') +
@@ -66,6 +66,8 @@
   }
 
   function fill(el, s) {
+    var img = el.querySelector('[data-service-image]');
+    if (img) { img.src = s.img; img.alt = s.name; }
     el.querySelector('h3').textContent = s.name;
     var p = el.querySelector('p'); if (p) p.textContent = s.desc || '';
     el.querySelector('.price').textContent = P.money(s.price);

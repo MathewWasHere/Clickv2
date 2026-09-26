@@ -2,6 +2,7 @@
 <html>
 <head>
   <meta charset="UTF-8">
+  <script src="assets/auth.js"></script>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="manifest" href="manifest.webmanifest" />
   <meta name="theme-color" content="#ECEEF0" />
@@ -20,6 +21,7 @@
     }
   </style>
   <link rel="stylesheet" href="assets/dark.css" />
+  <link rel="stylesheet" href="assets/admin.css" />
 </head>
 
 <body dir="rtl" lang="fa"><link rel="preconnect" href="https://unpkg.com" />
@@ -39,22 +41,18 @@
   --color-surface: #FFFFFF;
   --color-surface-light: #F3F4F6;
   --color-surface-lighter: #E5E7EB;
-  --color-base: #ECEEF0;
+  --color-canvas: #ECEEF0;
   --color-on-primary: #FFFFFF;
   --font-family-vazir: 'Vazirmatn', sans-serif;
 }
 </style>
 <style>* { font-family: 'Vazirmatn', sans-serif; } body { background: #ECEEF0; margin: 0; }</style>
 
-<header class="sticky top-2 z-40 px-3">
+<header class="admin-header">
   <div class="island max-w-md mx-auto px-4 py-3 flex items-center justify-between">
     <div class="flex items-center gap-3">
       <a href="admin-dashboard.html" class="w-9 h-9 rounded-full bg-surface-light flex items-center justify-center"><i data-lucide="arrow-right" class="w-4 h-4 text-[#111111]/60"></i></a>
       <h1 class="text-[#111111] font-bold text-lg">مدیریت رزروها</h1>
-    </div>
-    <div class="flex items-center gap-2">
-      <button class="w-9 h-9 rounded-full bg-surface-light flex items-center justify-center"><i data-lucide="filter" class="w-4 h-4 text-[#111111]/40"></i></button>
-      <button class="w-9 h-9 rounded-full bg-surface-light flex items-center justify-center"><i data-lucide="search" class="w-4 h-4 text-[#111111]/40"></i></button>
     </div>
   </div>
 </header>

@@ -1,0 +1,17 @@
+/* Keep the sticky navbar's top inset and content gap in normal flow.
+   A sticky top offset alone moves the navbar over the first content row. */
+.admin-header {
+  position: sticky;
+  top: 0;
+  z-index: 40;
+  padding: max(0.5rem, env(safe-area-inset-top, 0px)) 0.75rem 1rem;
+  /* Opaque in both themes so scrolling items don't show through the navbar. */
+  background-color: var(--color-canvas, #ECEEF0);
+}
+
+/* Non-owner admins can see the access controls but cannot interact with them. */
+#adminAccessFields:disabled input,
+#adminAccessFields:disabled button {
+  opacity: 0.5;
+  cursor: not-allowed;
+}

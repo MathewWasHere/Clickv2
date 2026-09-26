@@ -1,5 +1,6 @@
 /* admin bookings: full list with status management */
 (function () {
+  if (!P.auth.isAdmin()) return;
   var filter = 'all';
   var STATUS = {
     confirmed: { label: 'تأیید شده', cls: 'bg-green-500/10 text-green-400' },
@@ -32,7 +33,7 @@
       '</div>' +
       '<span class="text-[10px] font-semibold px-2 py-1 rounded-lg ' + st.cls + '">' + st.label + '</span>' +
       '</div>' +
-      '<div class="bg-base rounded-lg p-2.5 mb-2.5">' +
+      '<div class="bg-canvas rounded-lg p-2.5 mb-2.5">' +
       '<div class="flex justify-between text-[10px] mb-1"><span class="text-[#111111]/30">خدمت</span><span data-service class="text-[#111111]"></span></div>' +
       '<div class="flex justify-between text-[10px] mb-1"><span class="text-[#111111]/30">تاریخ</span><span class="text-[#111111]">' + P.shortDateFa(P.fromKey(b.dateKey)) + ' — ' + b.time + '</span></div>' +
       '<div class="flex justify-between text-[10px] mb-1"><span class="text-[#111111]/30">مبلغ</span><span class="text-primary font-semibold">' + P.moneyShort(b.price) + '</span></div>' +

@@ -1,5 +1,6 @@
 /* admin dashboard: live stats from stored bookings */
 (function () {
+  if (!P.auth.isAdmin()) return;
   var bookings = P.store.bookings();
   var todayKey = P.dateKey(new Date());
   var paid = bookings.filter(function (b) { return b.paid; });
@@ -9,7 +10,10 @@
   function set(id, v) { var el = document.getElementById(id); if (el) el.textContent = v; }
   set('statTotal', P.fa(bookings.length));
   set('statRevenue', revenue >= 1000000 ? P.fa((revenue / 1000000).toFixed(1)) + 'M' : P.fa(revenue.toLocaleString('en-US')));
-  set('statNew', P.fa(bookings.filter(function (b) { return Date.now() - b.createdAt < 30 * 86400000; }).length));
+  set('statNew', P.fa(P.store.customers().filter(function (member) {
+    var age = Date.now() - Date.parse(member.createdAt);
+    return age >= 0 && age < 30 * 86400000;
+  }).length));
   set('statToday', P.fa(bookings.filter(function (b) { return b.dateKey === todayKey && b.status !== 'cancelled'; }).length));
   set('commGross', P.money(revenue));
   set('commFee', P.money(commission));

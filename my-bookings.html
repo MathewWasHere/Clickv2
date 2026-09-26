@@ -2,6 +2,7 @@
 <html>
 <head>
   <meta charset="UTF-8">
+  <script src="assets/auth.js"></script>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="manifest" href="manifest.webmanifest" />
   <meta name="theme-color" content="#ECEEF0" />
@@ -39,14 +40,25 @@
   --color-surface: #FFFFFF;
   --color-surface-light: #F3F4F6;
   --color-surface-lighter: #E5E7EB;
-  --color-base: #ECEEF0;
+  --color-canvas: #ECEEF0;
   --color-on-primary: #FFFFFF;
   --font-family-vazir: 'Vazirmatn', sans-serif;
 }
 </style>
-<style>* { font-family: 'Vazirmatn', sans-serif; } body { background: #ECEEF0; margin: 0; }</style>
+<style>
+* { font-family: 'Vazirmatn', sans-serif; }
+body { background: #ECEEF0; margin: 0; }
+/* Reserve the top inset and content gap in flow; mask cards while scrolling. */
+.bookings-header {
+  position: sticky;
+  top: 0;
+  z-index: 40;
+  padding: max(0.5rem, env(safe-area-inset-top, 0px)) 0.75rem 1rem;
+  background-color: var(--color-canvas, #ECEEF0);
+}
+</style>
 
-<header class="sticky top-2 z-40 px-3">
+<header class="bookings-header">
   <div class="island max-w-md mx-auto px-4 py-3 flex items-center justify-between">
     <div class="flex items-center gap-3">
       <a href="home.html" class="w-9 h-9 rounded-full bg-surface-light flex items-center justify-center"><i data-lucide="arrow-right" class="w-4 h-4 text-[#111111]/60"></i></a>
@@ -55,14 +67,15 @@
   </div>
 </header>
 
+<main>
 <!-- Tabs -->
-<div class="max-w-md mx-auto px-4 mt-4 flex gap-2 mb-4">
+<div class="max-w-md mx-auto px-4 flex gap-2 mb-4">
   <button data-tab="upcoming" class="flex-1 bg-primary text-[#FFFFFF] text-xs font-semibold py-2.5 rounded-xl">پیش‌رو</button>
   <button data-tab="past" class="flex-1 bg-surface-light text-[#111111]/50 text-xs font-medium py-2.5 rounded-xl">گذشته</button>
 </div>
 
 <div id="bookingsList" class="max-w-md mx-auto px-4 space-y-3 mb-28"></div>
-</div>
+</main>
 
 <nav class="bottom-nav fixed bottom-4 left-0 right-0 z-50 px-4 pointer-events-none">
   <div class="island max-w-md mx-auto flex items-center justify-around py-2 pointer-events-auto">

@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+  <title>ورود به حساب — کلیک</title>
+  <meta charset="UTF-8">
+  <script src="assets/auth.js"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="manifest" href="manifest.webmanifest" />
+  <meta name="theme-color" content="#ECEEF0" />
+  <meta name="color-scheme" content="light dark" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <link rel="apple-touch-icon" href="assets/icon-192.png" />
+  <link rel="preconnect" href="https://unpkg.com" />
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+  <script src="https://unpkg.com/@fortawesome/fontawesome-free@6.7.2/js/all.min.js"></script>
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <style>
+    * {
+      scrollbar-width: none;
+      scrollbar-color: rgba(0, 0, 0, 0.2) transparent;
+    }
+  </style>
+  <link rel="stylesheet" href="assets/dark.css" />
+</head>
+
+<body dir="rtl" lang="fa"><link rel="preconnect" href="https://unpkg.com" />
+<style>
+    * {
+      scrollbar-width: none;
+      scrollbar-color: rgba(0, 0, 0, 0.2) transparent;
+    }
+  </style>
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700;800;900&display=swap" />
+<style type="text/tailwindcss">
+@theme {
+  --color-primary: #111111;
+  --color-primary-dark: #000000;
+  --color-accent: #6B7280;
+  --color-surface: #FFFFFF;
+  --color-surface-light: #F3F4F6;
+  --color-surface-lighter: #E5E7EB;
+  --color-canvas: #ECEEF0;
+  --color-on-primary: #FFFFFF;
+  --font-family-vazir: 'Vazirmatn', sans-serif;
+}
+</style>
+<style>* { font-family: 'Vazirmatn', sans-serif; } body { background: #ECEEF0; margin: 0; }</style>
+
+<header class="sticky top-2 z-40 px-3">
+  <div class="island max-w-md mx-auto px-4 py-3 flex items-center gap-3">
+    <a href="home.html" aria-label="بازگشت به خانه" class="w-9 h-9 rounded-full bg-surface-light flex items-center justify-center"><i data-lucide="arrow-right" class="w-4 h-4 text-[#111111]/60"></i></a>
+    <h1 class="text-[#111111] font-bold text-lg">ورود به حساب</h1>
+  </div>
+</header>
+
+<main class="max-w-md mx-auto px-4 mt-8 mb-12">
+  <div class="bg-surface rounded-2xl border border-[#111111]/10 p-6">
+    <h2 id="loginHeading" class="text-[#111111] font-bold text-xl mb-2">به کلیک خوش آمدید</h2>
+    <p id="loginDescription" class="text-[#111111]/60 text-sm leading-relaxed mb-6">برای ورود، شماره موبایل خود را وارد کنید.</p>
+    <p class="bg-primary/5 text-[#111111]/70 text-xs leading-relaxed p-3 rounded-xl mb-6">ورود آزمایشی: پیامکی ارسال نمی‌شود. کد تأیید <strong dir="ltr">1234</strong> است. پنل مدیریت فقط برای مالکان و شماره‌های مجاز در دسترس است.</p>
+
+    <form id="phoneForm" novalidate>
+      <label for="loginPhone" class="block text-[#111111] text-sm font-semibold mb-2">شماره موبایل</label>
+      <input id="loginPhone" name="phone" type="tel" inputmode="tel" autocomplete="tel" dir="ltr" maxlength="24" placeholder="09179095028" required aria-describedby="loginError" class="w-full bg-surface-light border border-[#111111]/10 rounded-xl px-4 py-3 text-[#111111] text-sm outline-none focus:border-primary" />
+      <div class="flex items-start gap-3 mt-4 text-[#111111]/70 text-xs leading-relaxed">
+        <input id="acceptTerms" name="acceptTerms" type="checkbox" checked required aria-describedby="loginError" class="w-5 h-5 shrink-0 mt-0.5 accent-primary" />
+        <label for="acceptTerms">شرایط استفاده و حریم خصوصی را خوانده‌ام و می‌پذیرم.</label>
+      </div>
+      <button type="submit" class="w-full bg-primary text-on-primary font-bold py-3.5 rounded-xl mt-4">دریافت کد آزمایشی</button>
+    </form>
+
+    <form id="codeForm" hidden novalidate>
+      <p class="text-[#111111]/60 text-xs mb-4">شماره ورود: <b id="loginPhoneDisplay" dir="ltr"></b></p>
+      <label for="loginCode" class="block text-[#111111] text-sm font-semibold mb-2">کد تأیید</label>
+      <input id="loginCode" name="code" type="text" inputmode="numeric" autocomplete="one-time-code" dir="ltr" maxlength="4" placeholder="1234" required aria-describedby="loginError" class="w-full bg-surface-light border border-[#111111]/10 rounded-xl px-4 py-3 text-[#111111] text-lg text-center tracking-widest outline-none focus:border-primary" />
+      <button type="submit" class="w-full bg-primary text-on-primary font-bold py-3.5 rounded-xl mt-4">تأیید و ادامه</button>
+      <button id="editLoginPhone" type="button" class="w-full text-primary font-semibold text-sm py-3 mt-2">تغییر شماره موبایل</button>
+    </form>
+    <form id="detailsForm" hidden novalidate>
+      <label for="loginName" class="block text-[#111111] text-sm font-semibold mb-2">نام و نام خانوادگی</label>
+      <input id="loginName" name="name" type="text" autocomplete="name" maxlength="100" required aria-describedby="loginError" class="w-full bg-surface-light border border-[#111111]/10 rounded-xl px-4 py-3 text-[#111111] text-sm outline-none focus:border-primary mb-4" />
+      <fieldset aria-describedby="birthDateHint loginError">
+        <legend class="block text-[#111111] text-sm font-semibold mb-3">تاریخ تولد (شمسی)</legend>
+        <div class="grid grid-cols-[1fr_1.4fr_0.8fr] gap-2">
+          <div class="min-w-0">
+            <label for="birthYear" class="block text-[#111111]/70 text-xs mb-1.5">سال</label>
+            <select id="birthYear" name="birthYear" required aria-describedby="birthDateHint loginError" class="w-full min-w-0 h-12 bg-surface-light border border-[#111111]/10 rounded-xl px-2 text-[#111111] text-sm outline-none focus:border-primary">
+              <option value="">سال</option>
+            </select>
+          </div>
+          <div class="min-w-0">
+            <label for="birthMonth" class="block text-[#111111]/70 text-xs mb-1.5">ماه</label>
+            <select id="birthMonth" name="birthMonth" required disabled aria-describedby="birthDateHint loginError" class="w-full min-w-0 h-12 bg-surface-light border border-[#111111]/10 rounded-xl px-2 text-[#111111] text-sm outline-none focus:border-primary disabled:opacity-50">
+              <option value="">ماه</option>
+            </select>
+          </div>
+          <div class="min-w-0">
+            <label for="birthDay" class="block text-[#111111]/70 text-xs mb-1.5">روز</label>
+            <select id="birthDay" name="birthDay" required disabled aria-describedby="birthDateHint loginError" class="w-full min-w-0 h-12 bg-surface-light border border-[#111111]/10 rounded-xl px-2 text-[#111111] text-sm outline-none focus:border-primary disabled:opacity-50">
+              <option value="">روز</option>
+            </select>
+          </div>
+        </div>
+        <p id="birthDateHint" class="text-[#111111]/70 text-xs leading-relaxed mt-2">تاریخ تولد خود را وارد کنید تا در روز تولد خود شامل تخفیف شوید</p>
+      </fieldset>
+      <button type="submit" class="w-full bg-primary text-on-primary font-bold py-3.5 rounded-xl mt-4">ذخیره و ادامه</button>
+    </form>
+    <p id="loginError" role="alert" aria-live="polite" class="text-red-500 text-sm mt-4" hidden></p>
+  </div>
+  <a id="loginBookingBack" href="booking.html#step3" hidden class="block text-center text-primary text-sm py-3 mt-2">بازگشت و ویرایش رزرو</a>
+  <a href="home.html" class="block text-center text-primary text-sm py-4 mt-2">ادامه بازدید از سایت</a>
+</main>
+<style>[hidden] { display: none !important; }</style>
+<script src="assets/data.js"></script>
+<script src="assets/profile-details.js"></script>
+<script src="assets/page-login.js"></script>
+<script src="assets/theme.js"></script>
+<script src="assets/pwa.js"></script>
+<script>if (window.lucide) lucide.createIcons();</script>
+</body>
+</html>

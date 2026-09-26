@@ -41,7 +41,7 @@
   --color-surface: #FFFFFF;
   --color-surface-light: #F3F4F6;
   --color-surface-lighter: #E5E7EB;
-  --color-base: #ECEEF0;
+  --color-canvas: #ECEEF0;
   --color-on-primary: #FFFFFF;
   --font-family-vazir: 'Vazirmatn', sans-serif;
 }
@@ -54,6 +54,44 @@ body { background: #ECEEF0; margin: 0; }
 .shimmer { position: relative; overflow: hidden; }
 .shimmer::after { content: ''; position: absolute; top: 0; left: -100%; width: 50%; height: 100%; background: linear-gradient(90deg, transparent, rgba(21,22,24,0.06), transparent); animation: shimmer 3s infinite; }
 @keyframes shimmer { 100% { left: 100%; } }
+
+/* Match the actual selected site theme, including saved preferences.
+   Solid surfaces remain readable while the optional background files are absent. */
+.home-hero {
+  --hero-surface: #ECEEF0; --hero-text: #111; --hero-muted: #374151;
+  --hero-badge-border: rgba(17,17,17,.2); --hero-badge-fill: rgba(255,255,255,.55);
+  --hero-button: #111; --hero-button-text: #fff; --hero-button-hover: #333;
+  --hero-shade: linear-gradient(to left, rgba(236,238,240,.9), rgba(236,238,240,.4) 48%, transparent 76%);
+  position: relative; isolation: isolate; overflow: hidden; background: var(--hero-surface); color: var(--hero-text);
+}
+body[data-theme="dark"] .home-hero {
+  --hero-surface: #050505; --hero-text: #fff; --hero-muted: #e5e7eb;
+  --hero-badge-border: rgba(255,255,255,.25); --hero-badge-fill: rgba(255,255,255,.08);
+  --hero-button: #fff; --hero-button-text: #111; --hero-button-hover: #e5e7eb;
+  --hero-shade: linear-gradient(to left, rgba(0,0,0,.8), rgba(0,0,0,.35) 48%, transparent 76%);
+}
+.home-hero__image { position: absolute; inset: 0; background-image: url('assets/lightmode-BG.png'); background-size: cover; background-position: center top; background-repeat: no-repeat; }
+body[data-theme="dark"] .home-hero__image { background-image: url('assets/darkmode-BG.png'); }
+.home-hero__shade { position: absolute; inset: 0; background: var(--hero-shade); }
+.home-hero__inner { position: relative; width: min(100%, 72rem); margin-inline: auto; min-height: clamp(26rem, 45vw, 38rem); padding: clamp(1.25rem, 5vw, 4rem); display: flex; align-items: center; }
+.home-hero__content { width: 46%; margin-inline-end: auto; display: flex; flex-direction: column; align-items: flex-start; gap: 1.25rem; direction: rtl; text-align: right; }
+.home-hero__experience { display: inline-flex; align-items: center; gap: .5rem; padding: .5rem .75rem; border: 1px solid var(--hero-badge-border); border-radius: 999px; background: var(--hero-badge-fill); color: var(--hero-text); font-size: .8rem; }
+.home-hero__experience svg { width: .875rem; height: .875rem; display: block; flex-shrink: 0; }
+.home-hero__title { color: var(--hero-text); font-size: clamp(1.5rem, 3.5vw, 3.25rem); font-weight: 800; line-height: 1.65; margin: 0; }
+.home-hero__description { color: var(--hero-muted); font-size: .95rem; line-height: 1.9; margin: 0; max-width: 24rem; }
+.home-hero__cta { display: inline-flex; align-items: center; justify-content: center; gap: .5rem; min-height: 3rem; padding: .85rem 1.75rem; border-radius: 1rem; background: var(--hero-button); color: var(--hero-button-text); font-size: 1rem; font-weight: 700; text-decoration: none; }
+.home-hero__cta svg { width: 1.25rem; height: 1.25rem; }
+.home-hero__cta:hover { background: var(--hero-button-hover); }
+.home-hero__cta:focus-visible { outline: 3px solid var(--hero-text); outline-offset: 5px; }
+@media (max-width: 639px) {
+  .home-hero__image { background-position: 26% top; }
+  .home-hero__inner { min-height: 27rem; padding: 2rem 1rem 3rem; }
+  .home-hero__content { width: 58%; gap: 1rem; }
+  .home-hero__experience { font-size: .6875rem; padding: .45rem .6rem; gap: .3rem; }
+  .home-hero__description { font-size: .8125rem; }
+  .home-hero__cta { font-size: .875rem; padding-inline: 1rem; }
+}
+
 
 
 </style>
@@ -89,22 +127,24 @@ body { background: #ECEEF0; margin: 0; }
 </header>
 
 <!-- Hero Section -->
-<section class="relative overflow-hidden">
-  <div class="absolute inset-0">
-    <img src="https://images.unsplash.com/photo-1585747860019-8e8ef3845e64?w=800&h=1000&fit=crop&auto=format&q=80" alt="فضای آرایشگاه مردانه" class="w-full h-full object-cover" />
-    <div class="absolute inset-0 bg-gradient-to-b from-[#111111]/60 via-[#111111]/70 to-[#111111]"></div>
-  </div>
-  <div class="relative max-w-md mx-auto px-5 pt-12 pb-16 text-center">
-    <div class="inline-flex items-center gap-2 bg-white/10 border border-white/20 rounded-full px-4 py-1.5 mb-5">
-      <i data-lucide="star" class="w-3.5 h-3.5 text-primary fill-primary"></i>
-      <span class="text-white/80 text-xs font-medium">امتیاز ۴.۹ از ۵ — بیش از ۲٬۰۰۰ مشتری</span>
+<section class="home-hero" dir="rtl" aria-labelledby="heroTitle">
+  <div class="home-hero__image" aria-hidden="true"></div>
+  <div class="home-hero__shade" aria-hidden="true"></div>
+  <div class="home-hero__inner">
+    <div class="home-hero__content">
+      <div class="home-hero__experience">
+        <svg class="home-hero__star" width="14" height="14" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="1" stroke-linejoin="round" aria-hidden="true" focusable="false">
+          <path d="m12 3 2.78 5.63L21 9.54l-4.5 4.39L17.56 20 12 17.08 6.44 20l1.06-6.07L3 9.54l6.22-.91L12 3Z" />
+        </svg>
+        <span>با 10 سال سابقه تخصصی</span>
+      </div>
+      <h2 id="heroTitle" class="home-hero__title">استایل شما،<br/>هویت شماست</h2>
+      <p class="home-hero__description">بهترین خدمات آرایشگری مردانه با متخصصین حرفه‌ای. همین حالا نوبت خود را رزرو کنید.</p>
+      <a href="booking.html" class="home-hero__cta">
+        <i data-lucide="calendar-plus" aria-hidden="true"></i>
+        رزرو نوبت
+      </a>
     </div>
-    <h2 class="text-3xl font-extrabold text-white leading-relaxed mb-3">استایل شما،<br/><span class="gold-text">هویت شماست</span></h2>
-    <p class="text-white/60 text-sm leading-relaxed mb-8 max-w-xs mx-auto">بهترین خدمات آرایشگری مردانه با متخصصین حرفه‌ای. همین حالا نوبت خود را رزرو کنید.</p>
-    <a href="booking.html" class="inline-flex items-center gap-2 bg-primary text-on-primary font-bold text-base px-8 py-4 rounded-2xl pulse-gold">
-      <i data-lucide="calendar-plus" class="w-5 h-5"></i>
-      رزرو نوبت
-    </a>
   </div>
 </section>
 
@@ -144,7 +184,7 @@ body { background: #ECEEF0; margin: 0; }
     <!-- Service Card 1 -->
     <a href="service-detail.html?s=vip" class="snap-start shrink-0 w-40 bg-surface rounded-2xl border border-[#111111]/5 overflow-hidden group">
       <div class="relative h-28 overflow-hidden">
-        <img src="https://images.unsplash.com/photo-1503951914875-452162b0f3f1?w=400&h=300&fit=crop&auto=format&q=80" alt="اصلاح VIP" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+        <img data-service-image="vip" src="assets/services/vip.jpg" width="1200" height="800" loading="lazy" decoding="async" alt="اصلاح VIP" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
       </div>
       <div class="p-3">
         <h4 class="text-[#111111] text-sm font-semibold mb-1">اصلاح VIP</h4>
@@ -158,7 +198,7 @@ body { background: #ECEEF0; margin: 0; }
     <!-- Service Card 2 -->
     <a href="service-detail.html?s=facial" class="snap-start shrink-0 w-40 bg-surface rounded-2xl border border-[#111111]/5 overflow-hidden group">
       <div class="relative h-28 overflow-hidden">
-        <img src="https://images.unsplash.com/photo-1622287162716-f311baa1a2b8?w=400&h=300&fit=crop&auto=format&q=80" alt="پاکسازی و فیشیال" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+        <img data-service-image="facial" src="assets/services/facial.jpg" width="1200" height="800" loading="lazy" decoding="async" alt="پاکسازی و فیشیال" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
       </div>
       <div class="p-3">
         <h4 class="text-[#111111] text-sm font-semibold mb-1">پاکسازی و فیشیال</h4>
@@ -172,7 +212,7 @@ body { background: #ECEEF0; margin: 0; }
     <!-- Service Card 3 -->
     <a href="service-detail.html?s=groom1" class="snap-start shrink-0 w-40 bg-surface rounded-2xl border border-[#111111]/5 overflow-hidden group">
       <div class="relative h-28 overflow-hidden">
-        <img src="https://images.unsplash.com/photo-1593702288056-7927b442d0fa?w=400&h=300&fit=crop&auto=format&q=80" alt="پکیج مراسم" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+        <img data-service-image="groom1" src="assets/services/groom1.jpg" width="1200" height="800" loading="lazy" decoding="async" alt="پکیج مراسم" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
       </div>
       <div class="p-3">
         <h4 class="text-[#111111] text-sm font-semibold mb-1">پکیج مراسم</h4>
@@ -186,7 +226,7 @@ body { background: #ECEEF0; margin: 0; }
     <!-- Service Card 4 -->
     <a href="service-detail.html?s=keratin" class="snap-start shrink-0 w-40 bg-surface rounded-2xl border border-[#111111]/5 overflow-hidden group">
       <div class="relative h-28 overflow-hidden">
-        <img src="https://images.unsplash.com/photo-1605497788044-5a32c7078486?w=400&h=300&fit=crop&auto=format&q=80" alt="کراتین" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+        <img data-service-image="keratin" src="assets/services/keratin.jpg" width="1200" height="800" loading="lazy" decoding="async" alt="کراتین" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
       </div>
       <div class="p-3">
         <h4 class="text-[#111111] text-sm font-semibold mb-1">کراتین و پروتئینه</h4>
@@ -211,7 +251,7 @@ body { background: #ECEEF0; margin: 0; }
   </div>
   <a href="service-detail.html?s=groom3" class="block shimmer bg-gradient-to-l from-surface-light to-surface rounded-2xl border border-primary/15 overflow-hidden">
     <div class="relative">
-      <img src="https://images.unsplash.com/photo-1519699047748-de8e457a634e?w=800&h=400&fit=crop&auto=format&q=80" alt="پکیج داماد ویژه" class="w-full h-44 object-cover" />
+      <img data-service-image="groom3" src="assets/services/groom3.jpg" width="1200" height="800" loading="lazy" decoding="async" alt="پکیج داماد ویژه" class="w-full h-44 object-cover" />
       <div class="absolute top-3 right-3 bg-primary/90 text-[#FFFFFF] text-[10px] font-bold px-3 py-1 rounded-full">محبوب‌ترین</div>
     </div>
     <div class="p-4">
@@ -264,7 +304,7 @@ body { background: #ECEEF0; margin: 0; }
 </section>
 
 <!-- Testimonials -->
-<section class="max-w-md mx-auto px-4 mb-28">
+<section class="max-w-md mx-auto px-4">
   <h3 class="text-[#111111] font-bold text-base mb-4">نظرات مشتریان</h3>
   <div class="space-y-3">
     <div class="bg-surface rounded-2xl border border-[#111111]/5 p-4">
@@ -292,7 +332,7 @@ body { background: #ECEEF0; margin: 0; }
 
 
 <!-- Address / Map -->
-<section class="max-w-md mx-auto px-4 mt-10 mb-32">
+<section class="max-w-md mx-auto px-4 mt-8 mb-32">
   <h3 class="text-[#111111] font-bold text-base mb-4">آدرس ما</h3>
   <div class="bg-surface rounded-2xl border border-[#111111]/5 overflow-hidden">
     <iframe
@@ -352,6 +392,8 @@ body { background: #ECEEF0; margin: 0; }
     var m = a.getAttribute('href').match(/s=([\w-]+)/);
     var s = m && window.P && P.findService(m[1]);
     if (!s) return;
+    var img = a.querySelector('[data-service-image]');
+    if (img && s.img) { img.src = s.img; img.alt = s.name; }
     var h = a.querySelector('h3, h4'); if (h) h.textContent = s.name;
     var d = a.querySelector('p'); if (d && s.desc) d.textContent = s.desc;
     var pr = a.querySelector('.text-primary'); if (pr) pr.textContent = P.money(s.price);

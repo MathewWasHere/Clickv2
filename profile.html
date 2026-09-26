@@ -2,6 +2,7 @@
 <html>
 <head>
   <meta charset="UTF-8">
+  <script src="assets/auth.js"></script>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="manifest" href="manifest.webmanifest" />
   <meta name="theme-color" content="#ECEEF0" />
@@ -39,7 +40,7 @@
   --color-surface: #FFFFFF;
   --color-surface-light: #F3F4F6;
   --color-surface-lighter: #E5E7EB;
-  --color-base: #ECEEF0;
+  --color-canvas: #ECEEF0;
   --color-on-primary: #FFFFFF;
   --font-family-vazir: 'Vazirmatn', sans-serif;
 }
@@ -54,11 +55,8 @@
 </header>
 
 <div class="max-w-md mx-auto px-4 mt-8">
-  <!-- Avatar & Name -->
+  <!-- Name & Phone -->
   <div class="text-center mb-8">
-    <div class="w-20 h-20 rounded-full bg-gradient-to-br from-primary to-primary-dark flex items-center justify-center mx-auto mb-3">
-      <span id="profAvatar" class="text-[#FFFFFF] text-2xl font-bold">ا</span>
-    </div>
     <h2 id="profName" class="text-[#111111] font-bold text-lg">—</h2>
     <p id="profPhone" class="text-[#111111]/40 text-xs mt-1">—</p>
   </div>
@@ -71,8 +69,14 @@
     </div>
     <div>
       <label class="text-[#111111]/50 text-xs mb-1.5 block">شماره موبایل</label>
-      <input id="inputPhone" type="tel" value="" class="w-full bg-surface border border-[#111111]/10 rounded-xl px-4 py-3 text-[#111111] text-sm focus:border-primary outline-none" dir="ltr" />
+      <input id="inputPhone" type="tel" readonly aria-describedby="phoneHelp" value="" class="w-full bg-surface border border-[#111111]/10 rounded-xl px-4 py-3 text-[#111111] text-sm focus:border-primary outline-none" dir="ltr" />
     </div>
+    <p id="phoneHelp" class="text-[#111111]/60 text-xs">برای تغییر شماره، خارج شوید و با شماره جدید وارد شوید.</p>
+    <div>
+      <label for="inputBirthDate" class="text-[#111111]/50 text-xs mb-1.5 block">تاریخ تولد (شمسی)</label>
+      <input id="inputBirthDate" type="text" readonly dir="ltr" class="w-full bg-surface border border-[#111111]/10 rounded-xl px-4 py-3 text-[#111111] text-sm outline-none" />
+    </div>
+    <p id="profileSaveError" role="alert" class="text-red-500 text-xs" hidden></p>
     <button id="saveProfile" class="w-full bg-primary text-on-primary font-bold py-3.5 rounded-xl">ذخیره تغییرات</button>
   </div>
 
@@ -85,36 +89,24 @@
       </div>
       <i data-lucide="chevron-left" class="w-4 h-4 text-[#111111]/20"></i>
     </a>
-    <a href="#" class="flex items-center justify-between bg-surface rounded-xl p-4">
+    <a href="tel:+989179095028" aria-label="پشتیبانی — تماس با ۰۹۱۷۹۰۹۵۰۲۸" class="flex items-center justify-between bg-surface rounded-xl p-4">
       <div class="flex items-center gap-3">
-        <div class="w-9 h-9 rounded-lg bg-primary/10 flex items-center justify-center"><i data-lucide="bell" class="w-4 h-4 text-primary"></i></div>
-        <span class="text-[#111111] text-sm">اعلان‌ها</span>
-      </div>
-      <i data-lucide="chevron-left" class="w-4 h-4 text-[#111111]/20"></i>
-    </a>
-    <a href="#" class="flex items-center justify-between bg-surface rounded-xl p-4">
-      <div class="flex items-center gap-3">
-        <div class="w-9 h-9 rounded-lg bg-primary/10 flex items-center justify-center"><i data-lucide="help-circle" class="w-4 h-4 text-primary"></i></div>
+        <div class="w-9 h-9 rounded-lg bg-primary/10 flex items-center justify-center"><i data-lucide="phone" class="w-4 h-4 text-primary"></i></div>
         <span class="text-[#111111] text-sm">پشتیبانی</span>
-      </div>
-      <i data-lucide="chevron-left" class="w-4 h-4 text-[#111111]/20"></i>
-    </a>
-    <a href="#" class="flex items-center justify-between bg-surface rounded-xl p-4">
-      <div class="flex items-center gap-3">
-        <div class="w-9 h-9 rounded-lg bg-primary/10 flex items-center justify-center"><i data-lucide="info" class="w-4 h-4 text-primary"></i></div>
-        <span class="text-[#111111] text-sm">درباره ما</span>
       </div>
       <i data-lucide="chevron-left" class="w-4 h-4 text-[#111111]/20"></i>
     </a>
   </div>
 
+  <p id="adminAccessNotice" role="status" hidden class="text-[#111111]/70 text-sm leading-relaxed mb-4">این شماره اجازه ورود به پنل مدیریت ندارد. برای دریافت دسترسی با مالک تماس بگیرید.</p>
+
   <!-- Admin Link -->
-  <a href="admin-dashboard.html" class="flex items-center justify-center gap-2 bg-surface-light border border-[#111111]/5 rounded-xl p-3 text-[#111111]/40 text-xs mb-4">
+  <a id="adminPanelLink" hidden href="admin-dashboard.html" class="flex items-center justify-center gap-2 bg-surface-light border border-[#111111]/5 rounded-xl p-3 text-[#111111]/40 text-xs mb-4">
     <i data-lucide="settings" class="w-4 h-4"></i>
     ورود به پنل مدیریت
   </a>
 
-  <button class="flex items-center justify-center gap-2 w-full text-red-400/60 text-sm py-3 mb-28">
+  <button type="button" data-logout class="flex items-center justify-center gap-2 w-full text-red-400/60 text-sm py-3 mb-28">
     <i data-lucide="log-out" class="w-4 h-4"></i>
     خروج از حساب
   </button>

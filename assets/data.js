@@ -7,56 +7,56 @@ P.services = [
     id: 'vip', cat: 'main', name: 'اصلاح VIP',
     desc: 'اصلاح صورت حرفه‌ای با حوله گرم و محصولات ممتاز',
     price: 350000, duration: '۴۵ دقیقه', minutes: 45,
-    img: 'https://images.unsplash.com/photo-1503951914875-452162b0f3f1?w=600&h=400&fit=crop&auto=format&q=80',
+    img: 'assets/services/vip.jpg',
     includes: ['اصلاح مو با قیچی و ماشین', 'اصلاح صورت با حوله گرم', 'شست‌وشو و استایلینگ', 'ماساژ صورت']
   },
   {
     id: 'facial', cat: 'main', name: 'پاکسازی و فیشیال',
     desc: 'پاکسازی عمقی و مراقبت حرفه‌ای پوست صورت با دستگاه',
     price: 450000, duration: '۶۰ دقیقه', minutes: 60,
-    img: 'https://images.unsplash.com/photo-1622287162716-f311baa1a2b8?w=600&h=400&fit=crop&auto=format&q=80',
+    img: 'assets/services/facial.jpg',
     includes: ['پاکسازی عمیق منافذ', 'بخور و اکسیژن‌درمانی', 'ماسک مخصوص پوست', 'مرطوب‌کننده و ضدآفتاب']
   },
   {
     id: 'makeup', cat: 'main', name: 'میکاپ',
     desc: 'گریم و میکاپ حرفه‌ای مردانه برای مراسم و عکاسی',
     price: 500000, duration: '۶۰ دقیقه', minutes: 60,
-    img: 'https://images.unsplash.com/photo-1596728325488-58c87691e9af?w=600&h=400&fit=crop&auto=format&q=80',
+    img: 'assets/services/makeup.jpg',
     includes: ['زیرسازی پوست', 'کاور و متعادل‌سازی', 'فیکس کردن آرایش', 'مناسب عکاسی و مراسم']
   },
   {
     id: 'keratin', cat: 'main', name: 'کراتین و پروتئینه',
     desc: 'ترمیم و تقویت عمیق مو با مواد کراتینه درجه‌یک',
     price: 800000, duration: '۹۰ دقیقه', minutes: 90,
-    img: 'https://images.unsplash.com/photo-1605497788044-5a32c7078486?w=600&h=400&fit=crop&auto=format&q=80',
+    img: 'assets/services/keratin.jpg',
     includes: ['شست‌وشوی تخصصی', 'مواد کراتین درجه‌یک', 'اتوی حرفه‌ای', 'ماندگاری تا ۴ ماه']
   },
   {
     id: 'groom1', cat: 'groom', name: 'پکیج ۱: مراسم', badge: 'پایه',
     desc: 'پکیج پایه مخصوص داماد شامل خدمات اصلی آرایش و پاکسازی برای روز مراسم.',
     price: 6000000, duration: '۳ ساعت', minutes: 180,
-    img: 'https://images.unsplash.com/photo-1593702288056-7927b442d0fa?w=600&h=400&fit=crop&auto=format&q=80',
+    img: 'assets/services/groom1.jpg',
     includes: ['کوتاهی مو', 'استایل', 'اصلاح ریش', 'پاکسازی پوست', 'گریم']
   },
   {
     id: 'groom2', cat: 'groom', name: 'پکیج ۲: وی‌آی‌پی (گلد ۱)', badge: 'گلد',
     desc: 'پکیج ویژه با فشیال تخصصی و گریم حرفه‌ای برای دامادهای خوش‌پوش.',
     price: 8500000, duration: '۵ ساعت (۱ روز کاری)', minutes: 300,
-    img: 'https://images.unsplash.com/photo-1519699047748-de8e457a634e?w=600&h=400&fit=crop&auto=format&q=80',
+    img: 'assets/services/groom2.jpg',
     includes: ['کوتاهی مو', 'طراحی مو و ریش (اصلاح کلاسیک)', 'استایل', 'فشیال تخصصی پوست', 'گریم تخصصی', 'متعادل‌سازی چهره']
   },
   {
     id: 'groom3', cat: 'groom', name: 'پکیج ۳: داماد', badge: 'محبوب‌ترین',
     desc: 'پکیج کامل و حرفه‌ای مخصوص داماد شامل تمامی خدمات آرایشی و زیبایی برای بهترین روز زندگی شما.',
     price: 9500000, duration: '۶ ساعت', minutes: 360,
-    img: 'https://images.unsplash.com/photo-1519699047748-de8e457a634e?w=600&h=400&fit=crop&auto=format&q=80',
+    img: 'assets/services/groom3.jpg',
     includes: ['کوتاهی مو', 'طراحی مو و ریش به صورت کلاسیک (استایل)', 'فشیال پوست', 'زیرسازی', 'میکاپ', 'کانتور (متعادل‌سازی)']
   },
   {
     id: 'groom4', cat: 'groom', name: 'پکیج ۴: داماد', badge: 'لاکچری',
     desc: 'لوکس‌ترین پکیج داماد با فیشیال دو مرحله‌ای و پروتز موقت مو.',
     price: 11500000, duration: '۸ ساعت', minutes: 480,
-    img: 'https://images.unsplash.com/photo-1503951914875-452162b0f3f1?w=600&h=400&fit=crop&auto=format&q=80',
+    img: 'assets/services/groom4.jpg',
     includes: ['کوتاهی مو', 'طراحی مو و ریش کلاسیک', 'فید ریش و شقیقه', 'استایل', 'فیشیال تخصصی پوست (دوبار در دو روز)', 'زیرسازی پوست', 'کانتور پوست', 'متعادل‌سازی پوست', 'پروتز موقت مو']
   }
 ];
@@ -74,9 +74,29 @@ P.customServices = function () {
   catch (e) { return []; }
 };
 
+/* Exact former defaults only: upgrade saved stock images without replacing custom photos. */
+var LEGACY_SERVICE_IMAGES = {
+  "vip": "https://images.unsplash.com/photo-1503951914875-452162b0f3f1?w=600&h=400&fit=crop&auto=format&q=80",
+  "facial": "https://images.unsplash.com/photo-1622287162716-f311baa1a2b8?w=600&h=400&fit=crop&auto=format&q=80",
+  "makeup": "https://images.unsplash.com/photo-1596728325488-58c87691e9af?w=600&h=400&fit=crop&auto=format&q=80",
+  "keratin": "https://images.unsplash.com/photo-1605497788044-5a32c7078486?w=600&h=400&fit=crop&auto=format&q=80",
+  "groom1": "https://images.unsplash.com/photo-1593702288056-7927b442d0fa?w=600&h=400&fit=crop&auto=format&q=80",
+  "groom2": "https://images.unsplash.com/photo-1519699047748-de8e457a634e?w=600&h=400&fit=crop&auto=format&q=80",
+  "groom3": "https://images.unsplash.com/photo-1519699047748-de8e457a634e?w=600&h=400&fit=crop&auto=format&q=80",
+  "groom4": "https://images.unsplash.com/photo-1503951914875-452162b0f3f1?w=600&h=400&fit=crop&auto=format&q=80"
+};
+
 /* Admin edits over the seed catalog (persisted in localStorage) */
 P.serviceEdits = function () {
-  try { return JSON.parse(localStorage.getItem('pirayesh-service-edits') || '{}'); }
+  try {
+    var edits = JSON.parse(localStorage.getItem('pirayesh-service-edits') || '{}') || {};
+    P.services.forEach(function (s) {
+      if (edits[s.id] && edits[s.id].img === LEGACY_SERVICE_IMAGES[s.id]) {
+        edits[s.id].img = s.img;
+      }
+    });
+    return edits;
+  }
   catch (e) { return {}; }
 };
 P.saveServiceEdit = function (id, patch) {
@@ -186,10 +206,75 @@ P.store = {
   draft: function () { return P.store._read('pirayesh-draft', null); },
   saveDraft: function (d) { localStorage.setItem('pirayesh-draft', JSON.stringify(d)); },
   clearDraft: function () { localStorage.removeItem('pirayesh-draft'); },
-  profile: function () {
-    return P.store._read('pirayesh-profile', { name: 'امیرحسین محمدی', phone: '۰۹۱۲۳۴۵۴۵۶۷' });
+  _customerRecord: function (phone, saved) {
+    if (!saved || typeof saved !== 'object' || Array.isArray(saved) ||
+        typeof saved.name !== 'string' || !saved.name.trim()) return null;
+    function timestamp(value) {
+      return typeof value === 'string' && Number.isFinite(Date.parse(value)) ? value : null;
+    }
+    return {
+      name: saved.name.trim(), phone: phone,
+      birthDate: typeof saved.birthDate === 'string' && /^\d{4}-\d{2}-\d{2}$/.test(saved.birthDate) ? saved.birthDate : '',
+      birthCalendar: 'persian',
+      smsConsent: typeof saved.smsConsent === 'boolean' ? saved.smsConsent : null,
+      smsConsentUpdatedAt: timestamp(saved.smsConsentUpdatedAt),
+      smsConsentVersion: saved.smsConsentVersion === 'offers-v1' ? 'offers-v1' : null,
+      termsVersion: typeof saved.termsVersion === 'string' ? saved.termsVersion : null,
+      termsAcceptedAt: timestamp(saved.termsAcceptedAt),
+      createdAt: timestamp(saved.createdAt), updatedAt: timestamp(saved.updatedAt)
+    };
   },
-  saveProfile: function (p) { localStorage.setItem('pirayesh-profile', JSON.stringify(p)); },
+  profile: function () {
+    var session = P.auth && P.auth.session();
+    var empty = { name: 'کاربر', phone: session ? session.phone : '', birthDate: '', birthCalendar: 'persian',
+      smsConsent: null, smsConsentUpdatedAt: null, smsConsentVersion: null, termsVersion: null, termsAcceptedAt: null, createdAt: null, updatedAt: null };
+    if (!session) return empty;
+    var saved = P.store._read('pirayesh-profile:' + session.phone, null);
+    // Preserve an existing profile only when it belongs to the verified number.
+    var legacy = P.store._read('pirayesh-profile', null);
+    if (!saved && legacy && P.auth.normalizePhone(legacy.phone) === session.phone) saved = legacy;
+    return P.store._customerRecord(session.phone, saved) || empty;
+  },
+  saveProfile: function (p) {
+    var session = P.auth && P.auth.session();
+    if (!session) return;
+    var existing = P.store.profile();
+    var now = new Date().toISOString();
+    var acceptedTerms = !P.auth.needsTerms();
+    // The per-number profile IS the club record: one write, no duplicated list to drift out of sync.
+    localStorage.setItem('pirayesh-profile:' + session.phone, JSON.stringify({
+      name: p.name === undefined ? existing.name : p.name, phone: session.phone,
+      birthDate: p.birthDate === undefined ? existing.birthDate : p.birthDate, birthCalendar: 'persian',
+      // Preserve historical preferences; terms acceptance is recorded separately, not invented consent.
+      smsConsent: existing.smsConsent,
+      smsConsentUpdatedAt: existing.smsConsentUpdatedAt,
+      smsConsentVersion: existing.smsConsentVersion,
+      termsVersion: acceptedTerms ? session.termsVersion : existing.termsVersion,
+      termsAcceptedAt: acceptedTerms ? session.termsAcceptedAt : existing.termsAcceptedAt,
+      createdAt: existing.createdAt || now, updatedAt: now
+    }));
+  },
+  customers: function () {
+    if (!P.auth || !P.auth.isAdmin() || P.auth.needsTerms() || P.auth.needsProfile()) return [];
+    var byPhone = new Map();
+    var legacy = P.store._read('pirayesh-profile', null);
+    var legacyPhone = legacy && P.auth.normalizePhone(legacy.phone);
+    var legacyRecord = legacyPhone && P.store._customerRecord(legacyPhone, legacy);
+    if (legacyRecord) byPhone.set(legacyPhone, legacyRecord);
+    for (var i = 0; i < localStorage.length; i++) {
+      var key = localStorage.key(i);
+      if (!key || key.indexOf('pirayesh-profile:') !== 0) continue;
+      var phone = P.auth.normalizePhone(key.slice('pirayesh-profile:'.length));
+      if (!phone) continue;
+      var record = P.store._customerRecord(phone, P.store._read(key, null));
+      if (!record) continue;
+      var previous = byPhone.get(phone);
+      if (!previous || (record.updatedAt || '') >= (previous.updatedAt || '')) byPhone.set(phone, record);
+    }
+    return Array.from(byPhone.values()).sort(function (a, b) {
+      return (b.createdAt || '').localeCompare(a.createdAt || '') || a.name.localeCompare(b.name, 'fa');
+    });
+  },
   /* Seed demo data on first run */
   seed: function () {
     if (localStorage.getItem('pirayesh-seeded')) return;

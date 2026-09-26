@@ -207,16 +207,25 @@
   if (cta) cta.addEventListener('click', function () {
     if (!canNext(stage)) { P.toast(HINTS[stage]); return; }
     if (stage < 3) { show(stage + 1, true); return; }
-    /* submit feedback: disable + label, then hand off to payment */
+    // Save the complete selection BEFORE login. No booking/payment is created here.
+    var s = P.findService(state.serviceId);
+    if (!s) { P.toast('لطفاً یک خدمت معتبر انتخاب کنید.'); return; }
+    try {
+      P.store.saveDraft({
+        serviceId: state.serviceId, name: s.name, price: s.price, duration: s.duration,
+        dateKey: state.dateKey, time: P.fa(state.time)
+      });
+    } catch (e) {
+      P.toast('ذخیره انتخاب‌ها ممکن نیست. ذخیره‌سازی مرورگر را بررسی کنید و دوباره تلاش کنید.');
+      return;
+    }
     cta.disabled = true;
     cta.style.opacity = '.7';
-    if ($('ctaLabel')) $('ctaLabel').textContent = 'در حال ثبت…';
-    var s = P.findService(state.serviceId);
-    P.store.saveDraft({
-      serviceId: state.serviceId, name: s.name, price: s.price, duration: s.duration,
-      dateKey: state.dateKey, time: P.fa(state.time)
-    });
-    setTimeout(function () { location.href = 'payment.html'; }, 450);
+    if ($('ctaLabel')) $('ctaLabel').textContent = 'در حال ادامه…';
+    setTimeout(function () {
+      // Guests authenticate only at this final handoff; completed sessions skip login.
+      if (P.auth.requireLogin('payment.html')) location.href = 'payment.html';
+    }, 450);
   });
 
   var back = $('backBtn');
@@ -231,6 +240,12 @@
   window.addEventListener('popstate', function (e) {
     var n = (e.state && e.state.step) || 1;
     if (n !== stage && n >= 1 && n <= 3) show(n, false);
+  });
+
+  // Browser Back can restore the page from before its checkout redirect.
+  window.addEventListener('pageshow', function () {
+    if (cta) cta.disabled = false;
+    update();
   });
 
   /* ---------- init ---------- */

@@ -2,6 +2,7 @@
 <html>
 <head>
   <meta charset="UTF-8">
+  <script src="assets/auth.js"></script>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="manifest" href="manifest.webmanifest" />
   <meta name="theme-color" content="#ECEEF0" />
@@ -20,6 +21,7 @@
     }
   </style>
   <link rel="stylesheet" href="assets/dark.css" />
+  <link rel="stylesheet" href="assets/admin.css" />
 </head>
 
 <body dir="rtl" lang="fa"><link rel="preconnect" href="https://unpkg.com" />
@@ -39,7 +41,7 @@
   --color-surface: #FFFFFF;
   --color-surface-light: #F3F4F6;
   --color-surface-lighter: #E5E7EB;
-  --color-base: #ECEEF0;
+  --color-canvas: #ECEEF0;
   --color-on-primary: #FFFFFF;
   --font-family-vazir: 'Vazirmatn', sans-serif;
 }
@@ -50,15 +52,17 @@
 .modal-content { background: #FFFFFF; border-radius: 1.5rem 1.5rem 0 0; width: 100%; max-height: 85vh; overflow-y: auto; padding: 1.5rem; }
 </style>
 
-<header class="sticky top-2 z-40 px-3">
+<header class="admin-header">
   <div class="island max-w-md mx-auto px-4 py-3 flex items-center justify-between">
     <div class="flex items-center gap-3">
       <a href="admin-dashboard.html" class="w-9 h-9 rounded-full bg-surface-light flex items-center justify-center"><i data-lucide="arrow-right" class="w-4 h-4 text-[#111111]/60"></i></a>
       <h1 class="text-[#111111] font-bold text-lg">مدیریت خدمات</h1>
     </div>
-    <button onclick="document.getElementById('addModal').style.display='flex'" class="bg-primary text-[#FFFFFF] text-xs font-bold px-4 py-2 rounded-xl flex items-center gap-1">
-      <i data-lucide="plus" class="w-3.5 h-3.5"></i> افزودن
-    </button>
+    <div data-header-actions class="flex items-center gap-2 shrink-0">
+      <button onclick="document.getElementById('addModal').style.display='flex'" class="bg-primary text-[#FFFFFF] text-xs font-bold px-4 py-2 rounded-xl flex items-center gap-1">
+        <i data-lucide="plus" class="w-3.5 h-3.5"></i> افزودن
+      </button>
+    </div>
   </div>
 </header>
 
@@ -93,30 +97,30 @@
     <div class="space-y-4">
       <div>
         <label class="text-[#111111]/50 text-xs mb-1.5 block">نام خدمت</label>
-        <input id="svcName" type="text" placeholder="مثلاً: اصلاح کلاسیک" class="w-full bg-base border border-[#111111]/10 rounded-xl px-4 py-3 text-[#111111] text-sm outline-none focus:border-primary" />
+        <input id="svcName" type="text" placeholder="مثلاً: اصلاح کلاسیک" class="w-full bg-canvas border border-[#111111]/10 rounded-xl px-4 py-3 text-[#111111] text-sm outline-none focus:border-primary" />
       </div>
       <div>
         <label class="text-[#111111]/50 text-xs mb-1.5 block">دسته‌بندی</label>
-        <select id="svcCat" class="w-full bg-base border border-[#111111]/10 rounded-xl px-4 py-3 text-[#111111] text-sm outline-none focus:border-primary">
+        <select id="svcCat" class="w-full bg-canvas border border-[#111111]/10 rounded-xl px-4 py-3 text-[#111111] text-sm outline-none focus:border-primary">
           <option value="main">خدمات اصلی</option>
           <option value="groom">پکیج‌های داماد</option>
         </select>
       </div>
       <div>
         <label class="text-[#111111]/50 text-xs mb-1.5 block">توضیحات</label>
-        <textarea id="svcDesc" rows="3" placeholder="توضیح کوتاه درباره خدمت..." class="w-full bg-base border border-[#111111]/10 rounded-xl px-4 py-3 text-[#111111] text-sm outline-none focus:border-primary resize-none"></textarea>
+        <textarea id="svcDesc" rows="3" placeholder="توضیح کوتاه درباره خدمت..." class="w-full bg-canvas border border-[#111111]/10 rounded-xl px-4 py-3 text-[#111111] text-sm outline-none focus:border-primary resize-none"></textarea>
       </div>
       <div class="grid grid-cols-2 gap-3">
         <div>
           <label class="text-[#111111]/50 text-xs mb-1.5 block">قیمت (تومان)</label>
-          <input id="svcPrice" type="text" placeholder="۰" class="w-full bg-base border border-[#111111]/10 rounded-xl px-4 py-3 text-[#111111] text-sm outline-none focus:border-primary" />
+          <input id="svcPrice" type="text" placeholder="۰" class="w-full bg-canvas border border-[#111111]/10 rounded-xl px-4 py-3 text-[#111111] text-sm outline-none focus:border-primary" />
         </div>
         <div>
           <label class="text-[#111111]/50 text-xs mb-1.5 block">مدت زمان (دقیقه)</label>
-          <input id="svcMinutes" type="text" placeholder="۰" class="w-full bg-base border border-[#111111]/10 rounded-xl px-4 py-3 text-[#111111] text-sm outline-none focus:border-primary" />
+          <input id="svcMinutes" type="text" placeholder="۰" class="w-full bg-canvas border border-[#111111]/10 rounded-xl px-4 py-3 text-[#111111] text-sm outline-none focus:border-primary" />
         </div>
       </div>
-      <div class="flex items-center justify-between bg-base rounded-xl p-3 border border-[#111111]/10">
+      <div class="flex items-center justify-between bg-canvas rounded-xl p-3 border border-[#111111]/10">
         <span class="text-[#111111] text-sm">فعال</span>
         <div class="w-11 h-6 bg-primary rounded-full relative cursor-pointer">
           <div class="absolute top-0.5 right-0.5 w-5 h-5 bg-white rounded-full shadow"></div>
@@ -138,29 +142,29 @@
       <input type="hidden" id="eId" />
       <div>
         <label class="text-[#111111]/50 text-xs mb-1.5 block">نام خدمت</label>
-        <input id="eName" type="text" class="w-full bg-base border border-[#111111]/10 rounded-xl px-4 py-3 text-[#111111] text-sm outline-none focus:border-primary" />
+        <input id="eName" type="text" class="w-full bg-canvas border border-[#111111]/10 rounded-xl px-4 py-3 text-[#111111] text-sm outline-none focus:border-primary" />
       </div>
       <div>
         <label class="text-[#111111]/50 text-xs mb-1.5 block">توضیحات</label>
-        <textarea id="eDesc" rows="2" class="w-full bg-base border border-[#111111]/10 rounded-xl px-4 py-3 text-[#111111] text-sm outline-none focus:border-primary resize-none"></textarea>
+        <textarea id="eDesc" rows="2" class="w-full bg-canvas border border-[#111111]/10 rounded-xl px-4 py-3 text-[#111111] text-sm outline-none focus:border-primary resize-none"></textarea>
       </div>
       <div class="grid grid-cols-2 gap-3">
         <div>
           <label class="text-[#111111]/50 text-xs mb-1.5 block">قیمت (تومان)</label>
-          <input id="ePrice" type="text" inputmode="numeric" class="w-full bg-base border border-[#111111]/10 rounded-xl px-4 py-3 text-[#111111] text-sm outline-none focus:border-primary" dir="ltr" />
+          <input id="ePrice" type="text" inputmode="numeric" class="w-full bg-canvas border border-[#111111]/10 rounded-xl px-4 py-3 text-[#111111] text-sm outline-none focus:border-primary" dir="ltr" />
         </div>
         <div>
           <label class="text-[#111111]/50 text-xs mb-1.5 block">مدت زمان (دقیقه)</label>
-          <input id="eMinutes" type="text" inputmode="numeric" class="w-full bg-base border border-[#111111]/10 rounded-xl px-4 py-3 text-[#111111] text-sm outline-none focus:border-primary" dir="ltr" />
+          <input id="eMinutes" type="text" inputmode="numeric" class="w-full bg-canvas border border-[#111111]/10 rounded-xl px-4 py-3 text-[#111111] text-sm outline-none focus:border-primary" dir="ltr" />
         </div>
       </div>
       <div>
         <label class="text-[#111111]/50 text-xs mb-1.5 block">جزئیات / خدمات شامل (هر مورد در یک خط)</label>
-        <textarea id="eIncludes" rows="4" class="w-full bg-base border border-[#111111]/10 rounded-xl px-4 py-3 text-[#111111] text-sm outline-none focus:border-primary resize-none"></textarea>
+        <textarea id="eIncludes" rows="4" class="w-full bg-canvas border border-[#111111]/10 rounded-xl px-4 py-3 text-[#111111] text-sm outline-none focus:border-primary resize-none"></textarea>
       </div>
       <div>
         <label class="text-[#111111]/50 text-xs mb-1.5 block">آدرس تصویر (اختیاری)</label>
-        <input id="eImg" type="text" placeholder="https://..." dir="ltr" class="w-full bg-base border border-[#111111]/10 rounded-xl px-4 py-3 text-[#111111] text-sm outline-none focus:border-primary" />
+        <input id="eImg" type="text" placeholder="https://..." dir="ltr" class="w-full bg-canvas border border-[#111111]/10 rounded-xl px-4 py-3 text-[#111111] text-sm outline-none focus:border-primary" />
       </div>
       <button id="editReset" style="display:none" class="w-full bg-red-500/10 text-red-400 font-bold text-xs py-3 rounded-xl mt-1">بازگردانی به پیش‌فرض</button>
       <button id="editSave" class="w-full bg-primary text-on-primary font-bold py-3.5 rounded-xl mt-2">ذخیره تغییرات</button>

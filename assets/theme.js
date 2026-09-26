@@ -50,8 +50,10 @@
       setIcon(btn);
     });
     var island = document.querySelector('header .island');
+    var actions = island && island.querySelector('[data-header-actions]');
     var cal = island && island.querySelector('a[href="my-bookings.html"]');
-    if (cal && cal.parentElement) cal.parentElement.insertBefore(btn, cal);
+    if (actions) actions.appendChild(btn);
+    else if (cal && cal.parentElement) cal.parentElement.insertBefore(btn, cal);
     else if (island) { btn.style.marginInlineStart = 'auto'; island.appendChild(btn); }
     else return;
     setIcon(btn);
