@@ -1,0 +1,13 @@
+# cPanel / Apache: open the static site when visiting the domain root.
+DirectoryIndex index.html
+
+<IfModule mod_mime.c>
+  AddType application/manifest+json .webmanifest
+</IfModule>
+
+# Revalidate the app shell after updates; offline support remains in sw.js.
+<IfModule mod_headers.c>
+  <FilesMatch "\.(html|js|css|webmanifest)$">
+    Header set Cache-Control "no-cache"
+  </FilesMatch>
+</IfModule>

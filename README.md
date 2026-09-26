@@ -172,6 +172,31 @@ the background. Keep `text-base` for sizing and set text colors separately.
 
 GitHub Pages from the repo root (`index.html` at `/`).
 
+### cPanel / public_html
+
+Rebuild the upload package with `python3 scripts/build-cpanel.py`.
+`clickv2-cpanel.zip` includes only the public HTML pages, assets, manifest, service
+worker and Apache `.htaccess`. It has **no enclosing folder**: `index.html` is
+at the ZIP root. Tests, development tools, Git metadata and the ZIP itself are
+excluded. The build checks local HTML references and all offline-shell files.
+
+1. Back up your current `public_html`, especially any existing `.htaccess`.
+2. Upload `clickv2-cpanel.zip` using cPanel File Manager.
+3. Extract directly into your domain's `public_html` (or its configured document
+   root), replacing the old site files. Merge the provided `.htaccess` directives
+   instead of overwriting it if you have custom hosting rules.
+4. Verify `public_html/index.html` and `public_html/assets/` exist, without an
+   extra parent folder. Enable HTTPS / AutoSSL for PWA support.
+5. Open the domain, refresh, and delete the uploaded ZIP from `public_html`.
+
+No Node, Python or database setup is needed on the hosting server. The app still
+loads Tailwind, icons and fonts from external CDNs, and the embedded map from
+Google. Visitors need access to those services.
+
+**Prototype limitation:** uploading does not turn browser-local demo login,
+bookings or payments into a secure multi-user backend. SMS and real payment
+processing remain unimplemented; local data does not transfer between domains.
+
 ## Service imagery
 
 The eight default services each use a unique local photograph-style **AI-generated
